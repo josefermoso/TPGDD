@@ -1,0 +1,44 @@
+C:\Documents and Settings\Luciano\Escritorio\TP 2C NEW1\Aplicacion Desktop\Clinica Frba\bin\Debug\Clinica Frba.exe
+C:\Documents and Settings\Luciano\Escritorio\TP 2C NEW1\Aplicacion Desktop\Clinica Frba\bin\Debug\Clinica Frba.pdb
+C:\Documents and Settings\Luciano\Escritorio\TP 2C NEW1\Aplicacion Desktop\Clinica Frba\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Luciano\Escritorio\TP 2C NEW1\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.abmAfiliado.Form1.resources
+C:\Documents and Settings\Luciano\Escritorio\TP 2C NEW1\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Properties.Resources.resources
+C:\Documents and Settings\Luciano\Escritorio\TP 2C NEW1\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica Frba.csproj.GenerateResource.Cache
+C:\Documents and Settings\Luciano\Escritorio\TP 2C NEW1\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica Frba.exe
+C:\Documents and Settings\Luciano\Escritorio\TP 2C NEW1\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica Frba.pdb
+C:\Documents and Settings\Luciano\Escritorio\TP 2C NEW1\Aplicacion Desktop\Clinica Frba\bin\Debug\Clinica Frba.exe.config
+C:\Documents and Settings\Luciano\Escritorio\TP1C2013 K3022 BUGDEVELOPING 54\Aplicacion Desktop\Clinica Frba\bin\Debug\Clinica Frba.exe.config
+C:\Documents and Settings\Luciano\Escritorio\TP1C2013 K3022 BUGDEVELOPING 54\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica Frba.exe
+C:\Documents and Settings\Luciano\Escritorio\TP1C2013 K3022 BUGDEVELOPING 54\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica Frba.pdb
+C:\Documents and Settings\Luciano\Escritorio\TP1C2013 K3022 BUGDEVELOPING 54\Aplicacion Desktop\Clinica Frba\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Luciano\Escritorio\TP1C2013 K3022 BUGDEVELOPING 54\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.abmAfiliado.Form1.resources
+C:\Documents and Settings\Luciano\Escritorio\TP1C2013 K3022 BUGDEVELOPING 54\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Properties.Resources.resources
+C:\Documents and Settings\Luciano\Escritorio\TP1C2013 K3022 BUGDEVELOPING 54\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica Frba.csproj.GenerateResource.Cache
+C:\Documents and Settings\Luciano\Escritorio\TP1C2013 K3022 BUGDEVELOPING 54\Aplicacion Desktop\Clinica Frba\bin\Debug\Clinica Frba.exe
+C:\Documents and Settings\Luciano\Escritorio\TP1C2013 K3022 BUGDEVELOPING 54\Aplicacion Desktop\Clinica Frba\bin\Debug\Clinica Frba.pdb
+C:\Documents and Settings\Luciano\Escritorio\TP1C2013 K3022 BUGDEVELOPING 54\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Profesional.AltaProfesional.resources
+C:\Documents and Settings\Luciano\Escritorio\TP1C2013 K3022 BUGDEVELOPING 54\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Profesional.MenuProfesional.resources
+C:\Documents and Settings\Luciano\Escritorio\TP1C2013 K3022 BUGDEVELOPING 54\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.NewFolder4.Form1.resources
+C:\Documents and Settings\Luciano\Escritorio\TP1C2013 K3022 BUGDEVELOPING 54\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Profesional.ListadoProfesional.resources
+C:\Documents and Settings\Luciano\Escritorio\TP1C2013 K3022 BUGDEVELOPING 54\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Profesional.BajaProfesional.resources
+C:\Documents and Settings\Luciano\Escritorio\TP1C2013 K3022 BUGDEVELOPING 54\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Profesional.ModificacionProfesional.resources
+C:\Documents and Settings\Luciano\Escritorio\TP1C2013 K3022 BUGDEVELOPING 54\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Login.LoginForm.resources
+C:\Documents and Settings\Luciano\Escritorio\TP\Aplicacion Desktop\Clinica Frba\bin\Debug\Clinica Frba.exe.config
+C:\Documents and Settings\Luciano\Escritorio\TP\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica Frba.exe
+C:\Documents and Settings\Luciano\Escritorio\TP\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica Frba.pdb
+C:\Documents and Settings\Luciano\Escritorio\TP\Aplicacion Desktop\Clinica Frba\bin\Debug\Clinica Frba.exe
+C:\Documents and Settings\Luciano\Escritorio\TP\Aplicacion Desktop\Clinica Frba\bin\Debug\Clinica Frba.pdb
+C:\Documents and Settings\Luciano\Escritorio\TP\Aplicacion Desktop\Clinica Frba\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Luciano\Escritorio\TP\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.abmAfiliado.Form1.resources
+C:\Documents and Settings\Luciano\Escritorio\TP\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Profesional.AltaProfesional.resources
+C:\Documents and Settings\Luciano\Escritorio\TP\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Profesional.BajaProfesional.resources
+C:\Documents and Settings\Luciano\Escritorio\TP\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Profesional.MenuProfesional.resources
+C:\Documents and Settings\Luciano\Escritorio\TP\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Profesional.ModificacionProfesional.resources
+C:\Documents and Settings\Luciano\Escritorio\TP\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Login.LoginForm.resources
+C:\Documents and Settings\Luciano\Escritorio\TP\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.NewFolder4.Form1.resources
+C:\Documents and Settings\Luciano\Escritorio\TP\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Properties.Resources.resources
+C:\Documents and Settings\Luciano\Escritorio\TP\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica Frba.csproj.GenerateResource.Cache
+C:\Documents and Settings\Luciano\Escritorio\TP\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Profesional.ListadoProfesionalBaja.resources
+C:\Documents and Settings\Luciano\Escritorio\TP\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Profesional.ListadoProfesionalEdicion.resources
+C:\Documents and Settings\Luciano\Escritorio\TP\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Amb_Especialidades.listadoEspecialidades.resources
+C:\Documents and Settings\Luciano\Escritorio\TP\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Amb_Planes.listadoPlanes.resources

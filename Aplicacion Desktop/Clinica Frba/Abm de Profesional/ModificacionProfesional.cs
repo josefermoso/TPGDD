@@ -43,17 +43,23 @@ namespace Clinica_Frba.Abm_de_Profesional
             checkedListBox1.ValueMember = "ES_ID";
 
             DataTable especialidadesDelProfesional = Clinica_Frba.Abm_de_Profesional.FuncionesProfesional.obtenerEspecialidadesDe(pk_medico);
-            for (int i = 0; i < especialidadesDelProfesional.Rows.Count; i++)
+            List<int> listaEspecialidadesDelProfesional = new List<int> { };
+            
+            foreach (DataRow row in especialidadesDelProfesional.Rows)
             {
-                for (int p = 0; p < checkedListBox1.Items.Count; p++)
+                int id = int.Parse(row["EM_ESPECIALIDAD"].ToString());
+                listaEspecialidadesDelProfesional.Add(id);
+            }
+            
+            for (int p = 0; p < checkedListBox1.Items.Count; p++)
+            {
+                DataRowView view = checkedListBox1.Items[p] as DataRowView;
+                int value = int.Parse(view["ES_ID"].ToString());
+                if (listaEspecialidadesDelProfesional.Contains(value))
                 {
-                    if (especialidadesDelProfesional.Rows[i].ToString().Equals(checkedListBox1.GetItemText(p).ToString()))
-                    {
-                        checkedListBox1.SetItemChecked(p, true);
-                    }
+                checkedListBox1.SetItemChecked(p, true);    
                 }
             }
-
 
             comboBox2.Items.Add("Masculino");
             comboBox2.Items.Add("Femenino");

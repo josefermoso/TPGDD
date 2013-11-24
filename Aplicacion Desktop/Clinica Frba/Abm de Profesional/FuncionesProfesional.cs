@@ -56,7 +56,7 @@ namespace Clinica_Frba.Abm_de_Profesional
         public static DataTable obtenerEspecialidadesDe(string pk_medico)
         {
             DataTable Dt;
-            String query = "SELECT ES_DESCRIPCION FROM BUGDEVELOPING.ESPECIALIDAD_MEDICO JOIN BUGDEVELOPING.ESPECIALIDAD ON (EM_ESPECIALIDAD = ES_ID) WHERE EM_MEDICO = '" + pk_medico + "'";
+            String query = "SELECT EM_ESPECIALIDAD FROM BUGDEVELOPING.ESPECIALIDAD_MEDICO WHERE EM_MEDICO = '" + pk_medico + "'";
             ConnectorClass conexion = ConnectorClass.Instance;
             Dt = conexion.executeQuery(query);
             return Dt;

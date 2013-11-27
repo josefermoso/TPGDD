@@ -46,7 +46,7 @@ namespace Clinica_Frba.Abm_de_Profesional
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ListadoProfesionalBaja listadoProfesionalBajaForm = new ListadoProfesionalBaja();
+            ListadoProfesional listadoProfesionalBajaForm = new ListadoProfesional();
             DialogResult result = listadoProfesionalBajaForm.ShowDialog();
             if (result == DialogResult.OK)
             {

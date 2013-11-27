@@ -10,9 +10,9 @@ using Clinica_Frba.ConnectorSQL;
 
 namespace Clinica_Frba.Abm_de_Profesional
 {
-    public partial class ListadoProfesionalBaja : Form
+    public partial class ListadoProfesional : Form
     {
-        public ListadoProfesionalBaja()
+        public ListadoProfesional()
         {
             InitializeComponent();
         }

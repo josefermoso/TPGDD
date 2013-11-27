@@ -145,7 +145,7 @@ namespace Clinica_Frba.Generar_Receta
             String recetaCreada = FuncionesGenerarReceta.getRecetaGenerada(textBoxBONOFAR.Text);
             foreach (CantidadDeMedicamentos med in listaDrogas)
             {
-                FuncionesGenerarReceta.insertarReceta_Droga(recetaCreada, med.idDroga, med.cantidad, med.aclaracion);
+                FuncionesGenerarReceta.insertarReceta_Droga(recetaCreada, med.idMedicamento, med.cantidad, med.aclaracion);
             }
         }
     }

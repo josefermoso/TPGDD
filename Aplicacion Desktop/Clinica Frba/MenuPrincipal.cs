@@ -24,18 +24,18 @@ namespace Clinica_Frba
 
         private void cargarFuncionalides(object sender, EventArgs e)
         {
-            //this.rolesToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "1");
-            //this.afiliadosToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "2");
-            //this.profesionalesToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "3");
-            //this.cancelarAtenciónToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "9");
-            //this.comprarBonosToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "5");
-            //this.generarRecetaToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "10");
-            //this.generarRecetaToolStripMenuItem.Visible = false;
-            //this.pedirTurnosToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "6");
-            //this.registrarAgendaDelMédicoToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "4");
-            //this.registrarLlegadaDelPacienteToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "7");
-            //this.registarResultadoDeLaAtenciónToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "8");
-            //this.obtenerEstadísticasToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "11");
+            this.rolesToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "1");
+            this.afiliadosToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "2");
+            this.profesionalesToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "3");
+            this.cancelarAtenciónToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "9");
+            this.comprarBonosToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "5");
+            this.generarRecetaToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "10");
+            this.generarRecetaToolStripMenuItem.Visible = false;
+            this.pedirTurnosToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "6");
+            this.registrarAgendaDelMédicoToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "4");
+            this.registrarLlegadaDelPacienteToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "7");
+            this.registarResultadoDeLaAtenciónToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "8");
+            this.obtenerEstadísticasToolStripMenuItem.Visible = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(rolQueMostrara, "11");
 
         }
 
@@ -79,7 +79,9 @@ namespace Clinica_Frba
 
         private void profesionalesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            (new Clinica_Frba.Abm_de_Profesional.MenuProfesional()).Show();
+            Clinica_Frba.Abm_de_Profesional.MenuProfesional abmProfesional = new Clinica_Frba.Abm_de_Profesional.MenuProfesional();
+            abmProfesional.Show();
+            this.Hide();
         }
 
         private void cancelarAtenciónToolStripMenuItem_Click(object sender, EventArgs e)
@@ -112,62 +114,61 @@ namespace Clinica_Frba
         {
 
             ConnectorClass con = ConnectorClass.Instance;
-            String validacion2 = "select r.nombre from BUGDEVELOPING.ROL r, HARDWELL.USUARIO_ROL ur, HARDWELL.USUARIO u where u.USERNAME = '" + Clinica_Frba.Login.LoginForm.nombreUsuario + "' and u.ID_USUARIO = ur.ID_USUARIO and r.ID_ROL = ur.ID_ROL";
+            String validacion2 = "select r.ROL_NOMBRE from BUGDEVELOPING.ROL r, BUGDEVELOPING.USUARIO_ROL ur, BUGDEVELOPING.USUARIO u where u.USUARIO_USERNAME = '" + Clinica_Frba.Login.LoginForm.nombreUsuario + "' and u.USUARIO_ID = ur.USUARIO_ID and r.ROL_ID = ur.ROL_ID";
             DataTable data2 = new DataTable();
             data2 = con.executeQuery(validacion2);
 
             if (data2.Rows[0][0].ToString() == "Administrador del Sistema")
             {
-              /*  pedido_turno.buscarProfesional ventanaPedirTurno = new Clinica_Frba.pedido_turno.buscarProfesional();
+                pedido_turno.buscarProfesional ventanaPedirTurno = new Clinica_Frba.pedido_turno.buscarProfesional();
                 ventanaPedirTurno.quienEs = "Administrador del Sistema";
                 ventanaPedirTurno.Show();
-                this.Hide();*/
+                this.Hide();
             }
 
             if (data2.Rows[0][0].ToString() == "Afiliado")
             {
-                /*pedido_turno.buscarProfesional ventanaPedirTurno = new Clinica_Frba.pedido_turno.buscarProfesional();
+                pedido_turno.buscarProfesional ventanaPedirTurno = new Clinica_Frba.pedido_turno.buscarProfesional();
                 ventanaPedirTurno.idPaciente = userId;
                 ventanaPedirTurno.Show();
-                this.Hide();*/
+                this.Hide();
             }
         }
 
         private void registrarAgendaDelMédicoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           /* SqlConnector con = SqlConnector.getInstance();
-            String validacion = "select * from HARDWELL.AGENDA as d where d.ID_PROFESIONAL=" + userId;
+            ConnectorClass con = ConnectorClass.Instance;
+            //String validacion = "select * from HARDWELL.AGENDA as d where d.ID_PROFESIONAL=" + userId;
             DataTable data = new DataTable();
-            data = con.executeQuery(validacion);
+            //data = con.executeQuery(validacion);
 
-            String validacion2 = "select r.nombre from HARDWELL.ROL r, HARDWELL.USUARIO_ROL ur, HARDWELL.USUARIO u where u.USERNAME = '" + Clinica_Frba.Login.LoginForm.nombreUsuario + "' and u.ID_USUARIO = ur.ID_USUARIO and r.ID_ROL = ur.ID_ROL";
+            String validacion2 = "select r.ROL_NOMBRE from BUGDEVELOPING.ROL r, BUGDEVELOPING.USUARIO_ROL ur, BUGDEVELOPING.USUARIO u where u.USUARIO_USERNAME = '" + Clinica_Frba.Login.LoginForm.nombreUsuario + "' and u.USUARIO_ID = ur.USUARIO_ID and r.ROL_ID = ur.ROL_ID";
             DataTable data2 = new DataTable();
             data = con.executeQuery(validacion2);
 
-            if (data.Rows.Count == 0)
-            {
-                if (data2.Rows[0][0].ToString() == "Profesional")
-                {
-                    Registrar_Agenda.Agenda ventanaAgenda = new Clinica_Frba.Registrar_Agenda.Agenda();
-                    ventanaAgenda.idProfesionalLogueado = userId;
-                    ventanaAgenda.Show();
-                    this.Hide();
-                }
-                else
-                {
-                    MessageBox.Show("Ya se selecciono agenda");
-                }
-
-            }
-
-            if (data.Rows[0][0].ToString() == "Administrador del Sistema") ;
+            if (data.Rows[0][0].ToString() == "Administrador del Sistema")
             {
                 Registrar_Agenda.Agenda ventanaAgenda = new Clinica_Frba.Registrar_Agenda.Agenda();
                 ventanaAgenda.quienEs = "Administrador del Sistema";
                 ventanaAgenda.Show();
                 this.Hide();
             }
-            */
+            else
+            {
+                Registrar_Agenda.Agenda ventanaAgenda = new Clinica_Frba.Registrar_Agenda.Agenda();
+                ventanaAgenda.idProfesionalLogueado = obtenerProfesionalLogueado(userId);
+                ventanaAgenda.Show();
+                this.Hide();
+            }
+            
+        }
+
+        private string obtenerProfesionalLogueado(string userId)
+        {
+            ConnectorClass con = ConnectorClass.Instance;
+            String query = "SELECT PE_ID FROM BUGDEVELOPING.PERSONA WHERE PE_USUARIO_ID = " + userId;
+            DataTable dt = con.executeQuery(query);
+            return dt.Rows[0].ItemArray[0].ToString();
         }
 
         private void registrarLlegadaDelPacienteToolStripMenuItem_Click(object sender, EventArgs e)

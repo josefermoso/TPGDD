@@ -1,6 +1,6 @@
 ﻿namespace Clinica_Frba.Abm_de_Profesional
 {
-    partial class ListadoProfesionalBaja
+    partial class ListadoProfesional
     {
        /// <summary>
         /// Variable del diseñador requerida.

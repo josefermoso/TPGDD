@@ -117,6 +117,19 @@
     <Compile Include="Generar Receta\GenerarReceta.Designer.cs">
       <DependentUpon>GenerarReceta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pedir Turno\Turno.cs" />
+    <Compile Include="Pedir Turno\ProfesionalSeleccionado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pedir Turno\ProfesionalSeleccionado.Designer.cs">
+      <DependentUpon>ProfesionalSeleccionado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registro de LLegada\LlegadaBuscarProfesional.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registro de LLegada\LlegadaBuscarProfesional.Designer.cs">
+      <DependentUpon>LlegadaBuscarProfesional.cs</DependentUpon>
+    </Compile>
     <Compile Include="Validar.cs" />
     <Compile Include="ConnectorClass.cs" />
     <Compile Include="MenuPrincipal.cs">
@@ -169,11 +182,11 @@
     <Compile Include="Abm de Rol\RolMenu.Designer.cs">
       <DependentUpon>RolMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Registrar Agenda\Form1.cs">
+    <Compile Include="Registrar Agenda\AgendaPersonal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Registrar Agenda\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Registrar Agenda\AgendaPersonal.Designer.cs">
+      <DependentUpon>AgendaPersonal.cs</DependentUpon>
     </Compile>
     <Compile Include="Compra de Bono\Form1.cs">
       <SubType>Form</SubType>
@@ -187,11 +200,11 @@
     <Compile Include="Pedir Turno\ReservarTurno.Designer.cs">
       <DependentUpon>ReservarTurno.cs</DependentUpon>
     </Compile>
-    <Compile Include="Registro de LLegada\Form1.cs">
+    <Compile Include="Registro de LLegada\TurnosDadosProfesional.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Registro de LLegada\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Registro de LLegada\TurnosDadosProfesional.Designer.cs">
+      <DependentUpon>TurnosDadosProfesional.cs</DependentUpon>
     </Compile>
     <Compile Include="Registro Resultado Atencion\Form1.cs">
       <SubType>Form</SubType>

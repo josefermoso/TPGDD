@@ -35,6 +35,7 @@ namespace Clinica_Frba.Abm_de_Profesional
         private void button4_Click(object sender, EventArgs e)
         {
             this.Close();
+            Clinica_Frba.MenuPrincipal.menuActivo.Show();
         }
     }
 }

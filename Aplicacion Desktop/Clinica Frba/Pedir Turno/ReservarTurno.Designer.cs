@@ -1,6 +1,6 @@
-﻿namespace Clinica_Frba.NewFolder4
+﻿namespace Clinica_Frba.pedido_turno
 {
-    partial class Form1
+    partial class buscarProfesional
     {
         /// <summary>
         /// Required designer variable.
@@ -28,89 +28,141 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.grillaProfesional = new System.Windows.Forms.DataGridView();
+            this.Selecionar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.labelNombreProfesional = new System.Windows.Forms.Label();
+            this.labelEspecialidad = new System.Windows.Forms.Label();
+            this.buscar = new System.Windows.Forms.Button();
+            this.limpiar = new System.Windows.Forms.Button();
+            this.especialidades = new System.Windows.Forms.ComboBox();
+            this.nombreProfesional = new System.Windows.Forms.TextBox();
+            this.labelApellidoProfesional = new System.Windows.Forms.Label();
+            this.apellidoProfesional = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grillaProfesional)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // grillaProfesional
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 62);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Médico";
+            this.grillaProfesional.AllowUserToAddRows = false;
+            this.grillaProfesional.AllowUserToDeleteRows = false;
+            this.grillaProfesional.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaProfesional.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Selecionar});
+            this.grillaProfesional.Location = new System.Drawing.Point(12, 91);
+            this.grillaProfesional.MultiSelect = false;
+            this.grillaProfesional.Name = "grillaProfesional";
+            this.grillaProfesional.ReadOnly = true;
+            this.grillaProfesional.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grillaProfesional.Size = new System.Drawing.Size(740, 157);
+            this.grillaProfesional.TabIndex = 1;
+            this.grillaProfesional.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grillaProfesional_CellContentClick);
             // 
-            // label2
+            // Selecionar
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Afiliado";
+            this.Selecionar.HeaderText = "Seleccionar";
+            this.Selecionar.Name = "Selecionar";
+            this.Selecionar.ReadOnly = true;
             // 
-            // textBox1
+            // labelNombreProfesional
             // 
-            this.textBox1.Location = new System.Drawing.Point(77, 59);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 2;
+            this.labelNombreProfesional.AutoSize = true;
+            this.labelNombreProfesional.Location = new System.Drawing.Point(35, 40);
+            this.labelNombreProfesional.Name = "labelNombreProfesional";
+            this.labelNombreProfesional.Size = new System.Drawing.Size(44, 13);
+            this.labelNombreProfesional.TabIndex = 2;
+            this.labelNombreProfesional.Text = "Nombre";
             // 
-            // textBox2
+            // labelEspecialidad
             // 
-            this.textBox2.Location = new System.Drawing.Point(77, 18);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 3;
+            this.labelEspecialidad.AutoSize = true;
+            this.labelEspecialidad.Location = new System.Drawing.Point(501, 40);
+            this.labelEspecialidad.Name = "labelEspecialidad";
+            this.labelEspecialidad.Size = new System.Drawing.Size(96, 13);
+            this.labelEspecialidad.TabIndex = 3;
+            this.labelEspecialidad.Text = "Elegir Especialidad";
+            // 
+            // buscar
+            // 
+            this.buscar.Location = new System.Drawing.Point(572, 269);
+            this.buscar.Name = "buscar";
+            this.buscar.Size = new System.Drawing.Size(75, 23);
+            this.buscar.TabIndex = 4;
+            this.buscar.Text = "Buscar";
+            this.buscar.UseVisualStyleBackColor = true;
+            this.buscar.Click += new System.EventHandler(this.buscar_Click);
+            // 
+            // limpiar
+            // 
+            this.limpiar.Location = new System.Drawing.Point(677, 269);
+            this.limpiar.Name = "limpiar";
+            this.limpiar.Size = new System.Drawing.Size(75, 23);
+            this.limpiar.TabIndex = 5;
+            this.limpiar.Text = "Limpiar";
+            this.limpiar.UseVisualStyleBackColor = true;
+            this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
+            // 
+            // especialidades
+            // 
+            this.especialidades.FormattingEnabled = true;
+            this.especialidades.Location = new System.Drawing.Point(603, 36);
+            this.especialidades.Name = "especialidades";
+            this.especialidades.Size = new System.Drawing.Size(121, 21);
+            this.especialidades.TabIndex = 6;
+            this.especialidades.SelectedIndexChanged += new System.EventHandler(this.especialidades_SelectedIndexChanged);
+            // 
+            // nombreProfesional
+            // 
+            this.nombreProfesional.Location = new System.Drawing.Point(85, 37);
+            this.nombreProfesional.Name = "nombreProfesional";
+            this.nombreProfesional.Size = new System.Drawing.Size(121, 20);
+            this.nombreProfesional.TabIndex = 7;
+            // 
+            // labelApellidoProfesional
+            // 
+            this.labelApellidoProfesional.AutoSize = true;
+            this.labelApellidoProfesional.Location = new System.Drawing.Point(271, 40);
+            this.labelApellidoProfesional.Name = "labelApellidoProfesional";
+            this.labelApellidoProfesional.Size = new System.Drawing.Size(44, 13);
+            this.labelApellidoProfesional.TabIndex = 8;
+            this.labelApellidoProfesional.Text = "Apellido";
+            // 
+            // apellidoProfesional
+            // 
+            this.apellidoProfesional.Location = new System.Drawing.Point(321, 37);
+            this.apellidoProfesional.Name = "apellidoProfesional";
+            this.apellidoProfesional.Size = new System.Drawing.Size(121, 20);
+            this.apellidoProfesional.TabIndex = 9;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(198, 57);
+            this.button1.Location = new System.Drawing.Point(475, 269);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Seleccionar";
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Cancelar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(198, 16);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Seleccionar";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(20, 102);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(441, 286);
-            this.dataGridView1.TabIndex = 6;
-            // 
-            // Form1
+            // buscarProfesional
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(488, 433);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button2);
+            this.ClientSize = new System.Drawing.Size(776, 315);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Name = "Form1";
-            this.Text = "Reservar Turno";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Controls.Add(this.apellidoProfesional);
+            this.Controls.Add(this.labelApellidoProfesional);
+            this.Controls.Add(this.nombreProfesional);
+            this.Controls.Add(this.especialidades);
+            this.Controls.Add(this.limpiar);
+            this.Controls.Add(this.buscar);
+            this.Controls.Add(this.labelEspecialidad);
+            this.Controls.Add(this.labelNombreProfesional);
+            this.Controls.Add(this.grillaProfesional);
+            this.Name = "buscarProfesional";
+            this.Text = "Pedido Turno";
+            this.Load += new System.EventHandler(this.buscarProfesional_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.grillaProfesional)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -118,12 +170,16 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.DataGridView grillaProfesional;
+        private System.Windows.Forms.Label labelNombreProfesional;
+        private System.Windows.Forms.Label labelEspecialidad;
+        private System.Windows.Forms.Button buscar;
+        private System.Windows.Forms.Button limpiar;
+        private System.Windows.Forms.ComboBox especialidades;
+        private System.Windows.Forms.TextBox nombreProfesional;
+        private System.Windows.Forms.Label labelApellidoProfesional;
+        private System.Windows.Forms.TextBox apellidoProfesional;
+        private System.Windows.Forms.DataGridViewButtonColumn Selecionar;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

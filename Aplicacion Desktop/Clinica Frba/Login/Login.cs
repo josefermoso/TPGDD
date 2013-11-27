@@ -55,7 +55,7 @@ namespace Clinica_Frba.Login
                     String cantidad = Clinica_Frba.Login.FuncionesLogin.getCantidadDeIntentos(userId);
 
 
-                    if (cantidad.Equals("3"))
+                    if (cantidad.Equals("1"))
                     {
                         return "El usuario ha alcanzado el maximo de entradas incorrectas. Usuario Inhabilitado";
 
@@ -64,7 +64,7 @@ namespace Clinica_Frba.Login
                     {
                         Clinica_Frba.Login.FuncionesLogin.decrementarIntentos(userId);
                         cantidad = Clinica_Frba.Login.FuncionesLogin.getCantidadDeIntentos(userId);
-                        return "Contraseña Erronea. Tiene " + (3 - int.Parse(cantidad)) + " intentos restantes";
+                        return "Contraseña Erronea. Tiene " + int.Parse(cantidad) + " intentos restantes";
                     }
                 }
                 else

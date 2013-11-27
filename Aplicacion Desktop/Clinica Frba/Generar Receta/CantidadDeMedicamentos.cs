@@ -11,14 +11,14 @@ namespace Clinica_Frba.Generar_Receta
 {
     public partial class CantidadDeMedicamentos : Form
     {
-        public string idDroga;
+        public string idMedicamento;
         public string cantidad;
         public string aclaracion;
         private static Generar_Receta.GenerarReceta receta;
-        public CantidadDeMedicamentos(String drogaID, Generar_Receta.GenerarReceta RecetaCreada)
+        public CantidadDeMedicamentos(String medicamentoID, Generar_Receta.GenerarReceta RecetaCreada)
         {
 
-            idDroga = drogaID;
+            idMedicamento = medicamentoID;
             InitializeComponent();
             receta = RecetaCreada;
         }
@@ -117,14 +117,14 @@ namespace Clinica_Frba.Generar_Receta
 
             foreach (CantidadDeMedicamentos formCantidad in receta.listaDrogas)
             {
-                subList.Add(formCantidad.idDroga);
+                subList.Add(formCantidad.idMedicamento);
             }
 
             if (subList.Count == 0)
             {
                 return 0;
             }
-            else if (subList.Contains(idDroga))
+            else if (subList.Contains(idMedicamento))
             {
                 return 1;
             }

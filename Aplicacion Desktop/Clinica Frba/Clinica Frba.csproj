@@ -130,6 +130,13 @@
     <Compile Include="Registro de LLegada\LlegadaBuscarProfesional.Designer.cs">
       <DependentUpon>LlegadaBuscarProfesional.cs</DependentUpon>
     </Compile>
+    <Compile Include="Registro Resultado Atencion\RegistroResultadoAtencion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registro Resultado Atencion\RegistroResultadoAtencion.Designer.cs">
+      <DependentUpon>RegistroResultadoAtencion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registro Resultado Atencion\FuncionesRegistroResultado.cs" />
     <Compile Include="Validar.cs" />
     <Compile Include="ConnectorClass.cs" />
     <Compile Include="MenuPrincipal.cs">
@@ -206,11 +213,11 @@
     <Compile Include="Registro de LLegada\TurnosDadosProfesional.Designer.cs">
       <DependentUpon>TurnosDadosProfesional.cs</DependentUpon>
     </Compile>
-    <Compile Include="Registro Resultado Atencion\Form1.cs">
+    <Compile Include="Registro Resultado Atencion\IngresoTurno.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Registro Resultado Atencion\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Registro Resultado Atencion\IngresoTurno.Designer.cs">
+      <DependentUpon>IngresoTurno.cs</DependentUpon>
     </Compile>
     <Compile Include="Cancelar Atencion\Form1.cs">
       <SubType>Form</SubType>

@@ -215,7 +215,6 @@
             this.monthCalendar1.Location = new System.Drawing.Point(456, 21);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 12;
-            this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged_2);
             // 
             // finalizar
             // 

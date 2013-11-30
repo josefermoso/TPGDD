@@ -173,17 +173,14 @@ namespace Clinica_Frba
 
         private void registrarLlegadaDelPacienteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*
-            NewFolder5.Form1 registro = new NewFolder5.Form1();
-            registro.Show();
-            */
+            Registro_de_LLegada.LlegadaBuscarProfesional registroLlegada = new Registro_de_LLegada.LlegadaBuscarProfesional();
+            registroLlegada.Show();
         }
 
         private void registarResultadoDeLaAtenciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*
-            Registro_Resultado_Atencion.IngresoTurno reg = new Registro_Resultado_Atencion.IngresoTurno();
-            reg.Show();*/
+            Registro_Resultado_Atencion.IngresoTurno registroResultado = new Registro_Resultado_Atencion.IngresoTurno();
+            registroResultado.Show();
         }
 
         private void obtenerEstadísticasToolStripMenuItem_Click(object sender, EventArgs e)

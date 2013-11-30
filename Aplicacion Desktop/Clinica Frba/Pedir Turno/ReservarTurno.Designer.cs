@@ -109,7 +109,6 @@
             this.especialidades.Name = "especialidades";
             this.especialidades.Size = new System.Drawing.Size(121, 21);
             this.especialidades.TabIndex = 6;
-            this.especialidades.SelectedIndexChanged += new System.EventHandler(this.especialidades_SelectedIndexChanged);
             // 
             // nombreProfesional
             // 

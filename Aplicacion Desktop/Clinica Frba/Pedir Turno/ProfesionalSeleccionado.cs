@@ -12,13 +12,14 @@ namespace Clinica_Frba.Pedir_Turno
 {
     public partial class ProfesionalSeleccionado : Form
     {
-       List<DateTime> listaDeFechas = new List<DateTime>();
+        List<DateTime> listaDeFechas = new List<DateTime>();
         List<Turno> listaDeTurnos = new List<Turno>();
         String diaElegido;
         public String quienEs2;
+        public String idAgenda;
 
         String fechaSistema = Clinica_Frba.Registro_de_LLegada.TurnosDadosProfesional.convertDate();
-        DateTime fechaSistemaPosta = ConnectorClass.getFechaSistema();
+        DateTime fechaSistemaPosta = DateTime.Parse(Clinica_Frba.Registro_de_LLegada.TurnosDadosProfesional.convertDate());
         ConnectorClass Conexion = ConnectorClass.Instance;
 
         public string idProfesional;
@@ -29,12 +30,11 @@ namespace Clinica_Frba.Pedir_Turno
         int a;
 
         public int idPaciente;
-        
         public ProfesionalSeleccionado()
         {
             InitializeComponent();
         }
-        
+
         public void generarComboboxFechas()
         {
             DataTable dt2 = new DataTable();
@@ -53,7 +53,7 @@ namespace Clinica_Frba.Pedir_Turno
 
                 dt2.Rows.Add(dr2);
             }
-            
+
             fechasDisponibles.DataSource = dt2;
             fechasDisponibles.DisplayMember = "Fecha_String";
             fechasDisponibles.ValueMember = "Fecha_Valor";
@@ -71,7 +71,7 @@ namespace Clinica_Frba.Pedir_Turno
                 agregarAfiliado.Enabled = false;
                 numeroDeAfiliado.Enabled = false;
             }
-            else 
+            else
             {
                 agregarAfiliado.Enabled = true;
                 numeroDeAfiliado.Enabled = true;
@@ -80,42 +80,44 @@ namespace Clinica_Frba.Pedir_Turno
                 limpiarGrilla.Enabled = false;
                 fechasDisponibles.Enabled = false;
             }
-            
+
             AgregarFechasALaLista();
             generarComboboxFechas();
 
             ConnectorClass Conexion = ConnectorClass.Instance;
             DataTable Dt;
-            Dt = Conexion.executeQuery("select distinct DIA_NOMBRE, DIA_ID from BUGDEVELOPING.AGENDA_PERSONAL inner join BUGDEVELOPING.AGENDA_DIA on (AG_MEDICO = AGD_AG_MEDICO) inner join BUGDEVELOPING.DIA on (DIA_ID = AGD_DIA_ID) where AG_MEDICO = " + idProfesional + "and DIA_ID!=7"); 
-            //Dt = Conexion.executeQuery("select dia.NOMBRE, dia.ID_DIA from HARDWELL.agenda as a inner join HARDWELL.AGENDA_DIA as d on a.ID_PROFESIONAL=d.ID_PROFESIONAL inner join HARDWELL.DIA as dia on d.ID_DIA=dia.ID_DIA  where a.ID_PROFESIONAL=" + idProfesional );
+            Dt = Conexion.executeQuery("select distinct DIA_NOMBRE, DIA_ID from BUGDEVELOPING.AGENDA_PERSONAL inner join BUGDEVELOPING.AGENDA_DIA on (AG_CODIGO = AGD_AG_CODIGO) inner join BUGDEVELOPING.DIA on (AGD_DIA_ID = DIA_ID) where AG_MEDICO = " + idProfesional + "and DIA_ID != 7");
+
             diasDeLaSemana.DataSource = Dt;
             diasDeLaSemana.DisplayMember = "DIA_NOMBRE";
             diasDeLaSemana.ValueMember = "DIA_ID";
-           // diasDeLaSemana.Enabled = true;
 
             diasDeLaSemana.SelectedItem = null;
             fechasDisponibles.SelectedItem = null;
-          }
+        }
 
-        public Boolean estaEnLaAgenda(DateTime fecha) 
+        public Boolean estaEnLaAgenda(DateTime fecha)
         {
-            int nroDia= buscarIdDia(fecha.DayOfWeek.ToString());
+            int nroDia = buscarIdDia(fecha.DayOfWeek.ToString());
 
             DataTable Dt;
-            Dt = Conexion.executeQuery("select * from BUGDEVELOPING.AGENDA_DIA as ad inner join BUGDEVELOPING.AGENDA_PERSONAL  as a on (a.AG_MEDICO = ad.AGD_AG_MEDICO) where ad.AGD_DIA_ID =" + nroDia + "and a.AG_MEDICO =" + idProfesional);
-           // Dt = Conexion.executeQuery("select * from HARDWELL.AGENDA_DIA as ad inner join HARDWELL.AGENDA  as a on a.ID_PROFESIONAL=ad.ID_PROFESIONAL where ad.ID_DIA=" + nroDia + "and a.ID_PROFESIONAL=" + idProfesional);
-            if(Dt.Rows.Count>0){
-            return true;
-            }else{return false;}
+            Dt = Conexion.executeQuery("select * from BUGDEVELOPING.AGENDA_DIA inner join BUGDEVELOPING.AGENDA_PERSONAL  on (AGD_AG_CODIGO = AG_CODIGO) where AGD_DIA_ID=" + nroDia + "and AG_MEDICO = " + idProfesional);
+            
+            if (Dt.Rows.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public void AgregarFechasALaLista()
         {
             DataTable Dt;
-            Dt = Conexion.executeQuery("select distinct d.AG_DESDE_DIA, d.AG_HASTA_DIA from BUGDEVELOPING.AGENDA_DIA as h inner join BUGDEVELOPING.AGENDA_PERSONAL as d on (h.AGD_AG_MEDICO = d.AG_MEDICO) where  d.AG_MEDICO = " + idProfesional);
-
-            //Dt = Conexion.executeQuery("select d.FECHA_DESDE,d.FECHA_HASTA from hardwell.AGENDA_DIA as h inner join HARDWELL.AGENDA as d on h.ID_PROFESIONAL=d.ID_PROFESIONAL where  d.ID_PROFESIONAL=" + idProfesional);
-
+            Dt = Conexion.executeQuery("select distinct AG_DESDE_DIA, AG_HASTA_DIA from BUGDEVELOPING.AGENDA_DIA inner join BUGDEVELOPING.AGENDA_PESONAL on (AG_CODIGO = AGD_AG_CODIGO) where  AG_MEDICO =" + idProfesional);
+            
             for (int j = 0; j < Dt.Rows.Count; j++)
             {
                 DateTime fechaDesde = (DateTime)Dt.Rows[j].ItemArray[0];
@@ -131,7 +133,7 @@ namespace Clinica_Frba.Pedir_Turno
                     {
                         System.Console.WriteLine("agrego {0}", fechaDesde);
                         listaDeFechas.Add(fechaDesde);
-                           
+
                     }
 
                 }
@@ -150,13 +152,13 @@ namespace Clinica_Frba.Pedir_Turno
                     }
 
                 }
-                Dt = Conexion.executeQuery("select distinct d.AG_DESDE_DIA, d.AG_HASTA_DIA from BUGDEVELOPING.AGENDA_DIA as h inner join BUGDEVELOPING.AGENDA_PERSONAL as d on (h.AGD_AG_MEDICO = d.AG_MEDICO) where  d.AG_MEDICO = " + idProfesional);
+                Dt = Conexion.executeQuery("select distinct AG_DESDE_DIA, AG_HASTA_DIA from BUGDEVELOPING.AGENDA_DIA inner join BUGDEVELOPING.AGENDA_PESONAL on (AG_CODIGO = AGD_AG_CODIGO) where  AG_MEDICO =" + idProfesional);
             }
         }
 
         public int buscarIdDia(String dia)
         {
-     
+
             if (dia == "Monday" || dia == "LUNES") { a = 1; }
             if (dia == "Tuesday" || dia == "MARTES") { a = 2; }
             if (dia == "Wednesday" || dia == "MIERCOLES") { a = 3; }
@@ -167,7 +169,7 @@ namespace Clinica_Frba.Pedir_Turno
             return a;
         }
 
-        public Boolean estaDisponible(TimeSpan horaComienzo) 
+        public Boolean estaDisponible(TimeSpan horaComienzo)
         {
             ConnectorClass con = ConnectorClass.Instance;
 
@@ -175,35 +177,42 @@ namespace Clinica_Frba.Pedir_Turno
             //PROBLEMA CON FECHA Y HORA PARA CONSULTAR  
 
             string val = String.Format("{0:yyyy-MM-dd}", fechaElegida); //t.nro_afiliado=" + idPaciente2 + "
-            DataTable horasDeInicio = con.executeQuery("select t.T_HORA,t.T_FECHA from BUGDEVELOPING.TURNO as t where T_AFILIADO = " + idProfesional + "AND t.T_FECHA = '" + val + "' order by t.T_HORA ASC"); 
+            DataTable horasDeInicio = con.executeQuery("select T_HORA, T_FECHA from BUGDEVELOPING.TURNO as t where T_MEDICO = " + idProfesional + "AND T_FECHA = '" + val + "' order by T_HORA ASC");
 
             for (int i = 0; i < horasDeInicio.Rows.Count; i++)
             {
-               TimeSpan s = DateTime.Parse(horasDeInicio.Rows[i].ItemArray[0].ToString()).TimeOfDay;
-               DateTime d = DateTime.Parse(horasDeInicio.Rows[i].ItemArray[1].ToString());
-               System.Console.WriteLine(s.ToString());
-               if (s == horaComienzo && d == fechaElegida) { return false; }
+                TimeSpan s = DateTime.Parse(horasDeInicio.Rows[i].ItemArray[0].ToString()).TimeOfDay;
+                DateTime d = DateTime.Parse(horasDeInicio.Rows[i].ItemArray[1].ToString());
+                System.Console.WriteLine(s.ToString());
+                if (s == horaComienzo && d == fechaElegida) { return false; }
             }
             return true;
         }
 
         public void mostrarTodosLosHorariosDisponiblesSegunFecha()
         {
+            //COMO ES MAS DE UNO TENGO QUE SABER PARA QUE AGENDA ES!
             listaDeTurnos = null;
             listaDeTurnos = new List<Turno>();
 
             grillaProfesional.Columns["Seleccionar"].Visible = true;
 
+            fechaElegida = DateTime.Parse(fechasDisponibles.SelectedValue.ToString());
+            string val = String.Format("{0:yyyy-MM-dd}", fechaElegida);
+
             ConnectorClass con = ConnectorClass.Instance;
             String nombredia = fechaElegida.DayOfWeek.ToString();
             int idDia = buscarIdDia(nombredia);
 
-            DataTable horario = con.executeQuery("select  h.AGD_HORA_INICIO, h.AGD_HORA_FIN from BUGDEVELOPING.AGENDA_DIA as h inner join BUGDEVELOPING.AGENDA_PERSONAL as d on (h.AGD_AG_MEDICO = d.AG_MEDICO) where h.AGD_DIA_ID=" + idDia + "and d.AG_MEDICO=" + idProfesional);
+            //El problema que ahora puede haber dos horarios para un lunes dependiendo de la agenda
+            //Esta es la forma que puede saber que agenda es
+            DataTable horario = con.executeQuery("select DISTINCT AGD_HORA_INICIO, AGD_HORA_FIN, AG_CODIGO  from BUGDEVELOPING.AGENDA_DIA inner join BUGDEVELOPING.AGENDA_PERSONAL on (AGD_AG_CODIGO = AG_CODIGO) where AGD_DIA_ID = " + idDia + "and AG_MEDICO =" + idProfesional + "and '" + fechaElegida + "' between AG_DESDE_DIA and AG_HASTA_DIA ");
 
             //DataTable horario = con.executeQuery("select  h.HORA_INICIO, h.HORA_FIN from hardwell.AGENDA_DIA as h inner join HARDWELL.AGENDA as d on (h.ID_PROFESIONAL=d.ID_PROFESIONAL) where h.ID_DIA=" + idDia + "and d.ID_PROFESIONAL=" + idProfesional);
 
             TimeSpan f = (TimeSpan)horario.Rows[0].ItemArray[1];
             TimeSpan i = (TimeSpan)horario.Rows[0].ItemArray[0];
+            idAgenda = horario.Rows[0].ItemArray[2].ToString();
 
             TimeSpan diferencia = i - f;
             TimeSpan mediaHora = new TimeSpan(0, 0, 30, 0);
@@ -218,7 +227,7 @@ namespace Clinica_Frba.Pedir_Turno
                 TimeSpan horaFin = i;
 
                 //armo el turno
-                Turno turno = new Turno(n, horaInicio, horaFin);
+                Turno turno = new Turno(n, horaInicio, horaFin, idAgenda, "al pedo");
 
                 System.Console.WriteLine(n);
 
@@ -229,7 +238,7 @@ namespace Clinica_Frba.Pedir_Turno
                 //lo agrego a los turnos
                 if (estaDisponible(horaInicio))
                 {
-                listaDeTurnos.Add(turno);
+                    listaDeTurnos.Add(turno);
                 }
 
                 n++;
@@ -244,6 +253,7 @@ namespace Clinica_Frba.Pedir_Turno
             dt.Columns.Add("Numero de Turno");
             dt.Columns.Add("Hora inicio");
             dt.Columns.Add("Hora fin");
+            dt.Columns.Add("Id Agenda");
             for (int t = 0; t < listaDeTurnos.Count; t++)
             {
                 DataRow dr = dt.NewRow();
@@ -252,6 +262,7 @@ namespace Clinica_Frba.Pedir_Turno
                 dr[0] = turnos[t].nroTurno;
                 dr[1] = turnos[t].inicio;
                 dr[2] = turnos[t].fin;
+                dr[3] = turnos[t].nroIdAgenda;
                 dt.Rows.Add(dr);
             }
             grillaProfesional.DataSource = dt;
@@ -268,9 +279,9 @@ namespace Clinica_Frba.Pedir_Turno
             listaDeTurnos = new List<Turno>();
 
             ConnectorClass con = ConnectorClass.Instance;
-            
-            DataTable horario = con.executeQuery("select  h.AGD_HORA_INICIO, h.AGD_HORA_FIN, dia.DIA_NOMBRE from BUGDEVELOPING.AGENDA_DIA as h inner join BUGDEVELOPING.AGENDA_PERSONAL as d on (h.AGD_AG_MEDIO = d.AG_MEDICO) inner join BUGDEVELOPING.DIA as dia on (dia.DIA_ID = h.AGD_DIA_ID) where d.AG_MEDIO = " + idProfesional);
-           // DataTable horario = con.executeQuery("select  h.HORA_INICIO, h.HORA_FIN, dia.NOMBRE from hardwell.AGENDA_DIA as h inner join HARDWELL.AGENDA as d on (h.ID_PROFESIONAL=d.ID_PROFESIONAL) inner join HARDWELL.DIA as dia on (dia.ID_DIA=h.ID_DIA) where d.ID_PROFESIONAL=" + idProfesional);
+
+            DataTable horario = con.executeQuery("select AGD_HORA_INICIO, AGD_HORA_FIN, DIA_NOMBRE from BUGDEVELOPING.AGENDA_DIA inner join BUGDEVELOPING.AGENDA_PERSONAL on (AGD_AG_CODIGO = AG_CODIGO) inner join BUGDVELOPING.DIA on (DIA_ID = AGD_DIA_ID) where AG_MEDICO =" + idProfesional);
+            // DataTable horario = con.executeQuery("select  h.HORA_INICIO, h.HORA_FIN, dia.NOMBRE from hardwell.AGENDA_DIA as h inner join HARDWELL.AGENDA as d on (h.ID_PROFESIONAL=d.ID_PROFESIONAL) inner join HARDWELL.DIA as dia on (dia.ID_DIA=h.ID_DIA) where d.ID_PROFESIONAL=" + idProfesional);
 
             int cantDiasAtencion = horario.Rows.Count;
 
@@ -296,9 +307,9 @@ namespace Clinica_Frba.Pedir_Turno
                     //armo el turno
                     Turno turno = new Turno(n, horaInicio, horaFin, nombreDia);
 
-                 //lo agrego a los turnos
-                 listaDeTurnos.Add(turno);
-              
+                    //lo agrego a los turnos
+                    listaDeTurnos.Add(turno);
+
 
                     n++;
                 }
@@ -360,28 +371,22 @@ namespace Clinica_Frba.Pedir_Turno
 
                 fechaElegida = DateTime.Parse(fechasDisponibles.SelectedValue.ToString());
                 TimeSpan horaElegida = DateTime.Parse(grillaProfesional.CurrentRow.Cells[2].Value.ToString()).TimeOfDay;
-                DataTable dt = con.executeQuery("select PA_NAFILIADO from BUGDEVELOPING.PACIENTE WHERE PA_PERSONA = " + idPaciente2);
-                String nroAfiliado = dt.Rows[0].ItemArray[0].ToString();
-                con.executeQuery("insert into BUGDEVELOPING.TURNO (T_AFILIADO, T_MEDICO, T_FECHA, T_HORA) values ('" + nroAfiliado + "', '" + idProfesional + "' , '" + fechaElegida + "', '" + horaElegida + "') ");
+
+                con.executeQuery("insert into BUGDEVELOPING.TURNO (T_AFILIADO, T_MEDICO, T_AGENDA, T_FECHA, T_HORA) values ('" + idPaciente2 + "', '" + idProfesional + "' , '" + idAgenda + "' ,'" + fechaElegida + "', '" + horaElegida + "') ");
                 MessageBox.Show("Turno agregado correctamente");
                 mostrarTodosLosHorariosDisponiblesSegunFecha();
 
             }
         }
 
-        private void fechasDisponibles_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             fechasDisponibles.SelectedItem = null;
-                Object zx = diasDeLaSemana.SelectedValue;
-                String mer = Convert.ToString(zx);
-                System.Console.WriteLine(mer); //System data viw
-                diaElegido = mer;
-            
+            Object zx = diasDeLaSemana.SelectedValue;
+            String mer = Convert.ToString(zx);
+            System.Console.WriteLine(mer); //System data viw
+            diaElegido = mer;
+
             AgregarFechasALaLista();
             generarComboboxFechas();
         }
@@ -394,7 +399,7 @@ namespace Clinica_Frba.Pedir_Turno
 
         private void button2_Click(object sender, EventArgs e)
         {
-           
+
             int result = 0;
             if (!int.TryParse(numeroDeAfiliado.Text, out result))
             {
@@ -405,7 +410,7 @@ namespace Clinica_Frba.Pedir_Turno
             {
                 idPaciente2 = numeroDeAfiliado.Text;
                 ConnectorClass con = ConnectorClass.Instance;
-                string query = "select * from BUGDEVELOPING.PACIENTE as a where a.PA_PERSONA = " + idPaciente2;
+                string query = "select * from BUGDEVELOPING.PACIENTE where PA_PERSONA = " + idPaciente2;
                 DataTable data = new DataTable();
 
                 data = con.executeQuery(query);
@@ -423,11 +428,6 @@ namespace Clinica_Frba.Pedir_Turno
                     MessageBox.Show("El profesional elegido no existe");
                 }
             }
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

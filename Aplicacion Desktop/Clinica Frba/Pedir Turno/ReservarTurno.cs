@@ -44,14 +44,9 @@ namespace Clinica_Frba.pedido_turno
 
         }
 
-        private void especialidades_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         public void buscar_Click(object sender, EventArgs e)
         {
-            String query = "select P.PE_APELLIDO, P.PE_NOMBRE, E.ES_DESCRIPCION, M.ME_PERSONA from BUGDEVELOPING.ESPECIALIDAD_MEDICO as EM inner join BUGDEVELOPING.ESPECIALIDAD  as E on (E.ES_ID = EM.EM_ESPECIALIDAD) inner join BUGDEVELOPING.MEDICO as M on (M.ME_PERSONA = EM.EM_MEDICO) inner join BUGDEVELOPING.PERSONA as P on (M.ME_PERSONA = PE_ID) WHERE M.ME_ACTIVO = 1 ";
+            String query = "select PE_APELLIDO , PE_NOMBRE , ES_DESCRIPCION, ME_PERSONA from BUGDEVELOPING.ESPECIALIDAD_MEDICO inner join BUGDEVELOPING.ESPECIALIDAD on (ES_ID = EM_ESPECIALIDAD) inner join BUGDEVELOPING.MEDICO on (ME_PERSONA = EM_MEDICO) inner join BUGDEVELOPING.PERSONA on (PE_ID = ME_PERSONA) WHERE ME_ACTIVO = 1 ";
 
             int result = 0;
             if (int.TryParse(nombreProfesional.Text, out result))
@@ -63,7 +58,7 @@ namespace Clinica_Frba.pedido_turno
             {
                 if (nombreProfesional.Text != "")
                 {
-                    query = query + " AND P.PE_NOMBRE LIKE '%" + nombreProfesional.Text + "%'";
+                    query = query + " AND PE_NOMBRE LIKE '%" + nombreProfesional.Text + "%'";
 
                 }
             }
@@ -71,7 +66,7 @@ namespace Clinica_Frba.pedido_turno
 
             if (especialidades.SelectedValue != null)
             {
-                query = query + "AND E.ES_ID = " + especialidades.SelectedValue;
+                query = query + "AND ES_ID = " + especialidades.SelectedValue;
 
             }
 
@@ -86,7 +81,7 @@ namespace Clinica_Frba.pedido_turno
             {
                 if (apellidoProfesional.Text != "")
                 {
-                    query = query + " AND P.PE_APELLIDO LIKE '%" + apellidoProfesional.Text + "%'";
+                    query = query + " AND PE_APELLIDO LIKE '%" + apellidoProfesional.Text + "%'";
 
                 }
             }
@@ -104,13 +99,14 @@ namespace Clinica_Frba.pedido_turno
             apellidoProfesional.Clear();
             especialidades.SelectedItem = null;
         }
+
         public Boolean tieneAgenda()
         {
             ConnectorClass con = ConnectorClass.Instance;
             Boolean rta;
 
             string id = grillaProfesional.CurrentRow.Cells[4].Value.ToString();
-            DataTable nroIdAgenda = con.executeQuery("select * from BUGDEVELOPING.AGENDA_PERSONAL as A where A.AG_MEDICO = " + id);
+            DataTable nroIdAgenda = con.executeQuery("select * from BUGDEVELOPING.AGENDA_PERSONAL where AG_MEDICO = " + id);
 
             if (nroIdAgenda.Rows.Count == 0) { rta = false; } else { rta = true; }
 

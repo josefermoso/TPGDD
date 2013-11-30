@@ -72,7 +72,6 @@
             this.fechasDisponibles.Name = "fechasDisponibles";
             this.fechasDisponibles.Size = new System.Drawing.Size(191, 21);
             this.fechasDisponibles.TabIndex = 3;
-            this.fechasDisponibles.SelectedIndexChanged += new System.EventHandler(this.fechasDisponibles_SelectedIndexChanged);
             // 
             // buscarHorario
             // 
@@ -102,7 +101,6 @@
             this.labelDiaDeLaSemana.Size = new System.Drawing.Size(91, 13);
             this.labelDiaDeLaSemana.TabIndex = 7;
             this.labelDiaDeLaSemana.Text = "Dia de la Semana";
-            this.labelDiaDeLaSemana.Click += new System.EventHandler(this.label2_Click);
             // 
             // diasDeLaSemana
             // 

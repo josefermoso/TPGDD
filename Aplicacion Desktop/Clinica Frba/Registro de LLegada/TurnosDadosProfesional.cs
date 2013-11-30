@@ -44,7 +44,7 @@ namespace Clinica_Frba.Registro_de_LLegada
             String val = convertDate();
             //+ "' AND t.FECHA = '" + val +"'
 
-            String query = "select distinct t.ID_TURNO,t.FECHA,t.HORA,t.NRO_AFILIADO from HARDWELL.CONSULTA_MEDICA cm, HARDWELL.TURNO as t where not exists (select * from HARDWELL.CONSULTA_MEDICA as cm where cm.ID_TURNO=t.ID_TURNO ) and t.ID_PROFESIONAL = '" + idProfesional + "' AND t.FECHA >= '" + val + "'";
+            String query = "select distinct T_ID, T_FECHA, T_HORA, T_AFILIADO from BUGDEVELOPING.CONSULTA, BUGDVELOPING.TURNO where not exists (select * from BUGDEVELOPING.CONSULTA as cm where CON_TURNO = T_ID ) and T_MEDICO = '" + idProfesional + "' AND T_FECHA >= '" + val + "'";
 
             grillaProfesional.Columns["SELECCIONAR"].Visible = false;
 
@@ -58,7 +58,7 @@ namespace Clinica_Frba.Registro_de_LLegada
             {
                 if (nombreAfiliado.Text != "")
                 {
-                    query = query + "and t.NRO_AFILIADO LIKE '%" + nombreAfiliado.Text + "%'";
+                    query = query + "and T_AFILIADO LIKE '%" + nombreAfiliado.Text + "%'";
                     grillaProfesional.Columns["SELECCIONAR"].Visible = true;
                 }
             }
@@ -102,7 +102,7 @@ namespace Clinica_Frba.Registro_de_LLegada
         {
             ConnectorClass con = ConnectorClass.Instance;
 
-            String query3 = "select * from HARDWELL.AFILIADO a where a.NRO_AFILIADO=" + nombreAfiliado.Text;
+            String query3 = "select * from BUGDEVELOPING.PACIENTE where PA_NAFILIADO =" + nombreAfiliado.Text;
 
             DataTable dt2 = con.executeQuery(query3);
 
@@ -118,7 +118,7 @@ namespace Clinica_Frba.Registro_de_LLegada
                 {
                     ConnectorClass con = ConnectorClass.Instance;
 
-                    String query3 = "SELECT TOP 1 bc.ID_BONO_CONSULTA FROM HARDWELL.BONO_CONSULTA as bc inner join HARDWELL.COMPRA_BONO_CONSULTA as cbc on (bc.ID_BONO_CONSULTA=cbc.ID_BONO_CONSULTA) WHERE CBC.NRO_AFILIADO=" + nombreAfiliado.Text + "AND BC.NUMERO_CONSULTA is NULL";
+                    String query3 = "SELECT TOP 1 BC_BONO_NUMERO FROM BUGDEVELOPING.BONO_CONSULTA inner join BUGDEVELOPING.COMPRA_BONO on (BC_BONO_NUMERO = CB_BONO) inner join BUGDEVELOPING.COMPRA on (CO_NUMERO = CB_NUMERO) WHERE CO_AFILIADO = " + nombreAfiliado.Text + "AND BC_NUMERO_CONSULTA is NULL";
 
                     DataTable dt2 = con.executeQuery(query3);
 
@@ -127,28 +127,28 @@ namespace Clinica_Frba.Registro_de_LLegada
                         String idTurno = grillaProfesional.CurrentRow.Cells[1].Value.ToString();
                         String fechaConsulta = grillaProfesional.CurrentRow.Cells[2].Value.ToString();
 
-                        String query = "insert into  HARDWELL.CONSULTA_MEDICA (ID_TURNO,FECHA_CONSULTA,HORA_LLEGADA,HORA_INICIO) values ('" + idTurno + "','" + fechaConsulta + "', '" + horaLlegada + "' ,'" + horaDelTurno + "')";
+                        String query = "insert into  BUGDEVELOPING.CONSULTA (CON_TURNO, CON_FECHA, CON_HORA_LLEGADA, CON_HORA_INICIO) values ('" + idTurno + "','" + fechaConsulta + "', '" + horaLlegada + "' ,'" + horaDelTurno + "')";
 
                         con.executeQuery(query);
 
-                        String query2 = "select cm.NUMERO_CONSULTA from HARDWELL.CONSULTA_MEDICA as cm where cm.ID_TURNO=" + idTurno;
+                        String query2 = "select CON_NUMERO from BUGDEVELOPING.CONSULTA where CON_TURNO = " + idTurno;
 
                         DataTable dt = con.executeQuery(query2);
 
                         String nroConsulta = dt.Rows[0].ItemArray[0].ToString();
 
                         String idBono = dt2.Rows[0].ItemArray[0].ToString();
-                        String query4 = "update HARDWELL.BONO_CONSULTA set NUMERO_CONSULTA=" + nroConsulta + "where ID_BONO_CONSULTA=" + idBono;
+                        String query4 = "update BUGDEVELOPING.BONO_CONSULTA set BC_NUMERO_CONSULTA = " + nroConsulta + "where BC_BONO_NUMERO=" + idBono;
                         con.executeQuery(query4);
 
-                        MessageBox.Show("Consulta creda exitosamente");
+                        MessageBox.Show("Consulta creada exitosamente");
 
                         LlenarTurnos();
                     }
                     else
                     {
 
-                        MessageBox.Show("compre bono");
+                        MessageBox.Show("Compre bono");
                     }
                 }
                 else

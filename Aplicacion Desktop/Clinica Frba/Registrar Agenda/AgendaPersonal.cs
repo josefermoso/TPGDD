@@ -44,7 +44,7 @@ namespace Clinica_Frba.Registrar_Agenda
 
             ConnectorClass Conexion = ConnectorClass.Instance;
             DataTable Dt;
-            Dt = Conexion.executeQuery("select DIA_NOMBRE, DIA_ID from BUGDEVELOPING.DIA where DIA_ID <> 7");
+            Dt = Conexion.executeQuery("select DIA_NOMBRE, DIA_ID from BUGDEVELOPING.DIA where DIA_ID<>7");
             return Dt;
 
         }
@@ -127,6 +127,7 @@ namespace Clinica_Frba.Registrar_Agenda
             InitializeComponent();
             finalizar.Enabled = false;
         }
+
 
         private void Agenda_Load_1(object sender, EventArgs e)
         {
@@ -287,51 +288,9 @@ namespace Clinica_Frba.Registrar_Agenda
         }
 
 
-        private void monthCalendar1_DateChanged_2(object sender, DateRangeEventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            //AHORA NO VOY A TENER MAS ID_AGENDA, DIRECTAMENTE VA A SER EL ID_PROFESIONAL
             ConnectorClass con = ConnectorClass.Instance;
-
-            ////SACO ESTE
-            //DataTable nroIdAgenda = con.executeQuery("select top 1 a.ID_AGENDA from HARDWELL.AGENDA as a order by a.ID_AGENDA DESC");
-
-
-            //      //Si no habia ningun id en la tabla      
-            // if (nroIdAgenda.Rows.Count == 0)
-            //{
-            //    con.executeQuery("insert into HARDWELL.AGENDA (ID_AGENDA,ID_PROFESIONAL,FECHA_DESDE,FECHA_HASTA) values (1, '" + idProfesionalLogueado + "','" + fDesde + "','" + fHasta + "') ");
-
-            //    foreach (diaAgenda dia in dias)
-            //    {
-
-            //        if (dia.ocupado == 1)
-            //        {
-            //            con.executeQuery("insert into HARDWELL.AGENDA_DIA (ID_AGENDA,ID_DIA,HORA_INICIO,HORA_FIN) values (1 ,'" + dia.nroDia + "','" + dia.inicio + "','" + dia.fin + "') ");
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    panchu = (int)System.Convert.ToDecimal(nroIdAgenda.Rows[0].ItemArray[0].ToString());
-
-            //    panchu = panchu + 1;
-
-            //    con.executeQuery("insert into HARDWELL.AGENDA (ID_AGENDA,ID_PROFESIONAL,FECHA_DESDE,FECHA_HASTA) values ('" + panchu + "', '" + idProfesionalLogueado + "','" + fDesde + "','" + fHasta + "') ");
-
-            //    foreach (diaAgenda dia in dias)
-            //    {
-
-            //        if (dia.ocupado == 1)
-            //        {
-            //            con.executeQuery("insert into HARDWELL.AGENDA_DIA (ID_AGENDA,ID_DIA,HORA_INICIO,HORA_FIN) values ('" + panchu + "' ,'" + dia.nroDia + "','" + dia.inicio + "','" + dia.fin + "') ");
-            //        }
-            //    }                            
-            //}
 
             // PRIMERO LO METE EN LA AGENDA
 
@@ -339,9 +298,7 @@ namespace Clinica_Frba.Registrar_Agenda
 
             //AGENDA DIA
 
-            //'" + idProfesionalLogueado + "'
-
-            DataTable idAgenda = con.executeQuery("select top 1 AG_MEDICO from BUGDEVELOPING.AGENDA_PERSONAL WHERE AG_MEDICO = '" + idProfesionalLogueado + "' order by 1 DESC");
+            DataTable idAgenda = con.executeQuery("select top 1 AG_CODIGO from BUGDEVELOPING.AGENDA_PERSONAL WHERE AG_MEDICO ='" + idProfesionalLogueado + "' order by 1 DESC");
 
             String id = idAgenda.Rows[0].ItemArray[0].ToString();
 
@@ -351,7 +308,7 @@ namespace Clinica_Frba.Registrar_Agenda
 
                 if (dia.ocupado == 1)
                 {
-                    con.executeQuery("insert into BUGDEVELOPING.AGENDA_DIA (AGD_AG_MEDICO, AGD_DIA_ID, AGD_HORA_INICIO, AGD_HORA_FIN) values ('" + id + "','" + dia.nroDia + "','" + dia.inicio + "','" + dia.fin + "') ");
+                    con.executeQuery("insert into BUGDEVELOPING.AGENDA_DIA (AGD_AG_CODIGO, AGD_DIA_ID, AGD_HORA_INICIO, AGD_HORA_FIN) values ('" + id + "','" + dia.nroDia + "','" + dia.inicio + "','" + dia.fin + "') ");
                 }
             }
 
@@ -379,13 +336,10 @@ namespace Clinica_Frba.Registrar_Agenda
                 idProfesionalLogueado = nroProfesional.Text;
 
                 ConnectorClass con = ConnectorClass.Instance;
-                // String validacion = "select * from HARDWELL.AGENDA as d where d.ID_PROFESIONAL=" + nroProfesional.Text;
-                String validacion2 = "select * from BUGDEVELOPING.MEDICO as d where d.ME_PERSONA=" + nroProfesional.Text;
-                // DataTable data = new DataTable();
+                String validacion2 = "select * from BUGDEVELOPING.MEDICO where ME_PERSONA = " + nroProfesional.Text;
                 DataTable data2 = new DataTable();
 
                 data2 = con.executeQuery(validacion2);
-                //data = con.executeQuery(validacion);
 
                 //Valida que no tenga agenda
                 //Valida que exista el profesional

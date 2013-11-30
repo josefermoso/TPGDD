@@ -22,8 +22,8 @@ namespace Clinica_Frba.Registro_de_LLegada
             DataTable DtEspecialidades;
             DtEspecialidades = AgregarEspecialidadesAlComboBox();
             especialidades.DataSource = DtEspecialidades;
-            especialidades.DisplayMember = "DESCRIPCION";
-            especialidades.ValueMember = "ID_ESPECIALIDAD";
+            especialidades.DisplayMember = "ES_DESCRIPCION";
+            especialidades.ValueMember = "ES_ID";
             especialidades.Enabled = true;
 
             //para que arranque sin seleccionar nada
@@ -36,7 +36,7 @@ namespace Clinica_Frba.Registro_de_LLegada
         {
             ConnectorClass Conexion = ConnectorClass.Instance;
             DataTable Dt;
-            Dt = Conexion.executeQuery("SELECT ID_ESPECIALIDAD,DESCRIPCION FROM HARDWELL.ESPECIALIDAD");
+            Dt = Conexion.executeQuery("SELECT ES_ID, ES_DESCRIPCION FROM BUGDEVELOPING.ESPECIALIDAD");
             return Dt;
 
         }
@@ -44,7 +44,7 @@ namespace Clinica_Frba.Registro_de_LLegada
         private void buscar_Click(object sender, EventArgs e)
         {
 
-            String query = "select p.APELLIDO , p.NOMBRE , e.DESCRIPCION,p.ID_PROFESIONAL from HARDWELL.PROFESIONAL_ESPECIALIDAD as pe inner join HARDWELL.ESPECIALIDAD  as e on (e.ID_ESPECIALIDAD=pe.ID_ESPECIALIDAD) inner join HARDWELL.PROFESIONAL as p on (p.ID_PROFESIONAL=pe.ID_PROFESIONAL) WHERE p.HABILITADO = 1 ";
+            String query = "select  PE_APELLIDO, PE_NOMBRE, ES_DESCRIPCION, ME_PERSONA from BUGDEVELOPING.ESPECIALIDAD_MEDICO inner join BUGDEVELOPING.ESPECIALIDAD on (ES_ID = EM_ESPECIALIDAD) inner join BUGDEVELOPING.MEDICO on (ME_PERSONA = EM_MEDICO) inner join BUGDEVELOPING.PERSONA on (ME_PERSONA = PE_ID) WHERE ME_ACTIVO = 1 ";
 
             int result = 0;
             if (int.TryParse(nombreProfesional.Text, out result))
@@ -56,7 +56,7 @@ namespace Clinica_Frba.Registro_de_LLegada
             {
                 if (nombreProfesional.Text != "")
                 {
-                    query = query + " AND p.NOMBRE LIKE '%" + nombreProfesional.Text + "%'";
+                    query = query + " AND PE_NOMBRE LIKE '%" + nombreProfesional.Text + "%'";
 
                 }
             }
@@ -64,7 +64,7 @@ namespace Clinica_Frba.Registro_de_LLegada
 
             if (especialidades.SelectedValue != null)
             {
-                query = query + "AND e.ID_ESPECIALIDAD= " + especialidades.SelectedValue;
+                query = query + "AND ES_ID = " + especialidades.SelectedValue;
 
             }
 
@@ -79,14 +79,14 @@ namespace Clinica_Frba.Registro_de_LLegada
             {
                 if (apellidoProfesional.Text != "")
                 {
-                    query = query + " AND p.APELLIDO LIKE '%" + apellidoProfesional.Text + "%'";
+                    query = query + " AND PE_APELLIDO LIKE '%" + apellidoProfesional.Text + "%'";
 
                 }
             }
 
             ConnectorClass con = ConnectorClass.Instance;
             grillaProfesional.DataSource = con.executeQuery(query);
-            grillaProfesional.Columns["ID_PROFESIONAL"].Visible = false;
+            grillaProfesional.Columns["ME_PERSONA"].Visible = false;
         }
 
         private void limpiar_Click(object sender, EventArgs e)

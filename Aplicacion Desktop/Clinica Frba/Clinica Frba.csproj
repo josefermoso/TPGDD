@@ -105,6 +105,18 @@
       <DependentUpon>FormModifRol.cs</DependentUpon>
     </Compile>
     <Compile Include="Abm de Rol\FuncionesRol.cs" />
+    <Compile Include="Cancelar Atencion\CancelacionAfiliado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cancelar Atencion\CancelacionAfiliado.Designer.cs">
+      <DependentUpon>CancelacionAfiliado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cancelar Atencion\CancelacionProf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cancelar Atencion\CancelacionProf.Designer.cs">
+      <DependentUpon>CancelacionProf.cs</DependentUpon>
+    </Compile>
     <Compile Include="Generar Receta\CantidadDeMedicamentos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -219,11 +231,11 @@
     <Compile Include="Registro Resultado Atencion\IngresoTurno.Designer.cs">
       <DependentUpon>IngresoTurno.cs</DependentUpon>
     </Compile>
-    <Compile Include="Cancelar Atencion\Form1.cs">
+    <Compile Include="Cancelar Atencion\CancelacionAdmSist.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Cancelar Atencion\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Cancelar Atencion\CancelacionAdmSist.Designer.cs">
+      <DependentUpon>CancelacionAdmSist.cs</DependentUpon>
     </Compile>
     <Compile Include="Listados Estadisticos\Form1.cs">
       <SubType>Form</SubType>

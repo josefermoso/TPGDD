@@ -87,21 +87,21 @@ namespace Clinica_Frba
         private void cancelarAtenciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConnectorClass con = ConnectorClass.Instance;
-            String validacion = "select r.nombre from HARDWELL.ROL r, HARDWELL.USUARIO_ROL ur, HARDWELL.USUARIO u where u.USERNAME = '" + Clinica_Frba.Login.LoginForm.nombreUsuario + "' and u.ID_USUARIO = ur.ID_USUARIO and r.ID_ROL = ur.ID_ROL";
+            String validacion = "select r.ROL_NOMBRE from BUGDEVELOPING.ROL r, BUGDEVELOPING.USUARIO_ROL ur, BUGDEVELOPING.USUARIO u where u.USUARIO_USERNAME = '" + Clinica_Frba.Login.LoginForm.nombreUsuario + "' and u.USUARIO_ID = ur.USUARIO_ID and r.ROL_ID = ur.ROL_ID";
             DataTable data = new DataTable();
             data = con.executeQuery(validacion);
             if (data.Rows[0][0].ToString() == "Profesional")
             {
-                /*Cancelar_atencion.CancelacionProf frmCan = new Clinica_Frba.Cancelar_atencion.CancelacionProf();
+                Cancelar_Atencion.CancelacionProf frmCan = new Clinica_Frba.Cancelar_Atencion.CancelacionProf();
                 frmCan.Show();
-                this.Hide();*/
+                this.Hide();
             }
             if (data.Rows[0][0].ToString() == "Afiliado")
             {
-                /*Cancelar_atencion.CancelacionAfiliado frmCan = new Clinica_Frba.Cancelar_atencion.CancelacionAfiliado();
+                Cancelar_Atencion.CancelacionAfiliado frmCan = new Clinica_Frba.Cancelar_Atencion.CancelacionAfiliado();
                 frmCan.Show();
 
-                this.Hide();*/
+                this.Hide();
             }
         }
 
@@ -138,9 +138,7 @@ namespace Clinica_Frba
         private void registrarAgendaDelMédicoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConnectorClass con = ConnectorClass.Instance;
-            //String validacion = "select * from HARDWELL.AGENDA as d where d.ID_PROFESIONAL=" + userId;
             DataTable data = new DataTable();
-            //data = con.executeQuery(validacion);
 
             String validacion2 = "select r.ROL_NOMBRE from BUGDEVELOPING.ROL r, BUGDEVELOPING.USUARIO_ROL ur, BUGDEVELOPING.USUARIO u where u.USUARIO_USERNAME = '" + Clinica_Frba.Login.LoginForm.nombreUsuario + "' and u.USUARIO_ID = ur.USUARIO_ID and r.ROL_ID = ur.ROL_ID";
             DataTable data2 = new DataTable();

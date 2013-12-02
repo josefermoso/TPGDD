@@ -74,7 +74,18 @@ namespace Clinica_Frba
 
         private void afiliadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //SqlConnector con = SqlConnector.getInstance();
+            //String validacion = "select r.nombre from HARDWELL.ROL r, HARDWELL.USUARIO_ROL ur, HARDWELL.USUARIO u where u.USERNAME = '" + Clinica_Frba.Login.LoginForm.nombreUsuario + "' and u.ID_USUARIO = ur.ID_USUARIO and r.ID_ROL = ur.ID_ROL";
+            //DataTable data = new DataTable();
+            //data = con.executeQuery(validacion);
 
+            //if (data.Rows[0][0].ToString() == "Afiliado")
+            //{
+            //}
+            /*
+            Clinica_Frba.Abm_de_Afiliado.Afiliado abmAfiliado = new Clinica_Frba.Abm_de_Afiliado.Afiliado();
+            abmAfiliado.Show();*/
+            //this.Hide();
         }
 
         private void profesionalesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -183,10 +194,9 @@ namespace Clinica_Frba
 
         private void obtenerEstadísticasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*
-            Clinica_Frba.Listados_Estadisticos.Listados frmListados = new Clinica_Frba.Listados_Estadisticos.Listados();
+            Clinica_Frba.Listados_Estadisticos.ListadosEstadisticos frmListados = new Clinica_Frba.Listados_Estadisticos.ListadosEstadisticos();
             this.Hide();
-            frmListados.Show();*/
+            frmListados.Show();
         }
 
         private void informaciónToolStripMenuItem_Click(object sender, EventArgs e)

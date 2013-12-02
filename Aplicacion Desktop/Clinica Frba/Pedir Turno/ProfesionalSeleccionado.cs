@@ -208,8 +208,6 @@ namespace Clinica_Frba.Pedir_Turno
             //Esta es la forma que puede saber que agenda es
             DataTable horario = con.executeQuery("select DISTINCT AGD_HORA_INICIO, AGD_HORA_FIN, AG_CODIGO  from BUGDEVELOPING.AGENDA_DIA inner join BUGDEVELOPING.AGENDA_PERSONAL on (AGD_AG_CODIGO = AG_CODIGO) where AGD_DIA_ID = " + idDia + "and AG_MEDICO =" + idProfesional + "and '" + fechaElegida + "' between AG_DESDE_DIA and AG_HASTA_DIA ");
 
-            //DataTable horario = con.executeQuery("select  h.HORA_INICIO, h.HORA_FIN from hardwell.AGENDA_DIA as h inner join HARDWELL.AGENDA as d on (h.ID_PROFESIONAL=d.ID_PROFESIONAL) where h.ID_DIA=" + idDia + "and d.ID_PROFESIONAL=" + idProfesional);
-
             TimeSpan f = (TimeSpan)horario.Rows[0].ItemArray[1];
             TimeSpan i = (TimeSpan)horario.Rows[0].ItemArray[0];
             idAgenda = horario.Rows[0].ItemArray[2].ToString();
@@ -281,7 +279,6 @@ namespace Clinica_Frba.Pedir_Turno
             ConnectorClass con = ConnectorClass.Instance;
 
             DataTable horario = con.executeQuery("select AGD_HORA_INICIO, AGD_HORA_FIN, DIA_NOMBRE from BUGDEVELOPING.AGENDA_DIA inner join BUGDEVELOPING.AGENDA_PERSONAL on (AGD_AG_CODIGO = AG_CODIGO) inner join BUGDVELOPING.DIA on (DIA_ID = AGD_DIA_ID) where AG_MEDICO =" + idProfesional);
-            // DataTable horario = con.executeQuery("select  h.HORA_INICIO, h.HORA_FIN, dia.NOMBRE from hardwell.AGENDA_DIA as h inner join HARDWELL.AGENDA as d on (h.ID_PROFESIONAL=d.ID_PROFESIONAL) inner join HARDWELL.DIA as dia on (dia.ID_DIA=h.ID_DIA) where d.ID_PROFESIONAL=" + idProfesional);
 
             int cantDiasAtencion = horario.Rows.Count;
 

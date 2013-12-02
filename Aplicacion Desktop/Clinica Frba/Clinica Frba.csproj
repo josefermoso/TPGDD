@@ -237,11 +237,11 @@
     <Compile Include="Cancelar Atencion\CancelacionAdmSist.Designer.cs">
       <DependentUpon>CancelacionAdmSist.cs</DependentUpon>
     </Compile>
-    <Compile Include="Listados Estadisticos\Form1.cs">
+    <Compile Include="Listados Estadisticos\ListadosEstadisticos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Listados Estadisticos\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Listados Estadisticos\ListadosEstadisticos.Designer.cs">
+      <DependentUpon>ListadosEstadisticos.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -271,6 +271,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Abm de Profesional\ModificacionProfesional.resx">
       <DependentUpon>ModificacionProfesional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listados Estadisticos\ListadosEstadisticos.resx">
+      <DependentUpon>ListadosEstadisticos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

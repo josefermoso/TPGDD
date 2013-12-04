@@ -19,7 +19,7 @@ namespace Clinica_Frba.Pedir_Turno
         public String idAgenda;
 
         String fechaSistema = Clinica_Frba.Registro_de_LLegada.TurnosDadosProfesional.convertDate();
-        DateTime fechaSistemaPosta = DateTime.Parse(Clinica_Frba.Registro_de_LLegada.TurnosDadosProfesional.convertDate());
+        DateTime fechaSistemaPosta = ConnectorClass.getFechaSistema();
         ConnectorClass Conexion = ConnectorClass.Instance;
 
         public string idProfesional;
@@ -116,7 +116,7 @@ namespace Clinica_Frba.Pedir_Turno
         public void AgregarFechasALaLista()
         {
             DataTable Dt;
-            Dt = Conexion.executeQuery("select distinct AG_DESDE_DIA, AG_HASTA_DIA from BUGDEVELOPING.AGENDA_DIA inner join BUGDEVELOPING.AGENDA_PESONAL on (AG_CODIGO = AGD_AG_CODIGO) where  AG_MEDICO =" + idProfesional);
+            Dt = Conexion.executeQuery("select distinct AG_DESDE_DIA, AG_HASTA_DIA from BUGDEVELOPING.AGENDA_DIA inner join BUGDEVELOPING.AGENDA_PERSONAL on (AG_CODIGO = AGD_AG_CODIGO) where  AG_MEDICO =" + idProfesional);
             
             for (int j = 0; j < Dt.Rows.Count; j++)
             {
@@ -152,7 +152,7 @@ namespace Clinica_Frba.Pedir_Turno
                     }
 
                 }
-                Dt = Conexion.executeQuery("select distinct AG_DESDE_DIA, AG_HASTA_DIA from BUGDEVELOPING.AGENDA_DIA inner join BUGDEVELOPING.AGENDA_PESONAL on (AG_CODIGO = AGD_AG_CODIGO) where  AG_MEDICO =" + idProfesional);
+                Dt = Conexion.executeQuery("select distinct AG_DESDE_DIA, AG_HASTA_DIA from BUGDEVELOPING.AGENDA_DIA inner join BUGDEVELOPING.AGENDA_PERSONAL on (AG_CODIGO = AGD_AG_CODIGO) where  AG_MEDICO =" + idProfesional);
             }
         }
 
@@ -368,8 +368,7 @@ namespace Clinica_Frba.Pedir_Turno
 
                 fechaElegida = DateTime.Parse(fechasDisponibles.SelectedValue.ToString());
                 TimeSpan horaElegida = DateTime.Parse(grillaProfesional.CurrentRow.Cells[2].Value.ToString()).TimeOfDay;
-
-                con.executeQuery("insert into BUGDEVELOPING.TURNO (T_AFILIADO, T_MEDICO, T_AGENDA, T_FECHA, T_HORA) values ('" + idPaciente2 + "', '" + idProfesional + "' , '" + idAgenda + "' ,'" + fechaElegida + "', '" + horaElegida + "') ");
+                con.executeQuery("insert into BUGDEVELOPING.TURNO (T_MEDICO, T_FECHA, T_HORA, T_AGENDA, T_AFILIADO) values ('" + idProfesional + "' , '" + fechaElegida + "', '" + horaElegida + "', '" + idAgenda + "', '" + idPaciente2 + "')");
                 MessageBox.Show("Turno agregado correctamente");
                 mostrarTodosLosHorariosDisponiblesSegunFecha();
 
@@ -407,7 +406,7 @@ namespace Clinica_Frba.Pedir_Turno
             {
                 idPaciente2 = numeroDeAfiliado.Text;
                 ConnectorClass con = ConnectorClass.Instance;
-                string query = "select * from BUGDEVELOPING.PACIENTE where PA_PERSONA = " + idPaciente2;
+                string query = "select * from BUGDEVELOPING.PACIENTE where PA_NAFILIADO = " + idPaciente2;
                 DataTable data = new DataTable();
 
                 data = con.executeQuery(query);
@@ -422,7 +421,7 @@ namespace Clinica_Frba.Pedir_Turno
                 }
                 else
                 {
-                    MessageBox.Show("El profesional elegido no existe");
+                    MessageBox.Show("El afiliado elegido no existe");
                 }
             }
         }

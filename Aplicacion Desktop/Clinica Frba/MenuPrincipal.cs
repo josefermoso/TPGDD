@@ -42,20 +42,23 @@ namespace Clinica_Frba
         private void comprarBonosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConnectorClass con = ConnectorClass.Instance;
-            String validacion = "select r.ROL_NOMBRE from BUDEVELOPING.ROL r, BUGDEVELOPING.USUARIO_ROL ur, BUGDEVELOPING.USUARIO u where u.USUARIO_USERNAME = '" + Clinica_Frba.Login.LoginForm.nombreUsuario + "' and u.USUARIO_ID = ur.USUARIO_ID and r.ROL_ID = ur.ROL_ID";
+            String validacion = "select r.ROL_NOMBRE from BUGDEVELOPING.ROL r, BUGDEVELOPING.USUARIO_ROL ur, BUGDEVELOPING.USUARIO u where u.USUARIO_USERNAME = '" + Clinica_Frba.Login.LoginForm.nombreUsuario + "' and u.USUARIO_ID = ur.USUARIO_ID and r.ROL_ID = ur.ROL_ID";
             DataTable data = new DataTable();
             data = con.executeQuery(validacion);
             if (data.Rows[0][0].ToString() == "Administrativo" || data.Rows[0][0].ToString() == "Administrador del Sistema")
             {
-               /* Compra_de_Bono.BonosAministrativo frmBonoAdm = new Compra_de_Bono.BonosAministrativo();
-                frmBonoAdm.Show();
-                this.Hide();*/
+               // CompraBono.ListadoAfiliadoCompraBono frmBonoAdm = new CompraBono.ListadoAfiliadoCompraBono();
+               // frmBonoAdm.Show();
+               // this.Hide();
+                CompraBono.CompraBono frmBonoAfil = new CompraBono.CompraBono();
+                frmBonoAfil.Show();
+                this.Hide();
             }
             if (data.Rows[0][0].ToString() == "Afiliado")
             {
-                /*Compra_de_Bono.BonosAfiliado frmBonoAfil = new Clinica_Frba.Compra_de_Bono.BonosAfiliado();
+                CompraBono.CompraBono frmBonoAfil = new CompraBono.CompraBono();
                 frmBonoAfil.Show();
-                this.Hide();*/
+                this.Hide();
             }
         }
 
@@ -140,7 +143,7 @@ namespace Clinica_Frba
             if (data2.Rows[0][0].ToString() == "Afiliado")
             {
                 pedido_turno.buscarProfesional ventanaPedirTurno = new Clinica_Frba.pedido_turno.buscarProfesional();
-                ventanaPedirTurno.idPaciente = userId;
+                ventanaPedirTurno.idPaciente = obtenerProfesionalOPacienteLogueado(userId);
                 ventanaPedirTurno.Show();
                 this.Hide();
             }
@@ -165,14 +168,14 @@ namespace Clinica_Frba
             else
             {
                 Registrar_Agenda.Agenda ventanaAgenda = new Clinica_Frba.Registrar_Agenda.Agenda();
-                ventanaAgenda.idProfesionalLogueado = obtenerProfesionalLogueado(userId);
+                ventanaAgenda.idProfesionalLogueado = obtenerProfesionalOPacienteLogueado(userId);
                 ventanaAgenda.Show();
                 this.Hide();
             }
             
         }
 
-        private string obtenerProfesionalLogueado(string userId)
+        private string obtenerProfesionalOPacienteLogueado(string userId)
         {
             ConnectorClass con = ConnectorClass.Instance;
             String query = "SELECT PE_ID FROM BUGDEVELOPING.PERSONA WHERE PE_USUARIO_ID = " + userId;

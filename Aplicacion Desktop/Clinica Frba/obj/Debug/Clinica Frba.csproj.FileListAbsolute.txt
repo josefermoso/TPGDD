@@ -62,3 +62,6 @@ C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Cli
 C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Profesional.ListadoProfesional.resources
 C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.pedido_turno.buscarProfesional.resources
 C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Listados_Estadisticos.ListadosEstadisticos.resources
+C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.CompraBono.CompraBono.resources
+C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.CompraBono.ListadoAfiliadoCompraBono.resources
+C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Registrar_Agenda.Agenda.resources

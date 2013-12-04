@@ -64,7 +64,7 @@
             // Dia
             // 
             this.Dia.AutoSize = true;
-            this.Dia.Location = new System.Drawing.Point(27, 66);
+            this.Dia.Location = new System.Drawing.Point(18, 61);
             this.Dia.Name = "Dia";
             this.Dia.Size = new System.Drawing.Size(23, 13);
             this.Dia.TabIndex = 1;
@@ -238,7 +238,7 @@
             // 
             // agregarProfesional
             // 
-            this.agregarProfesional.Location = new System.Drawing.Point(261, 12);
+            this.agregarProfesional.Location = new System.Drawing.Point(261, 17);
             this.agregarProfesional.Name = "agregarProfesional";
             this.agregarProfesional.Size = new System.Drawing.Size(75, 23);
             this.agregarProfesional.TabIndex = 15;
@@ -249,11 +249,11 @@
             // labelNroProfesional
             // 
             this.labelNroProfesional.AutoSize = true;
-            this.labelNroProfesional.Location = new System.Drawing.Point(27, 22);
+            this.labelNroProfesional.Location = new System.Drawing.Point(18, 22);
             this.labelNroProfesional.Name = "labelNroProfesional";
-            this.labelNroProfesional.Size = new System.Drawing.Size(35, 13);
+            this.labelNroProfesional.Size = new System.Drawing.Size(68, 13);
             this.labelNroProfesional.TabIndex = 16;
-            this.labelNroProfesional.Text = "Numero Profesional";
+            this.labelNroProfesional.Text = "IdProfesional";
             // 
             // nroProfesional
             // 

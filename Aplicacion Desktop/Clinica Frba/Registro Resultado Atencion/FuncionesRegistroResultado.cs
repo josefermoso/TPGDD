@@ -14,7 +14,7 @@ namespace Clinica_Frba.Registro_Resultado_Atencion
             String query = "select count(*) from BUGDEVELOPING.CONSULTA where (CON_TURNO = '" + idTurno + "')";
             ConnectorClass con = ConnectorClass.Instance;
             DataTable dt = con.executeQuery(query);
-            if (dt.Rows.Count != 0)
+            if (dt.Rows[0].ItemArray[0].ToString() == "0")
             {
                 return dt.Rows[0].ItemArray[0].ToString();
 
@@ -27,7 +27,7 @@ namespace Clinica_Frba.Registro_Resultado_Atencion
 
         public static String getConsulta(String idTurno)
         {
-            String query = "select CON_NUMERO from BUGDVELOPING.CONSULTA where (CON_TURNO = '" + idTurno + "')";
+            String query = "select CON_NUMERO from BUGDEVELOPING.CONSULTA where CON_TURNO = '" + idTurno + "'";
             ConnectorClass con = ConnectorClass.Instance;
             DataTable dt = con.executeQuery(query);
             if (dt.Rows.Count != 0)
@@ -64,7 +64,7 @@ namespace Clinica_Frba.Registro_Resultado_Atencion
             String query = "select count(*) from BUGDEVELOPING.TURNO  where T_ID = " + idTurno + " AND " + "T_MEDICO = " + idProf + "";
             ConnectorClass con = ConnectorClass.Instance;
             DataTable dt = con.executeQuery(query);
-            if (dt.Rows.Count != 0)
+            if (dt.Rows[0].ItemArray[0].ToString() == "0")
             {
                 return dt.Rows[0].ItemArray[0].ToString();
 

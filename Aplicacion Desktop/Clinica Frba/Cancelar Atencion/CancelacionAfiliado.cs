@@ -34,7 +34,7 @@ namespace Clinica_Frba.Cancelar_Atencion
                 String idUsuario = "select USUARIO_ID from BUGDEVELOPING.USUARIO where USUARIO_USERNAME = '" + Clinica_Frba.Login.LoginForm.nombreUsuario + "' ";
                 DataTable id_Usuario = con.executeQuery(idUsuario);
 
-                String numeroAfiliado = "select PA_NAFILIADO from BUGDEVELOPING.PACIENTE where PA_USUARIO_ID = '" + id_Usuario.Rows[0][0] + "'";
+                String numeroAfiliado = "select PA_NAFILIADO from BUGDEVELOPING.PACIENTE JOIN BUGDEVELOPING.PERSONA ON (PE_ID = PA_PERSONA) where PE_USUARIO_ID = '" + id_Usuario.Rows[0][0] + "'";
                 DataTable nroAfiliado = con.executeQuery(numeroAfiliado);
 
                 textBoxNroAfil.Text = nroAfiliado.Rows[0][0].ToString();
@@ -45,7 +45,7 @@ namespace Clinica_Frba.Cancelar_Atencion
         {
             ConnectorClass con = ConnectorClass.Instance;
 
-            String turnos = "select T_ID Nro_de_Turno, PA.PE_APELLIDO +' '+ PA.PE_NOMBRE as Afiliado, PM.PE_APELLIDO +' '+ PM.PE_NOMBRE as Profesional, T_FECHA Fecha from BUGDEVELOPING.TURNO inner join BUGDEVELOPING.PACIENTE on (T_AFILIADO = PA_NAFILIADO) inner join BUGDEVELOPING.MEDICO on (T_MEDICO = ME_PERSONA) inner join BUGDEVELOPING.PERSONA PA on (PE_ID = PA_PERSONA) inner join BUGDEVELOPING.PERSONA PM on (PE_ID = ME_PERSONA) where PA_NAFILIADO = '" + textBoxNroAfil.Text + "'";
+            String turnos = "select T_ID Nro_de_Turno, PA.PE_APELLIDO +' '+ PA.PE_NOMBRE as Afiliado, PM.PE_APELLIDO +' '+ PM.PE_NOMBRE as Profesional, T_FECHA Fecha from BUGDEVELOPING.TURNO inner join BUGDEVELOPING.PACIENTE on (T_AFILIADO = PA_NAFILIADO) inner join BUGDEVELOPING.MEDICO on (T_MEDICO = ME_PERSONA) inner join BUGDEVELOPING.PERSONA PA on (PA.PE_ID = PA_PERSONA) inner join BUGDEVELOPING.PERSONA PM on (PM.PE_ID = ME_PERSONA) where T_AFILIADO = '" + textBoxNroAfil.Text + "' and T_ID NOT IN (SELECT CT_TURNO FROM BUGDEVELOPING.CANCELACION_TURNO)";
             dataGridViewTurnos.DataSource = con.executeQuery(turnos);
         }
 
@@ -117,8 +117,8 @@ namespace Clinica_Frba.Cancelar_Atencion
                             else
                             {
                                 String cancelacion = "insert into BUGDEVELOPING.CANCELACION_TURNO (CT_TURNO, CT_MOTIVO, CT_TIPO_CANCELACION) values (" + Convert.ToInt32(textBoxNumTurn.Text) + ",'" + textBoxMotivo.Text.ToString() + "' ,2)";
-
                                 con.executeQuery(cancelacion);
+                                MessageBox.Show("Turno cancelado");
                             }
                         }
                     }

@@ -41,10 +41,10 @@ namespace Clinica_Frba.Registro_de_LLegada
 
             //string val = String.Format("{0:yyyy-MM-dd}", fecha);
 
-            String val = convertDate();
+            String val = ConnectorClass.getFechaSistema().ToString();
             //+ "' AND t.FECHA = '" + val +"'
 
-            String query = "select distinct T_ID, T_FECHA, T_HORA, T_AFILIADO from BUGDEVELOPING.CONSULTA, BUGDVELOPING.TURNO where not exists (select * from BUGDEVELOPING.CONSULTA as cm where CON_TURNO = T_ID ) and T_MEDICO = '" + idProfesional + "' AND T_FECHA >= '" + val + "'";
+            String query = "select distinct T_ID, T_FECHA, T_HORA, T_AFILIADO from BUGDEVELOPING.CONSULTA, BUGDEVELOPING.TURNO where not exists (select * from BUGDEVELOPING.CONSULTA as cm where CON_TURNO = T_ID ) and T_ID NOT IN (SELECT CT_TURNO FROM BUGDEVELOPING.CANCELACION_TURNO) and T_MEDICO = '" + idProfesional + "' AND T_FECHA >= '" + val + "'";
 
             grillaProfesional.Columns["SELECCIONAR"].Visible = false;
 
@@ -84,15 +84,12 @@ namespace Clinica_Frba.Registro_de_LLegada
             this.Close();
         }
 
-        public Boolean llegoEnHorario(DateTime horaTurno)
+        public Boolean llegoEnHorario(TimeSpan horaTurno)
         {
             Boolean rta = false;
-            if (horaTurno.Hour >= horaLlegada.Hours)
+            if (horaTurno.Hours >= horaLlegada.Hours)
             {
-                if (horaLlegada.CompareTo(horaTurno.TimeOfDay) < 0) { rta = true; }
-
-                System.Console.WriteLine("entro aca");
-
+                if (horaLlegada.CompareTo(horaTurno) < 0) { rta = true; }
             }
 
             return rta;
@@ -111,7 +108,7 @@ namespace Clinica_Frba.Registro_de_LLegada
 
         private void grillaProfesional_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DateTime horaDelTurno = DateTime.Parse(grillaProfesional.CurrentRow.Cells[3].Value.ToString());
+            TimeSpan horaDelTurno = TimeSpan.Parse(grillaProfesional.CurrentRow.Cells[3].Value.ToString());
             if ((grillaProfesional.Rows.Count > 0) && (grillaProfesional.Columns[e.ColumnIndex].HeaderText == "Seleccionar") && llegoEnHorario(horaDelTurno))
             {
                 if (existeAfiliado())
@@ -126,8 +123,9 @@ namespace Clinica_Frba.Registro_de_LLegada
                     {
                         String idTurno = grillaProfesional.CurrentRow.Cells[1].Value.ToString();
                         String fechaConsulta = grillaProfesional.CurrentRow.Cells[2].Value.ToString();
-
-                        String query = "insert into  BUGDEVELOPING.CONSULTA (CON_TURNO, CON_FECHA, CON_HORA_LLEGADA, CON_HORA_INICIO) values ('" + idTurno + "','" + fechaConsulta + "', '" + horaLlegada + "' ,'" + horaDelTurno + "')";
+                        String horaLlegadaString = horaLlegada.ToString();
+                        String horaDelTurnoString = horaDelTurno.ToString();
+                        String query = "insert into  BUGDEVELOPING.CONSULTA (CON_TURNO, CON_FECHA, CON_HORA_LLEGADA, CON_HORA_INICIO) values ('" + idTurno + "', convert (datetime, '" + fechaConsulta + "', 120), convert (time, '" + horaLlegadaString + "', 120) , convert (time, '" + horaDelTurnoString + "', 120))";
 
                         con.executeQuery(query);
 
@@ -136,7 +134,7 @@ namespace Clinica_Frba.Registro_de_LLegada
                         DataTable dt = con.executeQuery(query2);
 
                         String nroConsulta = dt.Rows[0].ItemArray[0].ToString();
-
+                        
                         String idBono = dt2.Rows[0].ItemArray[0].ToString();
                         String query4 = "update BUGDEVELOPING.BONO_CONSULTA set BC_NUMERO_CONSULTA = " + nroConsulta + "where BC_BONO_NUMERO=" + idBono;
                         con.executeQuery(query4);

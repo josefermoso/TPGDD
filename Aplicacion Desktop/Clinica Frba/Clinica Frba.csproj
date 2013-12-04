@@ -117,6 +117,19 @@
     <Compile Include="Cancelar Atencion\CancelacionProf.Designer.cs">
       <DependentUpon>CancelacionProf.cs</DependentUpon>
     </Compile>
+    <Compile Include="Compra de Bono\CompraBono.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compra de Bono\CompraBono.designer.cs">
+      <DependentUpon>CompraBono.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Compra de Bono\FuncionesCompraBono.cs" />
+    <Compile Include="Compra de Bono\ListadoAfiliadoCompraBono.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compra de Bono\ListadoAfiliadoCompraBono.designer.cs">
+      <DependentUpon>ListadoAfiliadoCompraBono.cs</DependentUpon>
+    </Compile>
     <Compile Include="Generar Receta\CantidadDeMedicamentos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,12 +220,6 @@
     <Compile Include="Registrar Agenda\AgendaPersonal.Designer.cs">
       <DependentUpon>AgendaPersonal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Compra de Bono\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Compra de Bono\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Pedir Turno\ReservarTurno.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,6 +279,12 @@
     <EmbeddedResource Include="Abm de Profesional\ModificacionProfesional.resx">
       <DependentUpon>ModificacionProfesional.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Compra de Bono\CompraBono.resx">
+      <DependentUpon>CompraBono.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Compra de Bono\ListadoAfiliadoCompraBono.resx">
+      <DependentUpon>ListadoAfiliadoCompraBono.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Listados Estadisticos\ListadosEstadisticos.resx">
       <DependentUpon>ListadosEstadisticos.cs</DependentUpon>
     </EmbeddedResource>
@@ -285,6 +298,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registrar Agenda\AgendaPersonal.resx">
+      <DependentUpon>AgendaPersonal.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

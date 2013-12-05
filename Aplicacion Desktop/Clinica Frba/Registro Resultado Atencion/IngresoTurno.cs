@@ -60,5 +60,11 @@ namespace Clinica_Frba.Registro_Resultado_Atencion
 
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Clinica_Frba.MenuPrincipal.menuActivo.Show();
+        }
     }
 }

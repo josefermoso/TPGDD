@@ -33,6 +33,7 @@
             this.buttonINGRESAR = new System.Windows.Forms.Button();
             this.labelPROF = new System.Windows.Forms.Label();
             this.textBoxPROF = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -77,11 +78,22 @@
             this.textBoxPROF.Size = new System.Drawing.Size(208, 20);
             this.textBoxPROF.TabIndex = 4;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(116, 209);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(124, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Cancelar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // IngresoTurno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(371, 230);
+            this.ClientSize = new System.Drawing.Size(371, 243);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.textBoxPROF);
             this.Controls.Add(this.labelPROF);
             this.Controls.Add(this.buttonINGRESAR);
@@ -101,5 +113,6 @@
         private System.Windows.Forms.Button buttonINGRESAR;
         private System.Windows.Forms.Label labelPROF;
         private System.Windows.Forms.TextBox textBoxPROF;
+        private System.Windows.Forms.Button button1;
     }
 }

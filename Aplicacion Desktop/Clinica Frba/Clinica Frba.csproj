@@ -49,6 +49,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abm de Afiliado\Afiliado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm de Afiliado\Afiliado.designer.cs">
+      <DependentUpon>Afiliado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm de Afiliado\AfiliadoCambioPlan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm de Afiliado\AfiliadoCambioPlan.designer.cs">
+      <DependentUpon>AfiliadoCambioPlan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm de Afiliado\AfiliadoPersona.cs" />
+    <Compile Include="Abm de Afiliado\FuncionesAfiliado.cs" />
+    <Compile Include="Abm de Afiliado\ListadoAfiliado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm de Afiliado\ListadoAfiliado.designer.cs">
+      <DependentUpon>ListadoAfiliado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm de Afiliado\MenuAfiliado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm de Afiliado\MenuAfiliado.designer.cs">
+      <DependentUpon>MenuAfiliado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Abm de Afiliado\MenuRelativo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abm de Afiliado\MenuRelativo.designer.cs">
+      <DependentUpon>MenuRelativo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Abm de Profesional\AltaProfesional.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,12 +222,6 @@
     <Compile Include="Registro de Usuario\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Abm de Afiliado\MenuAfiliado.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Abm de Afiliado\MenuAfiliado.Designer.cs">
-      <DependentUpon>MenuAfiliado.cs</DependentUpon>
-    </Compile>
     <Compile Include="Abm de Especialidades Medicas\ListadoEspecialidades.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,12 +233,6 @@
     </Compile>
     <Compile Include="Abm de Planes\ListadoPlanes.Designer.cs">
       <DependentUpon>ListadoPlanes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Abm de Rol\RolMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Abm de Rol\RolMenu.Designer.cs">
-      <DependentUpon>RolMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="Registrar Agenda\AgendaPersonal.cs">
       <SubType>Form</SubType>
@@ -252,8 +272,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Abm de Afiliado\Afiliado.resx">
+      <DependentUpon>Afiliado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm de Afiliado\AfiliadoCambioPlan.resx">
+      <DependentUpon>AfiliadoCambioPlan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm de Afiliado\ListadoAfiliado.resx">
+      <DependentUpon>ListadoAfiliado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Abm de Afiliado\MenuAfiliado.resx">
       <DependentUpon>MenuAfiliado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Abm de Afiliado\MenuRelativo.resx">
+      <DependentUpon>MenuRelativo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Abm de Especialidades Medicas\ListadoEspecialidades.resx">
       <DependentUpon>ListadoEspecialidades.cs</DependentUpon>
@@ -301,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Registrar Agenda\AgendaPersonal.resx">
       <DependentUpon>AgendaPersonal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registro Resultado Atencion\IngresoTurno.resx">
+      <DependentUpon>IngresoTurno.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

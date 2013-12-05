@@ -29,64 +29,66 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonLIMPIAR = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.bFiltrar = new System.Windows.Forms.Button();
-            this.txtbNombre = new System.Windows.Forms.TextBox();
-            this.bLimpiar = new System.Windows.Forms.Button();
+            this.buttonBUSCAR = new System.Windows.Forms.Button();
+            this.textboxBUSQUEDA = new System.Windows.Forms.TextBox();
             this.dgvRoles = new System.Windows.Forms.DataGridView();
             this.Seleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.volverButton = new System.Windows.Forms.Button();
+            this.buttonCREAR = new System.Windows.Forms.Button();
+            this.REGRESAR_PRINCIPAL = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.buttonLIMPIAR);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.bFiltrar);
-            this.groupBox1.Controls.Add(this.txtbNombre);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Controls.Add(this.buttonBUSCAR);
+            this.groupBox1.Controls.Add(this.textboxBUSQUEDA);
+            this.groupBox1.Location = new System.Drawing.Point(12, 60);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(403, 88);
-            this.groupBox1.TabIndex = 34;
+            this.groupBox1.TabIndex = 35;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtro de Búsqueda:";
+            // 
+            // buttonLIMPIAR
+            // 
+            this.buttonLIMPIAR.Location = new System.Drawing.Point(9, 56);
+            this.buttonLIMPIAR.Name = "buttonLIMPIAR";
+            this.buttonLIMPIAR.Size = new System.Drawing.Size(117, 26);
+            this.buttonLIMPIAR.TabIndex = 33;
+            this.buttonLIMPIAR.Text = "Limpiar";
+            this.buttonLIMPIAR.UseVisualStyleBackColor = true;
+            this.buttonLIMPIAR.Click += new System.EventHandler(this.buttonLIMPIAR_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 27);
+            this.label2.Location = new System.Drawing.Point(21, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 26;
-            this.label2.Text = "Nombre";
+            this.label2.Text = "Nombre:";
             // 
-            // bFiltrar
+            // buttonBUSCAR
             // 
-            this.bFiltrar.Location = new System.Drawing.Point(270, 56);
-            this.bFiltrar.Name = "bFiltrar";
-            this.bFiltrar.Size = new System.Drawing.Size(117, 26);
-            this.bFiltrar.TabIndex = 27;
-            this.bFiltrar.Text = "Filtrar";
-            this.bFiltrar.UseVisualStyleBackColor = true;
-            this.bFiltrar.Click += new System.EventHandler(this.bFiltrar_Click);
+            this.buttonBUSCAR.Location = new System.Drawing.Point(281, 56);
+            this.buttonBUSCAR.Name = "buttonBUSCAR";
+            this.buttonBUSCAR.Size = new System.Drawing.Size(117, 26);
+            this.buttonBUSCAR.TabIndex = 27;
+            this.buttonBUSCAR.Text = "Buscar";
+            this.buttonBUSCAR.UseVisualStyleBackColor = true;
+            this.buttonBUSCAR.Click += new System.EventHandler(this.buttonBUSCAR_Click);
             // 
-            // txtbNombre
+            // textboxBUSQUEDA
             // 
-            this.txtbNombre.Location = new System.Drawing.Point(74, 27);
-            this.txtbNombre.Name = "txtbNombre";
-            this.txtbNombre.Size = new System.Drawing.Size(313, 20);
-            this.txtbNombre.TabIndex = 25;
-            // 
-            // bLimpiar
-            // 
-            this.bLimpiar.Location = new System.Drawing.Point(298, 310);
-            this.bLimpiar.Name = "bLimpiar";
-            this.bLimpiar.Size = new System.Drawing.Size(117, 26);
-            this.bLimpiar.TabIndex = 32;
-            this.bLimpiar.Text = "Limpiar";
-            this.bLimpiar.UseVisualStyleBackColor = true;
-            this.bLimpiar.Click += new System.EventHandler(this.bLimpiar_Click);
+            this.textboxBUSQUEDA.Location = new System.Drawing.Point(74, 19);
+            this.textboxBUSQUEDA.Name = "textboxBUSQUEDA";
+            this.textboxBUSQUEDA.Size = new System.Drawing.Size(324, 20);
+            this.textboxBUSQUEDA.TabIndex = 25;
             // 
             // dgvRoles
             // 
@@ -100,45 +102,54 @@
             this.dgvRoles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Seleccionar});
             this.dgvRoles.Enabled = false;
-            this.dgvRoles.Location = new System.Drawing.Point(12, 115);
+            this.dgvRoles.Location = new System.Drawing.Point(12, 163);
             this.dgvRoles.MultiSelect = false;
             this.dgvRoles.Name = "dgvRoles";
             this.dgvRoles.ReadOnly = true;
             this.dgvRoles.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvRoles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvRoles.Size = new System.Drawing.Size(403, 189);
-            this.dgvRoles.TabIndex = 33;
+            this.dgvRoles.Size = new System.Drawing.Size(403, 117);
+            this.dgvRoles.TabIndex = 36;
             this.dgvRoles.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRoles_CellContentClick);
             // 
             // Seleccionar
             // 
-            this.Seleccionar.HeaderText = "Seleccionar";
+            this.Seleccionar.HeaderText = "Modificar Rol";
             this.Seleccionar.Name = "Seleccionar";
             this.Seleccionar.ReadOnly = true;
-            this.Seleccionar.Width = 69;
+            this.Seleccionar.Width = 75;
             // 
-            // volverButton
+            // buttonCREAR
             // 
-            this.volverButton.Location = new System.Drawing.Point(175, 310);
-            this.volverButton.Name = "volverButton";
-            this.volverButton.Size = new System.Drawing.Size(117, 26);
-            this.volverButton.TabIndex = 35;
-            this.volverButton.Text = "Volver";
-            this.volverButton.UseVisualStyleBackColor = true;
-            this.volverButton.Click += new System.EventHandler(this.volverButton_Click);
+            this.buttonCREAR.Location = new System.Drawing.Point(12, 12);
+            this.buttonCREAR.Name = "buttonCREAR";
+            this.buttonCREAR.Size = new System.Drawing.Size(398, 23);
+            this.buttonCREAR.TabIndex = 37;
+            this.buttonCREAR.Text = "Crear Nuevo Rol";
+            this.buttonCREAR.UseVisualStyleBackColor = true;
+            this.buttonCREAR.Click += new System.EventHandler(this.buttonCREAR_Click);
             // 
-            // FiltrarRol
+            // REGRESAR_PRINCIPAL
+            // 
+            this.REGRESAR_PRINCIPAL.Location = new System.Drawing.Point(21, 306);
+            this.REGRESAR_PRINCIPAL.Name = "REGRESAR_PRINCIPAL";
+            this.REGRESAR_PRINCIPAL.Size = new System.Drawing.Size(394, 23);
+            this.REGRESAR_PRINCIPAL.TabIndex = 38;
+            this.REGRESAR_PRINCIPAL.Text = "Regresar al Menu Principal";
+            this.REGRESAR_PRINCIPAL.UseVisualStyleBackColor = true;
+            this.REGRESAR_PRINCIPAL.Click += new System.EventHandler(this.REGRESAR_PRINCIPAL_Click);
+            // 
+            // Filtrar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(449, 358);
-            this.Controls.Add(this.volverButton);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.bLimpiar);
+            this.ClientSize = new System.Drawing.Size(426, 341);
+            this.Controls.Add(this.REGRESAR_PRINCIPAL);
+            this.Controls.Add(this.buttonCREAR);
             this.Controls.Add(this.dgvRoles);
-            this.Name = "FiltrarRol";
-            this.Text = "Filtrar Rol";
-            this.Load += new System.EventHandler(this.FormFiltrarRol_Load);
+            this.Controls.Add(this.groupBox1);
+            this.Name = "Filtrar";
+            this.Text = "Búsqueda de Roles";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).EndInit();
@@ -150,11 +161,12 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button bFiltrar;
-        private System.Windows.Forms.TextBox txtbNombre;
-        private System.Windows.Forms.Button bLimpiar;
+        private System.Windows.Forms.Button buttonBUSCAR;
+        private System.Windows.Forms.TextBox textboxBUSQUEDA;
+        private System.Windows.Forms.Button buttonLIMPIAR;
         private System.Windows.Forms.DataGridView dgvRoles;
         private System.Windows.Forms.DataGridViewButtonColumn Seleccionar;
-        private System.Windows.Forms.Button volverButton;
+        private System.Windows.Forms.Button buttonCREAR;
+        private System.Windows.Forms.Button REGRESAR_PRINCIPAL;
     }
 }

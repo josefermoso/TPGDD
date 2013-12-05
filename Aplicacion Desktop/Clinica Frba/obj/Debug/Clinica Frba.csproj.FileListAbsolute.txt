@@ -48,7 +48,6 @@ C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Cli
 C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\bin\Debug\Clinica Frba.exe
 C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\bin\Debug\Clinica Frba.pdb
 C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\ResolveAssemblyReference.cache
-C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.abmAfiliado.Form1.resources
 C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Amb_Especialidades.listadoEspecialidades.resources
 C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Amb_Planes.listadoPlanes.resources
 C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Profesional.AltaProfesional.resources
@@ -65,3 +64,9 @@ C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Cli
 C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.CompraBono.CompraBono.resources
 C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.CompraBono.ListadoAfiliadoCompraBono.resources
 C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Registrar_Agenda.Agenda.resources
+C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Registro_Resultado_Atencion.IngresoTurno.resources
+C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Afiliado.Afiliado.resources
+C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Afiliado.AfiliadoCambioPlan.resources
+C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Afiliado.ListadoAfiliado.resources
+C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Afiliado.MenuAfiliado.resources
+C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Afiliado.MenuRelativo.resources

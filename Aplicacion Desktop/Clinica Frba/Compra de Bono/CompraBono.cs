@@ -15,29 +15,14 @@ namespace Clinica_Frba.CompraBono
 
         public string numeroAfiliado;
         public string planID;
-        public CompraBono()
-        {
-            InitializeComponent();
-        }
-
         public CompraBono(string numeroAfiliado)
         {
             InitializeComponent();
             this.numeroAfiliado = numeroAfiliado;
             this.label_numeroAfiliado.Text = numeroAfiliado;
-            this.label_numeroAfiliado.Enabled = false;
-            this.textBox_CantidadBono.Text = "0";
+            this.textBox_CantidadConsulta.Text = "0";
             this.textBox_CantidadFarmacia.Text = "0";
             buscarAfiliado();
-        }
-
-        private void CompraBono_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void textBox_Afiliado_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void button_BuscarAfiliado_Click(object sender, EventArgs e)
@@ -47,7 +32,7 @@ namespace Clinica_Frba.CompraBono
 
         private void buscarAfiliado()
         {
-            DataTable plan = Clinica_Frba.CompraBono.FuncionesCompraBono.planDeAfiliado(this.numeroAfiliado);
+            DataTable plan = Clinica_Frba.CompraBono.FuncionesCompraBono.planDeAfiliado(numeroAfiliado);
             planID = plan.Rows[0].ItemArray[0].ToString();
             label_Plan.Text = plan.Rows[0].ItemArray[1].ToString();
             label_PlanCostoConsulta.Text = plan.Rows[0].ItemArray[2].ToString();
@@ -63,8 +48,8 @@ namespace Clinica_Frba.CompraBono
 
         private void textBox_CantidadBono_TextChanged(object sender, EventArgs e)
         {
-            if (textBox_CantidadBono.Text.Length == 0) textBox_CantidadBono.Text = "0";
-            else label_TotalConsulta.Text = Convert.ToString(Convert.ToInt32(label_PlanCostoConsulta.Text) * Convert.ToInt32(textBox_CantidadBono.Text));
+            if (textBox_CantidadConsulta.Text.Length == 0) textBox_CantidadConsulta.Text = "0";
+            else label_TotalConsulta.Text = Convert.ToString(Convert.ToInt32(label_PlanCostoConsulta.Text) * Convert.ToInt32(textBox_CantidadConsulta.Text));
             cambiarTotalAAbonar();
         }
 
@@ -86,28 +71,16 @@ namespace Clinica_Frba.CompraBono
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
+            Clinica_Frba.MenuPrincipal.menuActivo.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             ConnectorClass conexion = ConnectorClass.Instance;
-            string query = "EXECUTE BUGDEVELOPING.REGISTRAR_COMPRA "+label_TotalAbonar+","+
-                                                                     label_totalFarmacia+","+  
-                                                                     label_TotalConsulta+","+
-                                                                     label_numeroAfiliado.Text + "," +
-                                                                     planID+",2007/07/07 12:00:0"+
-                                                                     ")";
-
-            DataTable Dt;
-            Dt = conexion.executeQuery(query);
+            String query = "EXECUTE BUGDEVELOPING.REGISTRAR_COMPRA " + label_TotalAbonar.Text + ", " + textBox_CantidadFarmacia.Text + ", " + textBox_CantidadConsulta.Text + ", " + label_numeroAfiliado.Text + ", " + planID + ", '" + ConnectorClass.getFechaSistema().ToString() + "'";
+            conexion.executeQuery(query);
             MessageBox.Show("Se ha realizado la compra");
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
     }
 }

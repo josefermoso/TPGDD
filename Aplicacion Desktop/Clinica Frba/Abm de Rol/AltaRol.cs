@@ -25,7 +25,7 @@ namespace Clinica_Frba.Abm_de_Rol
         {
             //MUESTRA LAS FUNCIONALIDADES QUE SE PUEDEN ESCOGER PARA DICHO ROL NUEVO
             cc = ConnectorClass.Instance;
-            dt = cc.executeQuery("SELECT FUNCIONALIDAD_ID, FUNCIONALIDAD_NOMBRE FROM BUGDEVELOPING.FUNCIONALIDAD");
+            dt = cc.executeQuery("SELECT FUNCIONALIDAD_ID, FUNCIONALIDAD_NOMBRE FROM BUGDEVELOPING.FUNCIONALIDAD order by FUNCIONALIDAD_NOMBRE");
             checkedListBoxFuncionalidades.DataSource = dt;
             checkedListBoxFuncionalidades.DisplayMember = "FUNCIONALIDAD_NOMBRE";
             checkedListBoxFuncionalidades.ValueMember = "FUNCIONALIDAD_ID";
@@ -43,7 +43,6 @@ namespace Clinica_Frba.Abm_de_Rol
             }
             else
             {
-
                 if (checkedListBoxFuncionalidades.CheckedItems.Count == 0)
                 //VALIDA LA CANTIDAD DE FUNCIONALIDADES ESCOGIDAS
                 {
@@ -51,17 +50,24 @@ namespace Clinica_Frba.Abm_de_Rol
                 }
                 else
                 {
-                    //INSERTA EN LA BASE EL NUEVO ROL
-                    cc.executeQuery("insert into BUGDEVELOPING.ROL (ROL_NOMBRE,ROL_TIPO,ROL_HABILITACION) values ('" + textBoxNombreRol.Text + "',1,1)");
-                    dt = cc.executeQuery("select ROL_ID FROM BUGDEVELOPING.ROL  WHERE ( ROL_NOMBRE = '" + textBoxNombreRol.Text + "')");
-                    String idRolCreado = dt.Rows[0].ItemArray[0].ToString();
-                    foreach (DataRowView FilaSeleccionados in checkedListBoxFuncionalidades.CheckedItems)
-                    {   //INGRESA EN LA BASE PARA LA TABLA FUN/ROL
-                        String strFunCod = FilaSeleccionados["FUNCIONALIDAD_ID"].ToString();
-                        cc.executeQuery("INSERT INTO BUGDEVELOPING.FUNROL (FUNROL_FUNCIONALIDAD_ID,FUNROL_ROL_ID) VALUES (" + strFunCod + "," + idRolCreado + ")");
-                    }
+                    if (FuncionesRol.existeNombreRol(textBoxNombreRol.Text) == false)
+                    {
+                        //INSERTA EN LA BASE EL NUEVO ROL
+                        cc.executeQuery("insert into BUGDEVELOPING.ROL (ROL_NOMBRE, ROL_HABILITACION) values ('" + textBoxNombreRol.Text + "', 1)");
+                        dt = cc.executeQuery("select ROL_ID FROM BUGDEVELOPING.ROL  WHERE ( ROL_NOMBRE = '" + textBoxNombreRol.Text + "')");
+                        String idRolCreado = dt.Rows[0].ItemArray[0].ToString();
+                        foreach (DataRowView FilaSeleccionados in checkedListBoxFuncionalidades.CheckedItems)
+                        {   //INGRESA EN LA BASE PARA LA TABLA FUN/ROL
+                            String strFunCod = FilaSeleccionados["FUNCIONALIDAD_ID"].ToString();
+                            cc.executeQuery("INSERT INTO BUGDEVELOPING.FUNROL (FUNCIONALIDAD_ID, ROL_ID) VALUES (" + strFunCod + "," + idRolCreado + ")");
+                        }
 
-                    MessageBox.Show("Rol Creado Exitosamente");
+                        MessageBox.Show("Rol Creado Exitosamente");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ya existe un rol con ese nombre");
+                    }
                 }
 
             }

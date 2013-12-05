@@ -69,7 +69,7 @@
             this.textBoxUSERNAME.Name = "textBoxUSERNAME";
             this.textBoxUSERNAME.Size = new System.Drawing.Size(222, 20);
             this.textBoxUSERNAME.TabIndex = 3;
-            this.textBoxUSERNAME.Text = "rodrigoPetraca";
+            this.textBoxUSERNAME.Text = "admin";
             // 
             // textBoxPASSWORD
             // 

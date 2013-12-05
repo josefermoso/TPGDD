@@ -35,7 +35,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox_CantidadBono = new System.Windows.Forms.TextBox();
+            this.textBox_CantidadConsulta = new System.Windows.Forms.TextBox();
             this.label_PlanCostoConsulta = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -64,7 +64,6 @@
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 12;
             this.label1.Text = "Afiliadado:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // groupBox1
             // 
@@ -117,7 +116,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox_CantidadBono);
+            this.groupBox2.Controls.Add(this.textBox_CantidadConsulta);
             this.groupBox2.Controls.Add(this.label_PlanCostoConsulta);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label6);
@@ -130,12 +129,12 @@
             // 
             // textBox_CantidadBono
             // 
-            this.textBox_CantidadBono.Location = new System.Drawing.Point(82, 77);
-            this.textBox_CantidadBono.Name = "textBox_CantidadBono";
-            this.textBox_CantidadBono.Size = new System.Drawing.Size(100, 20);
-            this.textBox_CantidadBono.TabIndex = 10;
-            this.textBox_CantidadBono.TextChanged += new System.EventHandler(this.textBox_CantidadBono_TextChanged);
-            this.textBox_CantidadBono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_CantidadBono_KeyPress);
+            this.textBox_CantidadConsulta.Location = new System.Drawing.Point(82, 77);
+            this.textBox_CantidadConsulta.Name = "textBox_CantidadBono";
+            this.textBox_CantidadConsulta.Size = new System.Drawing.Size(100, 20);
+            this.textBox_CantidadConsulta.TabIndex = 10;
+            this.textBox_CantidadConsulta.TextChanged += new System.EventHandler(this.textBox_CantidadBono_TextChanged);
+            this.textBox_CantidadConsulta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_CantidadBono_KeyPress);
             // 
             // label_PlanCostoConsulta
             // 
@@ -296,7 +295,6 @@
             this.Controls.Add(this.label1);
             this.Name = "CompraBono";
             this.Text = "CompraBono";
-            this.Load += new System.EventHandler(this.CompraBono_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -317,7 +315,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textBox_CantidadBono;
+        private System.Windows.Forms.TextBox textBox_CantidadConsulta;
         private System.Windows.Forms.Label label_PlanCostoConsulta;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;

@@ -28,35 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.lablelNUEVONOMBRE = new System.Windows.Forms.Label();
+            this.labelFUNCIONALIDADES = new System.Windows.Forms.Label();
+            this.labelESTADO = new System.Windows.Forms.Label();
+            this.txtbNOMBRE = new System.Windows.Forms.TextBox();
             this.clbFuncionalidades = new System.Windows.Forms.CheckedListBox();
             this.cbActivo = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.bLimpiar = new System.Windows.Forms.Button();
-            this.bModificar = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtbNombre = new System.Windows.Forms.TextBox();
-            this.volverButton = new System.Windows.Forms.Button();
+            this.buttonLIMPIAR = new System.Windows.Forms.Button();
+            this.buttonMODIFICAR = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // lablelNUEVONOMBRE
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 60);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 13);
-            this.label1.TabIndex = 43;
-            this.label1.Text = "Funcionalidades:";
+            this.lablelNUEVONOMBRE.AutoSize = true;
+            this.lablelNUEVONOMBRE.Location = new System.Drawing.Point(12, 25);
+            this.lablelNUEVONOMBRE.Name = "lablelNUEVONOMBRE";
+            this.lablelNUEVONOMBRE.Size = new System.Drawing.Size(82, 13);
+            this.lablelNUEVONOMBRE.TabIndex = 38;
+            this.lablelNUEVONOMBRE.Text = "Nuevo Nombre:";
+            // 
+            // labelFUNCIONALIDADES
+            // 
+            this.labelFUNCIONALIDADES.AutoSize = true;
+            this.labelFUNCIONALIDADES.Location = new System.Drawing.Point(7, 77);
+            this.labelFUNCIONALIDADES.Name = "labelFUNCIONALIDADES";
+            this.labelFUNCIONALIDADES.Size = new System.Drawing.Size(139, 13);
+            this.labelFUNCIONALIDADES.TabIndex = 44;
+            this.labelFUNCIONALIDADES.Text = "Funcionalidades Asignadas:";
+            // 
+            // labelESTADO
+            // 
+            this.labelESTADO.AutoSize = true;
+            this.labelESTADO.Location = new System.Drawing.Point(12, 226);
+            this.labelESTADO.Name = "labelESTADO";
+            this.labelESTADO.Size = new System.Drawing.Size(79, 13);
+            this.labelESTADO.TabIndex = 45;
+            this.labelESTADO.Text = "Estado del Rol:";
+            // 
+            // txtbNOMBRE
+            // 
+            this.txtbNOMBRE.Location = new System.Drawing.Point(175, 18);
+            this.txtbNOMBRE.Name = "txtbNOMBRE";
+            this.txtbNOMBRE.Size = new System.Drawing.Size(256, 20);
+            this.txtbNOMBRE.TabIndex = 46;
             // 
             // clbFuncionalidades
             // 
             this.clbFuncionalidades.CheckOnClick = true;
             this.clbFuncionalidades.FormattingEnabled = true;
-            this.clbFuncionalidades.Location = new System.Drawing.Point(113, 60);
+            this.clbFuncionalidades.Location = new System.Drawing.Point(175, 44);
             this.clbFuncionalidades.Name = "clbFuncionalidades";
-            this.clbFuncionalidades.Size = new System.Drawing.Size(163, 169);
+            this.clbFuncionalidades.Size = new System.Drawing.Size(256, 169);
             this.clbFuncionalidades.Sorted = true;
-            this.clbFuncionalidades.TabIndex = 42;
+            this.clbFuncionalidades.TabIndex = 47;
             // 
             // cbActivo
             // 
@@ -65,82 +89,46 @@
             this.cbActivo.Items.AddRange(new object[] {
             "Activo",
             "Desactivado"});
-            this.cbActivo.Location = new System.Drawing.Point(113, 245);
+            this.cbActivo.Location = new System.Drawing.Point(175, 226);
             this.cbActivo.Name = "cbActivo";
-            this.cbActivo.Size = new System.Drawing.Size(163, 21);
-            this.cbActivo.TabIndex = 38;
+            this.cbActivo.Size = new System.Drawing.Size(256, 21);
+            this.cbActivo.TabIndex = 48;
             // 
-            // label6
+            // buttonLIMPIAR
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(20, 245);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 13);
-            this.label6.TabIndex = 41;
-            this.label6.Text = "Estado Lógico";
+            this.buttonLIMPIAR.Location = new System.Drawing.Point(15, 269);
+            this.buttonLIMPIAR.Name = "buttonLIMPIAR";
+            this.buttonLIMPIAR.Size = new System.Drawing.Size(117, 26);
+            this.buttonLIMPIAR.TabIndex = 49;
+            this.buttonLIMPIAR.Text = "Limpiar";
+            this.buttonLIMPIAR.UseVisualStyleBackColor = true;
+            this.buttonLIMPIAR.Click += new System.EventHandler(this.buttonLIMPIAR_Click);
             // 
-            // bLimpiar
+            // buttonMODIFICAR
             // 
-            this.bLimpiar.Location = new System.Drawing.Point(23, 291);
-            this.bLimpiar.Name = "bLimpiar";
-            this.bLimpiar.Size = new System.Drawing.Size(117, 26);
-            this.bLimpiar.TabIndex = 39;
-            this.bLimpiar.Text = "Limpiar";
-            this.bLimpiar.UseVisualStyleBackColor = true;
-            this.bLimpiar.Click += new System.EventHandler(this.bLimpiar_Click);
+            this.buttonMODIFICAR.Location = new System.Drawing.Point(314, 269);
+            this.buttonMODIFICAR.Name = "buttonMODIFICAR";
+            this.buttonMODIFICAR.Size = new System.Drawing.Size(117, 26);
+            this.buttonMODIFICAR.TabIndex = 50;
+            this.buttonMODIFICAR.Text = "Modificar";
+            this.buttonMODIFICAR.UseVisualStyleBackColor = true;
+            this.buttonMODIFICAR.Click += new System.EventHandler(this.buttonMODIFICAR_Click);
             // 
-            // bModificar
-            // 
-            this.bModificar.Location = new System.Drawing.Point(159, 291);
-            this.bModificar.Name = "bModificar";
-            this.bModificar.Size = new System.Drawing.Size(117, 26);
-            this.bModificar.TabIndex = 40;
-            this.bModificar.Text = "Modificar";
-            this.bModificar.UseVisualStyleBackColor = true;
-            this.bModificar.Click += new System.EventHandler(this.bModificar_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 37;
-            this.label2.Text = "Nombre";
-            // 
-            // txtbNombre
-            // 
-            this.txtbNombre.Location = new System.Drawing.Point(112, 19);
-            this.txtbNombre.Name = "txtbNombre";
-            this.txtbNombre.Size = new System.Drawing.Size(164, 20);
-            this.txtbNombre.TabIndex = 36;
-            // 
-            // volverButton
-            // 
-            this.volverButton.Location = new System.Drawing.Point(92, 323);
-            this.volverButton.Name = "volverButton";
-            this.volverButton.Size = new System.Drawing.Size(117, 26);
-            this.volverButton.TabIndex = 44;
-            this.volverButton.Text = "Volver";
-            this.volverButton.UseVisualStyleBackColor = true;
-            this.volverButton.Click += new System.EventHandler(this.volverButton_Click);
-            // 
-            // FormModifRol
+            // ModificarRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 360);
-            this.Controls.Add(this.volverButton);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.clbFuncionalidades);
+            this.ClientSize = new System.Drawing.Size(443, 316);
+            this.Controls.Add(this.buttonMODIFICAR);
+            this.Controls.Add(this.buttonLIMPIAR);
             this.Controls.Add(this.cbActivo);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.bLimpiar);
-            this.Controls.Add(this.bModificar);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtbNombre);
-            this.Name = "FormModifRol";
-            this.Text = "Modificar Rol";
+            this.Controls.Add(this.clbFuncionalidades);
+            this.Controls.Add(this.txtbNOMBRE);
+            this.Controls.Add(this.labelESTADO);
+            this.Controls.Add(this.labelFUNCIONALIDADES);
+            this.Controls.Add(this.lablelNUEVONOMBRE);
+            this.Name = "ModificarRol";
+            this.Text = "Modificar Rol Seleccionado";
             this.Load += new System.EventHandler(this.FormModifRol_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -149,14 +137,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lablelNUEVONOMBRE;
+        private System.Windows.Forms.Label labelFUNCIONALIDADES;
+        private System.Windows.Forms.Label labelESTADO;
+        private System.Windows.Forms.TextBox txtbNOMBRE;
         private System.Windows.Forms.CheckedListBox clbFuncionalidades;
         private System.Windows.Forms.ComboBox cbActivo;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button bLimpiar;
-        private System.Windows.Forms.Button bModificar;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtbNombre;
-        private System.Windows.Forms.Button volverButton;
+        private System.Windows.Forms.Button buttonLIMPIAR;
+        private System.Windows.Forms.Button buttonMODIFICAR;
     }
 }

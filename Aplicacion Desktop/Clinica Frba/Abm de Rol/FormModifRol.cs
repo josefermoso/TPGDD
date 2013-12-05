@@ -12,23 +12,23 @@ namespace Clinica_Frba.Abm_de_Rol
 {
     public partial class FormModifRol : Form
     {
-        public FormModifRol() :
-            base()
+        public static String RolCodigo;
+        public static string RolNombre;
+        public static string RolActivo;
+        int TotFunc;
+        private FiltrarRol abm;
+        
+        public FormModifRol(FiltrarRol abmAnterior)
         {
+            abm = abmAnterior;
             InitializeComponent();
         }
 
-        public static string RolCodigo;
-        public static string RolNombre;
-        public static string RolActivo;
-        ConnectorClass Cn;
-        DataTable Dt;
-        int TotFunc;
-
+        
 
         private void FormModifRol_Load(object sender, EventArgs e)
         {
-            txtbNombre.Text = RolNombre;
+            txtbNOMBRE.Text = RolNombre;
             //SETEA PARAMETROS DE ROL ACTIVO O INACTIVO
             if (RolActivo == "True")
             {
@@ -41,10 +41,10 @@ namespace Clinica_Frba.Abm_de_Rol
 
             //MUESTRA EL CONTEXTO ACTUAL DE FUNCIONALIDAD POR ROL
 
-            Cn = ConnectorClass.Instance;
-            Dt = Cn.executeQuery("SELECT FUNCIONALIDAD_ID, FUNCIONALIDAD_NOMBRE FROM BUGDEVELOPING.FUNCIONALIDAD");
+            ConnectorClass con = ConnectorClass.Instance;
+            DataTable dt = con.executeQuery("select FUNCIONALIDAD_ID, FUNCIONALIDAD_NOMBRE from BUGDEVELOPING.FUNCIONALIDAD order by FUNCIONALIDAD_NOMBRE");
 
-            clbFuncionalidades.DataSource = Dt;
+            clbFuncionalidades.DataSource = dt;
             clbFuncionalidades.DisplayMember = "FUNCIONALIDAD_NOMBRE";
             clbFuncionalidades.ValueMember = "FUNCIONALIDAD_ID";
 
@@ -54,8 +54,8 @@ namespace Clinica_Frba.Abm_de_Rol
 
             for (int i = 0; i < TotFunc; i++)
             {
-                CodFun = Dt.Rows[i].ItemArray[0].ToString();
-                Existe = Clinica_Frba.Abm_de_Rol.FuncionesRol.existeFunEnRol(RolCodigo, CodFun);
+                CodFun = dt.Rows[i].ItemArray[0].ToString();
+                Existe = FuncionesRol.existeFunEnRol(RolCodigo, CodFun);
                 if (Existe)
                 {
                     //ACTIVA EL CHECKBOX PARA LAS QUE YA ESTAN SETEADAS
@@ -64,93 +64,103 @@ namespace Clinica_Frba.Abm_de_Rol
             }
         }
 
-        private void bLimpiar_Click(object sender, EventArgs e)
+        private void buttonLIMPIAR_Click(object sender, EventArgs e)
         {
-            //LIMPIA TODOS LOS CHECKBOXES DE FUNCIONALIDADES
-            txtbNombre.Text = "";
+            txtbNOMBRE.Text = "";
             for (int i = 0; i < TotFunc; i++)
             {
                 clbFuncionalidades.SetItemChecked(i, false);
             }
         }
 
-        private void bModificar_Click(object sender, EventArgs e)
-        {//MODIFICA UN ROL
+        private void buttonMODIFICAR_Click(object sender, EventArgs e)
+        {
+
             if (clbFuncionalidades.CheckedItems.Count == 0)
             {
-                MessageBox.Show("Debe seleccionar al menos un rol");
-                //VERIFICA QUE HAYAS SELECCIONADO UN ROL
+                MessageBox.Show("Debe seleccionar al menos una funcionalidad", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-            {   //VERIFICA EL NOMBRE NUEVO DEL ROL
-                if (txtbNombre.Text == "")
+            {
+                if (txtbNOMBRE.Text == "")
                 {
-                    MessageBox.Show("El rol debe tener un nombre");
+                    MessageBox.Show("El rol debe tener un nombre", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    //Si no cambió el nombre
-                    bool ModificarOk;
-                    //Hay que verificar si cambió el nombre del rol
-                    if (txtbNombre.Text == RolNombre)
+                    if (txtbNOMBRE.Text.Contains('%') || txtbNOMBRE.Text.Contains('$')
+                    || txtbNOMBRE.Text.Contains('&') || txtbNOMBRE.Text.Contains('!')
+                    || txtbNOMBRE.Text.Contains('?') || txtbNOMBRE.Text.Contains('/')
+                    || txtbNOMBRE.Text.Contains('¿') || txtbNOMBRE.Text.Contains('&')
+                    || txtbNOMBRE.Text.Contains(')') || txtbNOMBRE.Text.Contains('(')
+                    || txtbNOMBRE.Text.Contains('¡') || txtbNOMBRE.Text.Contains('#')
+                    || txtbNOMBRE.Text.Contains('*') || txtbNOMBRE.Text.Contains('}')
+                    || txtbNOMBRE.Text.Contains('{'))
                     {
-                        ModificarOk = true;
+                        MessageBox.Show("Ha elegido un nombre de rol inválido");
                     }
-                    //Si lo cambió hay que verificar que el nombre no esté repetido en la base
-                    //sin contar al que tenía antes de cambiarlo
                     else
                     {
-                        if (Clinica_Frba.Abm_de_Rol.FuncionesRol.existeNombreRol(txtbNombre.Text) == false)
+                        //Si no cambió el nombre
+                        bool ModificarOk;
+                        //Hay que verificar si cambió el nombre del rol
+                        if (txtbNOMBRE.Text == RolNombre)
+                        {
                             ModificarOk = true;
-                        else
-                            ModificarOk = false;
-                    }
-
-                    //Si es true es porque, o bien, no cambió el nombre, o lo cambió y no estaba en la base
-                    if (ModificarOk == true)
-                    {
-                        if (cbActivo.Text == "Activo")
-                        {
-                            RolActivo = "1";
                         }
+                        //Si lo cambió hay que verificar que el nombre no esté repetido en la base
+                        //sin contar al que tenía antes de cambiarlo
                         else
                         {
-                            RolActivo = "0";
-                            //Se quita todos el Rol a los Usuarios que lo tengan
-                            Clinica_Frba.Abm_de_Rol.FuncionesRol.borrarRolXUsuario(RolCodigo);
+                            if (FuncionesRol.existeNombreRol(txtbNOMBRE.Text) == false)
+                                ModificarOk = true;
+                            else
+                                ModificarOk = false;
                         }
-                        RolNombre = txtbNombre.Text;
 
-                        Clinica_Frba.Abm_de_Rol.FuncionesRol.modificarNombreYHabilitacion(RolCodigo, RolNombre, RolActivo);
-
-                        /**Borra todos las funcionalidades asociadas al rol**/
-                        Clinica_Frba.Abm_de_Rol.FuncionesRol.borrarFuncionalidades(RolCodigo);
-
-                        /**Inserta todas las funcionalidades clickeadas relacionandalas con el rol **/
-                        foreach (DataRowView FilaSeleccionados in clbFuncionalidades.CheckedItems)
+                        //Si es true es porque, o bien, no cambió el nombre, o lo cambió y no estaba en la base
+                        if (ModificarOk == true)
                         {
-                            String strFunCod = FilaSeleccionados["FUNCIONALIDAD_ID"].ToString();
-                            Cn.executeQuery("INSERT INTO BUGDEVELOPING.FUNROL (FUNROL_FUNCIONALIDAD_ID,FUNROL_ROL_ID) VALUES (" + strFunCod + "," + RolCodigo + ")");
+                            if (cbActivo.Text == "Activo")
+                            {
+                                RolActivo = "1";
+                            }
+                            else
+                            {
+                                RolActivo = "0";
+                                //Se quita todos el Rol a los Usuarios que lo tengan
+                                FuncionesRol.borrarRolXUsuario(RolCodigo);
+                            }
+                            RolNombre = txtbNOMBRE.Text;
+
+                            FuncionesRol.modificarNombreYHabilitacion(RolCodigo, RolNombre, RolActivo);
+
+                            /**Borra todos las funcionalidades asociadas al rol**/
+                            FuncionesRol.borrarFuncionalidades(RolCodigo);
+
+                            /**Inserta todas las funcionalidades clickeadas relacionandalas con el rol **/
+                            foreach (DataRowView FilaSeleccionados in clbFuncionalidades.CheckedItems)
+                            {
+                                String strFunCod = FilaSeleccionados["FUNCIONALIDAD_ID"].ToString();
+                                FuncionesRol.InsertarFuncionalidades(RolCodigo, strFunCod);
+                            }
+
+
+
+                            MessageBox.Show("Rol actualizado con éxito", "Actualización de Rol", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            abm.reRenderAfterMod();
+                            this.Close();
                         }
-
-
-
-                        MessageBox.Show("Rol actualizado con éxito");
-                        this.Close();
-                    }
-                    //Se le avisa al usuario que el nombre del rol ya existe
-                    else
-                    {
-                        MessageBox.Show("El nombre de rol ya existe");
+                        //Se le avisa al usuario que el nombre del rol ya existe
+                        else
+                        {
+                            MessageBox.Show("El nombre de rol ya existe", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
+
+
             }
-
-        }
-
-        private void volverButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

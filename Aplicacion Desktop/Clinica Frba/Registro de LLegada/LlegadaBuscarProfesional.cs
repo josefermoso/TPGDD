@@ -100,6 +100,7 @@ namespace Clinica_Frba.Registro_de_LLegada
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+            Clinica_Frba.MenuPrincipal.menuActivo.Show();
         }
 
         private void grillaProfesional_CellContentClick(object sender, DataGridViewCellEventArgs e)

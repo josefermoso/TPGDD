@@ -47,19 +47,25 @@ namespace Clinica_Frba
             data = con.executeQuery(validacion);
             if (data.Rows[0][0].ToString() == "Administrativo" || data.Rows[0][0].ToString() == "Administrador del Sistema")
             {
-               // CompraBono.ListadoAfiliadoCompraBono frmBonoAdm = new CompraBono.ListadoAfiliadoCompraBono();
-               // frmBonoAdm.Show();
-               // this.Hide();
-                CompraBono.CompraBono frmBonoAfil = new CompraBono.CompraBono();
-                frmBonoAfil.Show();
+                CompraBono.ListadoAfiliadoCompraBono frmBonoAdm = new CompraBono.ListadoAfiliadoCompraBono();
+                frmBonoAdm.Show();
                 this.Hide();
             }
             if (data.Rows[0][0].ToString() == "Afiliado")
             {
-                CompraBono.CompraBono frmBonoAfil = new CompraBono.CompraBono();
+                String nroAfiliado = obtenerNroAfiliado(userId);
+                CompraBono.CompraBono frmBonoAfil = new CompraBono.CompraBono(nroAfiliado);
                 frmBonoAfil.Show();
                 this.Hide();
             }
+        }
+
+        private string obtenerNroAfiliado(string userId)
+        {
+            ConnectorClass con = ConnectorClass.Instance;
+            String query = "SELECT pa_nafiliado FROM BUGDEVELOPING.PERSONA JOIN BUGDEVELOPING.PACIENTE ON (pe_id = pa_persona) WHERE PE_USUARIO_ID = " + userId;
+            DataTable dt = con.executeQuery(query);
+            return dt.Rows[0].ItemArray[0].ToString();
         }
 
         private void rolesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -77,18 +83,18 @@ namespace Clinica_Frba
 
         private void afiliadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //SqlConnector con = SqlConnector.getInstance();
-            //String validacion = "select r.nombre from HARDWELL.ROL r, HARDWELL.USUARIO_ROL ur, HARDWELL.USUARIO u where u.USERNAME = '" + Clinica_Frba.Login.LoginForm.nombreUsuario + "' and u.ID_USUARIO = ur.ID_USUARIO and r.ID_ROL = ur.ID_ROL";
-            //DataTable data = new DataTable();
-            //data = con.executeQuery(validacion);
+            ConnectorClass con = ConnectorClass.Instance;
+            String validacion = "select r.ROL_NOMBRE from BUGDEVELOPING.ROL r, BUGDEVELOPING.USUARIO_ROL ur, BUGDEVELOPING.USUARIO u where u.USUARIO_USERNAME = '" + Clinica_Frba.Login.LoginForm.nombreUsuario + "' and u.USUARIO_ID = ur.USUARIO_ID and r.ROL_ID = ur.ROL_ID";
+            DataTable data = new DataTable();
+            data = con.executeQuery(validacion);
 
-            //if (data.Rows[0][0].ToString() == "Afiliado")
-            //{
-            //}
-            /*
-            Clinica_Frba.Abm_de_Afiliado.Afiliado abmAfiliado = new Clinica_Frba.Abm_de_Afiliado.Afiliado();
-            abmAfiliado.Show();*/
-            //this.Hide();
+            if (data.Rows[0][0].ToString() == "Afiliado")
+            {
+            }
+            
+            Clinica_Frba.Abm_de_Afiliado.MenuAfiliado abmAfiliado = new Clinica_Frba.Abm_de_Afiliado.MenuAfiliado();
+            abmAfiliado.Show();
+            this.Hide();
         }
 
         private void profesionalesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -104,6 +110,12 @@ namespace Clinica_Frba
             String validacion = "select r.ROL_NOMBRE from BUGDEVELOPING.ROL r, BUGDEVELOPING.USUARIO_ROL ur, BUGDEVELOPING.USUARIO u where u.USUARIO_USERNAME = '" + Clinica_Frba.Login.LoginForm.nombreUsuario + "' and u.USUARIO_ID = ur.USUARIO_ID and r.ROL_ID = ur.ROL_ID";
             DataTable data = new DataTable();
             data = con.executeQuery(validacion);
+            if (data.Rows[0][0].ToString() == "Administrador del Sistema")
+            {
+                Cancelar_Atencion.CancelacionAdmSist frmCan = new Clinica_Frba.Cancelar_Atencion.CancelacionAdmSist();
+                frmCan.Show();
+                this.Hide();
+            }
             if (data.Rows[0][0].ToString() == "Profesional")
             {
                 Cancelar_Atencion.CancelacionProf frmCan = new Clinica_Frba.Cancelar_Atencion.CancelacionProf();
@@ -119,10 +131,6 @@ namespace Clinica_Frba
             }
         }
 
-        private void generarRecetaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void pedirTurnosToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -187,24 +195,21 @@ namespace Clinica_Frba
         {
             Registro_de_LLegada.LlegadaBuscarProfesional registroLlegada = new Registro_de_LLegada.LlegadaBuscarProfesional();
             registroLlegada.Show();
+            this.Hide();
         }
 
         private void registarResultadoDeLaAtenciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Registro_Resultado_Atencion.IngresoTurno registroResultado = new Registro_Resultado_Atencion.IngresoTurno();
             registroResultado.Show();
+            this.Hide();
         }
 
         private void obtenerEstadísticasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Clinica_Frba.Listados_Estadisticos.ListadosEstadisticos frmListados = new Clinica_Frba.Listados_Estadisticos.ListadosEstadisticos();
+            frmListados.Show();          
             this.Hide();
-            frmListados.Show();
-        }
-
-        private void informaciónToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

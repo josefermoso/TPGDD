@@ -122,7 +122,6 @@
             this.generarRecetaToolStripMenuItem.Name = "generarRecetaToolStripMenuItem";
             this.generarRecetaToolStripMenuItem.Size = new System.Drawing.Size(247, 22);
             this.generarRecetaToolStripMenuItem.Text = "Generar Receta";
-            this.generarRecetaToolStripMenuItem.Click += new System.EventHandler(this.generarRecetaToolStripMenuItem_Click);
             // 
             // pedirTurnosToolStripMenuItem
             // 
@@ -159,7 +158,6 @@
             this.informaciónToolStripMenuItem.Name = "informaciónToolStripMenuItem";
             this.informaciónToolStripMenuItem.Size = new System.Drawing.Size(130, 20);
             this.informaciónToolStripMenuItem.Text = "Información Estadística";
-            this.informaciónToolStripMenuItem.Click += new System.EventHandler(this.informaciónToolStripMenuItem_Click);
             // 
             // obtenerEstadísticasToolStripMenuItem
             // 

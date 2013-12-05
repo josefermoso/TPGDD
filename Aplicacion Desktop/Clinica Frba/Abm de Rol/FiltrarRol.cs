@@ -12,62 +12,74 @@ namespace Clinica_Frba.Abm_de_Rol
 {
     public partial class FiltrarRol : Form
     {
-        public FiltrarRol() :
-            base()
+        public FiltrarRol abmFiltro;
+        public FiltrarRol()
         {
+            abmFiltro = this;
             InitializeComponent();
         }
+        
 
-        ConnectorClass conn;
+        public void reRenderAfterMod()
+        {
 
-        private void bLimpiar_Click(object sender, EventArgs e)
+            String query = "SELECT ROL_ID, ROL_NOMBRE, ROL_HABILITACION  FROM BUGDEVELOPING.ROL WHERE ROL_NOMBRE LIKE " + "'%" + textboxBUSQUEDA.Text + "%'";
+            if (textboxBUSQUEDA.Text == "")
+            {
+                query = "SELECT ROL_ID, ROL_NOMBRE, ROL_HABILITACION  FROM BUGDEVELOPING.ROL";
+            }
+
+            ConnectorClass con = ConnectorClass.Instance;
+            dgvRoles.DataSource = con.executeQuery(query);
+            dgvRoles.Enabled = true;
+        }
+
+        private void buttonBUSCAR_Click(object sender, EventArgs e)
+        {
+
+            String query = "SELECT ROL_ID, ROL_NOMBRE, ROL_HABILITACION  FROM BUGDEVELOPING.ROL WHERE ROL_NOMBRE LIKE " + "'%" + textboxBUSQUEDA.Text + "%'";
+            if (textboxBUSQUEDA.Text == "")
+            {
+                query = "SELECT ROL_ID, ROL_NOMBRE, ROL_HABILITACION  FROM BUGDEVELOPING.ROL";
+            }
+
+            ConnectorClass con = ConnectorClass.Instance;
+            dgvRoles.DataSource = con.executeQuery(query);
+            dgvRoles.Enabled = true;
+        }
+
+        private void buttonLIMPIAR_Click(object sender, EventArgs e)
         {
             //LIMPIA LA SELECCION DE ROLES
-            txtbNombre.Text = "";
+            textboxBUSQUEDA.Text = "";
             dgvRoles.DataSource = "";
             dgvRoles.Enabled = false;
-            txtbNombre.Focus();
-        }
-
-        private void FormFiltrarRol_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bFiltrar_Click(object sender, EventArgs e)
-        {
-            //TRAEL LOS ROLES SEGUN EL NOMBRE DE FILTRO
-            conn = ConnectorClass.Instance;
-
-            string seleccion = "Select ROL_ID,Rol_NOMBRE,ROL_TIPO,ROL_HABILITACION";
-            string origen = " from BUGDEVELOPING.Rol";
-            string condicion = " where 1=1";
-
-            if (txtbNombre.Text != "")
-            { condicion += " and ROL_NOMBRE like " + "'%" + txtbNombre.Text + "%'"; }
-
-            dgvRoles.DataSource = conn.executeQuery(seleccion + origen + condicion);
-            dgvRoles.Enabled = true;
+            textboxBUSQUEDA.Focus();
         }
 
         private void dgvRoles_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //INVOCA A LA ABM DE MODIFICACION DE ROLES SEGUN LOS ESCOGIDOS EN EL FILTRADO
-            if ((dgvRoles.Rows.Count > 0) && (dgvRoles.Columns[e.ColumnIndex].HeaderText == "Seleccionar"))
+            if ((dgvRoles.Rows.Count > 0) && (dgvRoles.Columns[e.ColumnIndex].HeaderText == "Modificar Rol"))
             {
-                FormModifRol form = new FormModifRol();
+                FormModifRol form = new FormModifRol(abmFiltro);
                 FormModifRol.RolCodigo = dgvRoles.CurrentRow.Cells[1].Value.ToString();
                 FormModifRol.RolNombre = dgvRoles.CurrentRow.Cells["ROL_NOMBRE"].Value.ToString();
                 FormModifRol.RolActivo = dgvRoles.CurrentRow.Cells["ROL_HABILITACION"].Value.ToString();
                 form.ShowDialog(this);
-
-
             }
         }
 
-        private void volverButton_Click(object sender, EventArgs e)
+        private void buttonCREAR_Click(object sender, EventArgs e)
         {
+            AltaRol alta = new AltaRol();
+            alta.ShowDialog(this);
+        }
+
+        private void REGRESAR_PRINCIPAL_Click(object sender, EventArgs e)
+        {
+            Clinica_Frba.MenuPrincipal.menuActivo.Show();
             this.Close();
         }
+
     }
 }

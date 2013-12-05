@@ -25,7 +25,7 @@ namespace Clinica_Frba.Login
 
         private void cargarRoles(object sender, EventArgs e)
         {
-            String query = "SELECT ROL_ID 'NUMERO DE ROL' , ROL_NOMBRE FROM BUGDEVELOPING.ROL WHERE ROL_ID IN(SELECT ROL_ID FROM BUGDEVELOPING.USUARIO_ROL WHERE USUARIO_ID = " + userID + " )";
+            String query = "SELECT ROL_ID 'NUMERO DE ROL' , ROL_NOMBRE FROM BUGDEVELOPING.ROL WHERE ROL_ID IN (SELECT ROL_ID FROM BUGDEVELOPING.USUARIO_ROL WHERE USUARIO_ID = " + userID + " )";
             ConnectorClass con = ConnectorClass.Instance;
             dgvRoles.DataSource = con.executeQuery(query);
             dgvRoles.Enabled = true;

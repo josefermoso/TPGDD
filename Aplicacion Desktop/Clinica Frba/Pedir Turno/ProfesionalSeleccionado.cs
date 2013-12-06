@@ -365,9 +365,9 @@ namespace Clinica_Frba.Pedir_Turno
             if ((grillaProfesional.Rows.Count > 0) && (grillaProfesional.Columns[e.ColumnIndex].HeaderText == "Seleccionar"))
             {
                 ConnectorClass con = ConnectorClass.Instance;
-
                 fechaElegida = DateTime.Parse(fechasDisponibles.SelectedValue.ToString());
                 TimeSpan horaElegida = DateTime.Parse(grillaProfesional.CurrentRow.Cells[2].Value.ToString()).TimeOfDay;
+                
                 con.executeQuery("insert into BUGDEVELOPING.TURNO (T_MEDICO, T_FECHA, T_HORA, T_AGENDA, T_AFILIADO) values ('" + idProfesional + "' , '" + fechaElegida + "', '" + horaElegida + "', '" + idAgenda + "', '" + idPaciente2 + "')");
                 MessageBox.Show("Turno agregado correctamente");
                 mostrarTodosLosHorariosDisponiblesSegunFecha();

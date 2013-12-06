@@ -82,6 +82,7 @@ namespace Clinica_Frba.Registro_de_LLegada
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+            Clinica_Frba.MenuPrincipal.menuActivo.Show();
         }
 
         public Boolean llegoEnHorario(TimeSpan horaTurno)
@@ -125,7 +126,7 @@ namespace Clinica_Frba.Registro_de_LLegada
                         String fechaConsulta = grillaProfesional.CurrentRow.Cells[2].Value.ToString();
                         String horaLlegadaString = horaLlegada.ToString();
                         String horaDelTurnoString = horaDelTurno.ToString();
-                        String query = "insert into  BUGDEVELOPING.CONSULTA (CON_TURNO, CON_FECHA, CON_HORA_LLEGADA, CON_HORA_INICIO) values ('" + idTurno + "', convert (datetime, '" + fechaConsulta + "', 120), convert (time, '" + horaLlegadaString + "', 120) , convert (time, '" + horaDelTurnoString + "', 120))";
+                        String query = "insert into  BUGDEVELOPING.CONSULTA (CON_TURNO, CON_FECHA, CON_HORA_LLEGADA, CON_HORA_INICIO) values ('" + idTurno + "', cast ('" + fechaConsulta + "' as date), convert (time, '" + horaLlegadaString + "', 120) , convert (time, '" + horaDelTurnoString + "', 120))";
 
                         con.executeQuery(query);
 

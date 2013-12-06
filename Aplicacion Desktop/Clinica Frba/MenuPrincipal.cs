@@ -151,7 +151,7 @@ namespace Clinica_Frba
             if (data2.Rows[0][0].ToString() == "Afiliado")
             {
                 pedido_turno.buscarProfesional ventanaPedirTurno = new Clinica_Frba.pedido_turno.buscarProfesional();
-                ventanaPedirTurno.idPaciente = obtenerProfesionalOPacienteLogueado(userId);
+                ventanaPedirTurno.idPaciente = obtenerNroAfiliado(userId);
                 ventanaPedirTurno.Show();
                 this.Hide();
             }

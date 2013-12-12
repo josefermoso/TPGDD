@@ -36,14 +36,14 @@ namespace Clinica_Frba.Cancelar_Atencion
                 }
                 else
                 {
-                    String validacion = "select ME_ACTIVO from BUGDEVELOPING.MEDICO where ME_PERSONA = " + textBoxNroAoP.Text;
+                    String validacion = "select me_activo from bugdeveloping.medico  where me_persona = " + textBoxNroAoP.Text;
                     ConnectorClass con = ConnectorClass.Instance;
                     DataTable validar = new DataTable();
                     validar = con.executeQuery(validacion);
 
                     if (validar.Rows.Count == 0)
                     {
-                        MessageBox.Show("No existe el profesional nro: " + textBoxNroAoP.Text);
+                        MessageBox.Show("No existe  el profesional nro: " + textBoxNroAoP.Text);
                     }
                     else
                     {
@@ -56,7 +56,7 @@ namespace Clinica_Frba.Cancelar_Atencion
                         }
                         else
                         {
-                            MessageBox.Show("El profesional " + textBoxNroAoP + " no esta habilitado");
+                            MessageBox.Show("El profesional " + textBoxNroAoP.Text + " no esta habilitado");
                         }
                     }
                 }
@@ -80,7 +80,7 @@ namespace Clinica_Frba.Cancelar_Atencion
                 }
                 else
                 {
-                    String validacion = "select PA_ACTIVO from BUGDEVELOPING.PACIENTE where PA_NAFILIADO = " + textBoxNroAoP.Text;
+                    String validacion = "select pa_activo from bugdeveloping.paciente where pa_nafiliado = " + textBoxNroAoP.Text;
                     ConnectorClass con = ConnectorClass.Instance;
                     DataTable validar = new DataTable();
                     validar = con.executeQuery(validacion);
@@ -100,7 +100,7 @@ namespace Clinica_Frba.Cancelar_Atencion
                         }
                         else
                         {
-                            MessageBox.Show("El profesional " + textBoxNroAoP + " no esta habilitado");
+                            MessageBox.Show("El afiliado " + textBoxNroAoP.Text + " no esta habilitado");
                         }
                     }
                 }

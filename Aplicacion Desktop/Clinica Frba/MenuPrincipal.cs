@@ -142,16 +142,17 @@ namespace Clinica_Frba
 
             if (data2.Rows[0][0].ToString() == "Administrador del Sistema")
             {
-                pedido_turno.buscarProfesional ventanaPedirTurno = new Clinica_Frba.pedido_turno.buscarProfesional();
-                ventanaPedirTurno.quienEs = "Administrador del Sistema";
+                Clinica_Frba.Pedir_Turno.PedidoDeTurno ventanaPedirTurno = new Clinica_Frba.Pedir_Turno.PedidoDeTurno();
                 ventanaPedirTurno.Show();
                 this.Hide();
             }
 
             if (data2.Rows[0][0].ToString() == "Afiliado")
             {
-                pedido_turno.buscarProfesional ventanaPedirTurno = new Clinica_Frba.pedido_turno.buscarProfesional();
-                ventanaPedirTurno.idPaciente = obtenerNroAfiliado(userId);
+                String pattern = "SELECT PA_NAFILIADO FROM BUGDEVELOPING.PERSONA JOIN BUGDEVELOPING.PACIENTE ON (PE_ID = PA_PERSONA) WHERE PE_USUARIO_ID = {0}";
+                String query = String.Format(pattern, userId);
+                System.Diagnostics.Debug.WriteLine(query);
+                Clinica_Frba.Pedir_Turno.PedidoDeTurno ventanaPedirTurno = new Clinica_Frba.Pedir_Turno.PedidoDeTurno((long)con.executeQueryEscalar(query));
                 ventanaPedirTurno.Show();
                 this.Hide();
             }
@@ -168,15 +169,16 @@ namespace Clinica_Frba
 
             if (data.Rows[0][0].ToString() == "Administrador del Sistema")
             {
-                Registrar_Agenda.Agenda ventanaAgenda = new Clinica_Frba.Registrar_Agenda.Agenda();
-                ventanaAgenda.quienEs = "Administrador del Sistema";
+                Registrar_Agenda.RegistroAgenda ventanaAgenda = new Clinica_Frba.Registrar_Agenda.RegistroAgenda();
                 ventanaAgenda.Show();
                 this.Hide();
             }
             else
             {
-                Registrar_Agenda.Agenda ventanaAgenda = new Clinica_Frba.Registrar_Agenda.Agenda();
-                ventanaAgenda.idProfesionalLogueado = obtenerProfesionalOPacienteLogueado(userId);
+                String pattern = "SELECT ME_PERSONA FROM BUGDEVELOPING.PERSONA JOIN BUGDEVELOPING.MEDICO ON (PE_ID = ME_PERSONA) WHERE PE_USUARIO_ID = {0}";
+                String query = String.Format(pattern, userId);
+                System.Diagnostics.Debug.WriteLine(query);
+                Registrar_Agenda.RegistroAgenda ventanaAgenda = new Clinica_Frba.Registrar_Agenda.RegistroAgenda((long)con.executeQueryEscalar(query));
                 ventanaAgenda.Show();
                 this.Hide();
             }

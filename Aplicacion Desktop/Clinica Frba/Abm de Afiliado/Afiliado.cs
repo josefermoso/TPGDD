@@ -108,22 +108,22 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
         private void textBox_NumeroDoc_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.soloNumeros(e);
+            ValidarTextBox.soloNumeros(e);
         }
 
         private void textBox_Apellido_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.soloLetras(e);
+            ValidarTextBox.soloLetras(e);
         }
 
         private void textBox_Nom_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.soloLetras(e);
+            ValidarTextBox.soloLetras(e);
         }
 
         private void textBox_Telefono_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.soloNumeros(e);
+            ValidarTextBox.soloNumeros(e);
         }
 
         private void confirmarAfiliado()

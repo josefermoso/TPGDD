@@ -60,12 +60,12 @@ namespace Clinica_Frba.CompraBono
 
         private void textBox_CantidadBono_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.soloNumeros(e);
+            ValidarTextBox.soloNumeros(e);
         }
 
         private void textBox_CantidadFarmacia_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.soloNumeros(e);
+            ValidarTextBox.soloNumeros(e);
         }
 
         private void button3_Click(object sender, EventArgs e)

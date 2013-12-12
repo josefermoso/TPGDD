@@ -18,7 +18,7 @@ namespace Clinica_Frba.Cancelar_Atencion
         {
             InitializeComponent();
         }
-        private String año, añoDesde, añoHasta;
+        private String yearX, yearXDesde, yearXHasta;
         private String mes, mesDesde, mesHasta;
         private String dia, diaDesde, diaHasta;
         private int acumTurnCancelado;
@@ -36,12 +36,12 @@ namespace Clinica_Frba.Cancelar_Atencion
             acumTurnNoCancelado = 0;
             turnosNoCancelados.Columns.Add("id_turno");
 
-            DateTime fechaSistema = ConnectorClass.getFechaSistema();
+            String fechaSistema = ConfigurationManager.AppSettings["fechaSistema"];
 
-            year = fechaSistema.Year.ToString();
-            month = fechaSistema.Month.ToString();
-            day = fechaSistema.Day.ToString();
-            time = fechaSistema.TimeOfDay.ToString();
+            year = fechaSistema.Substring(1, 4);
+            month = fechaSistema.Substring(5, 2);
+            day = fechaSistema.Substring(7, 2);
+            time = fechaSistema.Substring(10, 8);
 
             if (Convert.ToInt16(day) < 10)
             {
@@ -80,7 +80,7 @@ namespace Clinica_Frba.Cancelar_Atencion
         private void buttonSelecDia_Click(object sender, EventArgs e)
         {
             textBoxDiaElegido.Text = monthCalendarDia.SelectionEnd.ToShortDateString();
-            año = monthCalendarDia.SelectionEnd.Year.ToString();
+            yearX = monthCalendarDia.SelectionEnd.Year.ToString();
             mes = monthCalendarDia.SelectionEnd.Month.ToString();
             dia = monthCalendarDia.SelectionEnd.Day.ToString();
             if (Convert.ToInt16(dia) < 10)
@@ -97,13 +97,13 @@ namespace Clinica_Frba.Cancelar_Atencion
             }
             else
             {
-                if (año == year && mes == month && dia == day)
+                if (yearX == year && mes == month && dia == day)
                 {
                     MessageBox.Show("La cancelacion debe realizarce con un dia de antelacion");
                 }
                 else
                 {
-                    if ((Convert.ToInt16(año) < Convert.ToInt16(year)) || (Convert.ToInt16(año) == Convert.ToInt16(year) && Convert.ToInt16(mes) < Convert.ToInt16(month)) || (Convert.ToInt16(año) == Convert.ToInt16(year) && Convert.ToInt16(mes) == Convert.ToInt16(month) && Convert.ToInt16(dia) < Convert.ToInt16(day)))
+                    if ((Convert.ToInt16(yearX) < Convert.ToInt16(year)) || (Convert.ToInt16(yearX) == Convert.ToInt16(year) && Convert.ToInt16(mes) < Convert.ToInt16(month)) || (Convert.ToInt16(yearX) == Convert.ToInt16(year) && Convert.ToInt16(mes) == Convert.ToInt16(month) && Convert.ToInt16(dia) < Convert.ToInt16(day)))
                     {
                         MessageBox.Show("Fecha invalida, no se pueden cancelar turnos con fecha anterior a la actual");
                     }
@@ -117,16 +117,15 @@ namespace Clinica_Frba.Cancelar_Atencion
                         {
                             if (MessageBox.Show("Esta a punto de cancelar los turnos para el dia: " + textBoxDiaElegido.Text + " desea continuar?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
-
                                 ConnectorClass con = ConnectorClass.Instance;
-                                String idTurnos = "select T_ID from BUGDEVELOPING.TURNO where T_MEDICO = " + textBoxId.Text + " and T_FECHA = '" + año + "-" + mes + "-" + dia + "'";
+                                String idTurnos = "select T_ID from BUGDEVELOPING.TURNO where T_MEDICO = " + textBoxId.Text + " and T_FECHA = convert(date, '" + yearX + mes + dia + "' , 112) " + "and not exists(select * from BUGDEVELOPING.CONSULTA where T_ID=CON_TURNO)";
                                 DataTable turnos = con.executeQuery(idTurnos);
-
+                                
                                 if (turnos.Rows.Count > 0)
                                 {
                                     for (int j = 0; j < turnos.Rows.Count; j++)
                                     {
-                                        String idTurnCancel = "select CT_TURNO from BUGDEVELOPING.CANCELACION_TURNO where CT_TURNO = " + turnos.Rows[j][0].ToString();
+                                        String idTurnCancel = "select CT_TURNO from BUGDEVELOPING.CANCELACION_TURNO where CT_TURNO = " + turnos.Rows[j][0].ToString() + "and not exists(select * from BUGDEVELOPING.CONSULTA where T_ID=CON_TURNO)";
                                         DataTable turnoCancelado = con.executeQuery(idTurnCancel);
                                         if (turnoCancelado.Rows.Count > 0)
                                         {
@@ -148,7 +147,7 @@ namespace Clinica_Frba.Cancelar_Atencion
                                     {
                                         if (acumTurnNoCancelado > 0)
                                         {
-                                            if (MessageBox.Show("Usted tiene " + acumTurnNoCancelado.ToString() + " sin cancelar en este dia, desea cancelarlos?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                            if (MessageBox.Show("Usted tiene " + acumTurnNoCancelado.ToString() + " turnos sin cancelar en este dia, desea cancelarlos?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                             {
                                                 for (int i = 0; i < turnosNoCancelados.Rows.Count; i++)
                                                 {
@@ -194,7 +193,7 @@ namespace Clinica_Frba.Cancelar_Atencion
         private void buttonSelDesd_Click(object sender, EventArgs e)
         {
             textBoxDesde.Text = monthCalendarPeriodo.SelectionEnd.ToShortDateString();
-            añoDesde = monthCalendarPeriodo.SelectionEnd.Year.ToString();
+            yearXDesde = monthCalendarPeriodo.SelectionEnd.Year.ToString();
             mesDesde = monthCalendarPeriodo.SelectionEnd.Month.ToString();
             diaDesde = monthCalendarPeriodo.SelectionEnd.Day.ToString();
             if (Convert.ToInt16(diaDesde) < 10)
@@ -206,7 +205,7 @@ namespace Clinica_Frba.Cancelar_Atencion
         private void buttonSelHasta_Click(object sender, EventArgs e)
         {
             textBoxHasta.Text = monthCalendarPeriodo.SelectionEnd.ToShortDateString();
-            añoHasta = monthCalendarPeriodo.SelectionEnd.Year.ToString();
+            yearXHasta = monthCalendarPeriodo.SelectionEnd.Year.ToString();
             mesHasta = monthCalendarPeriodo.SelectionEnd.Month.ToString();
             diaHasta = monthCalendarPeriodo.SelectionEnd.Day.ToString();
             if (Convert.ToInt16(diaHasta) < 10)
@@ -223,7 +222,7 @@ namespace Clinica_Frba.Cancelar_Atencion
             }
             else
             {
-                if ((Convert.ToDateTime(textBoxDesde.Text) > Convert.ToDateTime(textBoxHasta.Text)) || (Convert.ToInt16(añoDesde) < Convert.ToInt16(year)) || (Convert.ToInt16(añoDesde) == Convert.ToInt16(year) && Convert.ToInt16(mesDesde) < Convert.ToInt16(month)) || (Convert.ToInt16(añoDesde) == Convert.ToInt16(year) && Convert.ToInt16(mesDesde) == Convert.ToInt16(month) && Convert.ToInt16(diaDesde) < Convert.ToInt16(day)))
+                if ((Convert.ToDateTime(textBoxDesde.Text) > Convert.ToDateTime(textBoxHasta.Text)) || (Convert.ToInt16(yearXDesde) < Convert.ToInt16(year)) || (Convert.ToInt16(yearXDesde) == Convert.ToInt16(year) && Convert.ToInt16(mesDesde) < Convert.ToInt16(month)) || (Convert.ToInt16(yearXDesde) == Convert.ToInt16(year) && Convert.ToInt16(mesDesde) == Convert.ToInt16(month) && Convert.ToInt16(diaDesde) < Convert.ToInt16(day)))
                 {
                     MessageBox.Show("Periodo invalido");
                     textBoxHasta.Text = "";
@@ -231,7 +230,7 @@ namespace Clinica_Frba.Cancelar_Atencion
                 }
                 else
                 {
-                    if (añoDesde == day && mesDesde == month && diaDesde == day)
+                    if (yearXDesde == year && mesDesde == month && diaDesde == day)
                     {
                         MessageBox.Show("La cancelacion debe realizarce con un dia de antelacion");
                     }
@@ -247,7 +246,7 @@ namespace Clinica_Frba.Cancelar_Atencion
                             if (MessageBox.Show("Esta a punto de cancelar los turnos para el periodo que va desde: " + textBoxDesde.Text + " hasta: " + textBoxHasta.Text + " desea continuar?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
                                 ConnectorClass con = ConnectorClass.Instance;
-                                String idTurnos = "select T_ID from BUGDEVELOPING.TURNO where T_MEDICO = " + textBoxId.Text + " and T_FECHA between ('" + añoDesde + "-" + mesDesde + "-" + diaDesde + "') and ('" + añoHasta + "-" + mesHasta + "-" + diaHasta + "')";
+                                String idTurnos = "select T_ID from BUGDEVELOPING.TURNO where T_MEDICO = " + textBoxId.Text + " and T_FECHA between CONVERT(DATE, '" + yearXDesde + mesDesde + diaDesde + "', 112) and CONVERT(DATE, '" + yearXHasta + mesHasta + diaHasta + "', 112) and not exists(select * from BUGDEVELOPING.CONSULTA where T_ID=CON_TURNO)";
                                 DataTable turnos = con.executeQuery(idTurnos);
 
                                 if (turnos.Rows.Count > 0)

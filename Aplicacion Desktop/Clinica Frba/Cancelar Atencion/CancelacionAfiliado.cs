@@ -19,9 +19,21 @@ namespace Clinica_Frba.Cancelar_Atencion
             InitializeComponent();
         }
 
+        private String year;
+        private String month;
+        private String day;
+        private String time;
+
 
         private void CancelacionAfiliado_Load(object sender, EventArgs e)
         {
+            String fechaSistema = ConfigurationManager.AppSettings["fechaSistema"];
+
+            year = fechaSistema.Substring(1, 4);
+            month = fechaSistema.Substring(5, 2);
+            day = fechaSistema.Substring(7, 2);
+            time = fechaSistema.Substring(10, 8);
+
             ConnectorClass con = ConnectorClass.Instance;
 
             if (CancelacionAdmSist.nroAfilOProf != 0)
@@ -31,10 +43,10 @@ namespace Clinica_Frba.Cancelar_Atencion
 
             else
             {
-                String idUsuario = "select USUARIO_ID from BUGDEVELOPING.USUARIO where USUARIO_USERNAME = '" + Clinica_Frba.Login.LoginForm.nombreUsuario + "' ";
+                String idUsuario = "select usuario_id from bugdeveloping.usuario where usuario_username = '" + Clinica_Frba.Login.LoginForm.nombreUsuario + "' ";
                 DataTable id_Usuario = con.executeQuery(idUsuario);
 
-                String numeroAfiliado = "select PA_NAFILIADO from BUGDEVELOPING.PACIENTE JOIN BUGDEVELOPING.PERSONA ON (PE_ID = PA_PERSONA) where PE_USUARIO_ID = '" + id_Usuario.Rows[0][0] + "'";
+                String numeroAfiliado = "select PA_NAFILIADO from BUGDEVELOPING.PERSONA JOIN BUGDEVELOPING.PACIENTE ON (PE_ID = PA_PERSONA) where PE_USUARIO_ID = '" + id_Usuario.Rows[0][0] + "'";
                 DataTable nroAfiliado = con.executeQuery(numeroAfiliado);
 
                 textBoxNroAfil.Text = nroAfiliado.Rows[0][0].ToString();
@@ -45,8 +57,21 @@ namespace Clinica_Frba.Cancelar_Atencion
         {
             ConnectorClass con = ConnectorClass.Instance;
 
-            String turnos = "select T_ID Nro_de_Turno, PA.PE_APELLIDO +' '+ PA.PE_NOMBRE as Afiliado, PM.PE_APELLIDO +' '+ PM.PE_NOMBRE as Profesional, T_FECHA Fecha from BUGDEVELOPING.TURNO inner join BUGDEVELOPING.PACIENTE on (T_AFILIADO = PA_NAFILIADO) inner join BUGDEVELOPING.MEDICO on (T_MEDICO = ME_PERSONA) inner join BUGDEVELOPING.PERSONA PA on (PA.PE_ID = PA_PERSONA) inner join BUGDEVELOPING.PERSONA PM on (PM.PE_ID = ME_PERSONA) where T_AFILIADO = '" + textBoxNroAfil.Text + "' and T_ID NOT IN (SELECT CT_TURNO FROM BUGDEVELOPING.CANCELACION_TURNO)";
+            String turnos = "select T_ID Nro_de_Turno, PA.PE_APELLIDO +' '+ PA.PE_APELLIDO as Afiliado, PM.PE_APELLIDO +' '+ PM.PE_NOMBRE as Profesional, T_FECHA Fecha, T_HORA Hora from BUGDEVELOPING.TURNO inner join BUGDEVELOPING.PACIENTE on T_AFILIADO = PA_NAFILIADO inner join BUGDEVELOPING.PERSONA PA ON (PE_ID = PA_PERSONA) inner join BUGDEVELOPING.MEDICO on T_MEDICO = ME_PERSONA inner join BUGDEVELOPING.PERSONA PM ON PE_ID = ME_PERSONA where PA_NAFILIADO = '" + textBoxNroAfil.Text + "' and T_FECHA > convert(date, '" + year + month + day + "',112 ) ";
             dataGridViewTurnos.DataSource = con.executeQuery(turnos);
+        }
+
+        public bool turnoNoConcretado(String nro)
+        {
+            ConnectorClass con = ConnectorClass.Instance;
+            DataTable dt = con.executeQuery("select * from BUGDEVELOPING.TURNO where  exists(select * from BUGDEVELOPING.CONSULTA where CON_TURNO = T_ID) " + "and T_ID=" + nro);
+
+            if (dt.Rows.Count == 0)
+            {
+                return true;
+            }
+
+            return false;
         }
 
 
@@ -64,7 +89,15 @@ namespace Clinica_Frba.Cancelar_Atencion
                 }
                 else
                 {
-                    textBoxNumTurn.Text = dataGridViewTurnos.CurrentRow.Cells["Nro_De_Turno"].Value.ToString();
+                    String nroTurno = dataGridViewTurnos.CurrentRow.Cells["Nro_De_Turno"].Value.ToString();
+                    if (turnoNoConcretado(nroTurno))
+                    {
+                        textBoxNumTurn.Text = nroTurno;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Turno ya concretado");
+                    }
                 }
             }
         }
@@ -84,13 +117,8 @@ namespace Clinica_Frba.Cancelar_Atencion
                 else
                 {
                     ConnectorClass con = ConnectorClass.Instance;
-                    String fecha = "select DATEPART(YEAR, T_FECHA) Año, DATEPART(month, T_FECHA) Mes, DATEPART(day, T_FECHA) Dia from BUGDEVELOPING.TURNO where T_ID = '" + textBoxNumTurn.Text + "'";
+                    String fecha = "select DATEPART(YEAR, t.fecha) Año, DATEPART(month, t.fecha) Mes, DATEPART(day,t.fecha) Dia from HARDWELL.TURNO t where t.ID_TURNO = '" + textBoxNumTurn.Text + "'";
                     DataTable validarFecha = con.executeQuery(fecha);
-                    String fechaSistema = ConfigurationManager.AppSettings["fechaSistema"];
-
-                    String year = fechaSistema.Substring(1, 4);
-                    String month = fechaSistema.Substring(5, 2);
-                    String day = fechaSistema.Substring(7, 2);
 
                     if (validarFecha.Rows[0][0].ToString() == year && validarFecha.Rows[0][1].ToString() == month && validarFecha.Rows[0][2].ToString() == day)
                     {
@@ -116,9 +144,8 @@ namespace Clinica_Frba.Cancelar_Atencion
                             }
                             else
                             {
-                                String cancelacion = "insert into BUGDEVELOPING.CANCELACION_TURNO (CT_TURNO, CT_MOTIVO, CT_TIPO_CANCELACION) values (" + Convert.ToInt32(textBoxNumTurn.Text) + ",'" + textBoxMotivo.Text.ToString() + "' ,2)";
+                                String cancelacion = "insert into BUGDEVELOPING.CANCELACION_TURNO (CT_TURNO,CT_MOTIVO,CT_TIPO_CANCELACION) values (" + textBoxNumTurn.Text + ",'" + textBoxMotivo.Text + "' ,2)";
                                 con.executeQuery(cancelacion);
-                                MessageBox.Show("Turno cancelado");
                             }
                         }
                     }

@@ -12,14 +12,14 @@ namespace Clinica_Frba.Registro_de_LLegada
 {
     public partial class LlegadaBuscarProfesional : Form
     {
-        public LlegadaBuscarProfesional()
+         public LlegadaBuscarProfesional()
         {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            DataTable DtEspecialidades;
+             DataTable DtEspecialidades;
             DtEspecialidades = AgregarEspecialidadesAlComboBox();
             especialidades.DataSource = DtEspecialidades;
             especialidades.DisplayMember = "ES_DESCRIPCION";
@@ -43,9 +43,7 @@ namespace Clinica_Frba.Registro_de_LLegada
 
         private void buscar_Click(object sender, EventArgs e)
         {
-
-            String query = "select  PE_APELLIDO, PE_NOMBRE, ES_DESCRIPCION, ME_PERSONA from BUGDEVELOPING.ESPECIALIDAD_MEDICO inner join BUGDEVELOPING.ESPECIALIDAD on (ES_ID = EM_ESPECIALIDAD) inner join BUGDEVELOPING.MEDICO on (ME_PERSONA = EM_MEDICO) inner join BUGDEVELOPING.PERSONA on (ME_PERSONA = PE_ID) WHERE ME_ACTIVO = 1 ";
-
+            String query = "select  PE_APELLIDO, PE_NOMBRE, ES_DESCRIPCION, ME_PERSONA as 'ID_PROFESIONAL' from BUGDEVELOPING.ESPECIALIDAD_MEDICO inner join BUGDEVELOPING.ESPECIALIDAD on (ES_ID = EM_ESPECIALIDAD) inner join BUGDEVELOPING.MEDICO on (ME_PERSONA = EM_MEDICO) inner join BUGDEVELOPING.PERSONA on (ME_PERSONA = PE_ID) WHERE ME_ACTIVO = 1 ";
             int result = 0;
             if (int.TryParse(nombreProfesional.Text, out result))
             {
@@ -56,7 +54,7 @@ namespace Clinica_Frba.Registro_de_LLegada
             {
                 if (nombreProfesional.Text != "")
                 {
-                    query = query + " AND PE_NOMBRE LIKE '%" + nombreProfesional.Text + "%'";
+                    query = query + " AND PE_NOMBRE LIKE '%" + nombreProfesional.Text + "%' COLLATE SQL_LATIN1_GENERAL_CP1_CI_AI";
 
                 }
             }
@@ -79,14 +77,14 @@ namespace Clinica_Frba.Registro_de_LLegada
             {
                 if (apellidoProfesional.Text != "")
                 {
-                    query = query + " AND PE_APELLIDO LIKE '%" + apellidoProfesional.Text + "%'";
+                    query = query + " AND PE_APELLIDO LIKE '%" + apellidoProfesional.Text + "%' COLLATE SQL_LATIN1_GENERAL_CP1_CI_AI";
 
                 }
             }
 
             ConnectorClass con = ConnectorClass.Instance;
             grillaProfesional.DataSource = con.executeQuery(query);
-            grillaProfesional.Columns["ME_PERSONA"].Visible = false;
+            grillaProfesional.Columns["ID_PROFESIONAL"].Visible = false;
         }
 
         private void limpiar_Click(object sender, EventArgs e)
@@ -100,7 +98,6 @@ namespace Clinica_Frba.Registro_de_LLegada
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
-            Clinica_Frba.MenuPrincipal.menuActivo.Show();
         }
 
         private void grillaProfesional_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -117,6 +114,5 @@ namespace Clinica_Frba.Registro_de_LLegada
                 MessageBox.Show("El profesional seleccionado no tiene agenda");
             }
         }
-
     }
 }

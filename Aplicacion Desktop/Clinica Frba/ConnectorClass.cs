@@ -87,6 +87,22 @@ namespace Clinica_Frba.ConnectorSQL
             com = null;
         }
 
+        public Object executeQueryEscalar(string query)
+        {   //Método para ejecutar consultas que devuelvan registros
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.CommandTimeout = 999999999;
+
+            sqlCommand.Connection = this.Conn;
+            sqlCommand.CommandText = query;
+
+            return sqlCommand.ExecuteScalar();
+        }
+
+        public void CerrarConexion()
+        {   //Cierra la conexión
+            this.Conn.Close();
+        }
+
         public void CloseConnection()
         {
             this.conn.Close();

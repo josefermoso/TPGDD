@@ -35,6 +35,8 @@
             this.Seleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.labelNroAfiliado = new System.Windows.Forms.Label();
             this.nombreAfiliado = new System.Windows.Forms.TextBox();
+            this.idBono = new System.Windows.Forms.Label();
+            this.idBonoAUsar = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.grillaProfesional)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,7 +95,7 @@
             // labelNroAfiliado
             // 
             this.labelNroAfiliado.AutoSize = true;
-            this.labelNroAfiliado.Location = new System.Drawing.Point(31, 47);
+            this.labelNroAfiliado.Location = new System.Drawing.Point(32, 24);
             this.labelNroAfiliado.Name = "labelNroAfiliado";
             this.labelNroAfiliado.Size = new System.Drawing.Size(61, 13);
             this.labelNroAfiliado.TabIndex = 18;
@@ -101,16 +103,34 @@
             // 
             // nombreAfiliado
             // 
-            this.nombreAfiliado.Location = new System.Drawing.Point(98, 44);
+            this.nombreAfiliado.Location = new System.Drawing.Point(114, 24);
             this.nombreAfiliado.Name = "nombreAfiliado";
             this.nombreAfiliado.Size = new System.Drawing.Size(100, 20);
             this.nombreAfiliado.TabIndex = 19;
+            // 
+            // idBono
+            // 
+            this.idBono.AutoSize = true;
+            this.idBono.Location = new System.Drawing.Point(32, 63);
+            this.idBono.Name = "idBono";
+            this.idBono.Size = new System.Drawing.Size(76, 13);
+            this.idBono.TabIndex = 20;
+            this.idBono.Text = "Bono Consulta";
+            // 
+            // idBonoAUsar
+            // 
+            this.idBonoAUsar.Location = new System.Drawing.Point(114, 60);
+            this.idBonoAUsar.Name = "idBonoAUsar";
+            this.idBonoAUsar.Size = new System.Drawing.Size(100, 20);
+            this.idBonoAUsar.TabIndex = 21;
             // 
             // TurnosDadosProfesional
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(587, 284);
+            this.Controls.Add(this.idBonoAUsar);
+            this.Controls.Add(this.idBono);
             this.Controls.Add(this.nombreAfiliado);
             this.Controls.Add(this.labelNroAfiliado);
             this.Controls.Add(this.grillaProfesional);
@@ -119,7 +139,6 @@
             this.Controls.Add(this.buscarHorario);
             this.Name = "TurnosDadosProfesional";
             this.Text = "TurnosDadosProfesional";
-            this.Load += new System.EventHandler(this.TurnosDadosProfesional_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grillaProfesional)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -135,5 +154,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn Seleccionar;
         private System.Windows.Forms.Label labelNroAfiliado;
         private System.Windows.Forms.TextBox nombreAfiliado;
+        private System.Windows.Forms.Label idBono;
+        private System.Windows.Forms.TextBox idBonoAUsar;
     }
 }

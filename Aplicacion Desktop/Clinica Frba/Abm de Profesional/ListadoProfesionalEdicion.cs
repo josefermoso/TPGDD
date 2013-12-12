@@ -94,27 +94,27 @@ namespace Clinica_Frba.Abm_de_Profesional
 
         private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.soloNumeros(e);
+            ValidarTextBox.soloNumeros(e);
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.soloLetras(e);
+            ValidarTextBox.soloLetras(e);
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.soloLetras(e);
+            ValidarTextBox.soloLetras(e);
         }
 
         private void textBox3_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.soloNumeros(e);
+            ValidarTextBox.soloNumeros(e);
         }
 
         private void textBox7_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Validar.soloNumeros(e);
+            ValidarTextBox.soloNumeros(e);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

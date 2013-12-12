@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Clinica_Frba.ConnectorSQL;
+using System.Configuration;
 
 namespace Clinica_Frba.Abm_de_Profesional
 {
@@ -39,8 +40,9 @@ namespace Clinica_Frba.Abm_de_Profesional
 
             
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            dateTimePicker1.Value = ConnectorClass.getFechaSistema();
+            dateTimePicker1.CustomFormat = "yyyyMMdd";
+            DateTime fechaActual = new DateTime(Int32.Parse(ConfigurationSettings.AppSettings["fechaSistema"].Substring(1, 4)), Int32.Parse(ConfigurationSettings.AppSettings["fechaSistema"].Substring(4, 6)), Int32.Parse(ConfigurationSettings.AppSettings["fechaSistema"].Substring(6, 8)));
+            dateTimePicker1.Value = fechaActual;
             
         }
 

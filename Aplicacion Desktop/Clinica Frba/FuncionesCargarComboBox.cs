@@ -11,16 +11,16 @@ namespace Clinica_Frba
     {
         public static void cargarTipoDocumentos(ComboBox combo)
         {
-            String queryTiposDocumentos = "SELECT ID_TIPO_DOCUMENTO, DESCRIPCION FROM HARDWELL.TIPO_DOCUMENTO UNION SELECT '0', 'Seleccione' FROM HARDWELL.TIPO_DOCUMENTO;";
+            String queryTiposDocumentos = "SELECT TIPODOC_ID, TIPODOC_DESCRIPCION FROM BUGDEVELOPING.TIPO_DOCUMENTO UNION SELECT '0', 'Seleccione' FROM BUGDEVELPING.TIPO_DOCUMENTO;";
             ConnectorClass con = ConnectorClass.Instance;
-            combo.ValueMember = "ID_TIPO_DOCUMENTO";
-            combo.DisplayMember = "DESCRIPCION";
+            combo.ValueMember = "TIPODOC_ID";
+            combo.DisplayMember = "TIPODOC_DESCRIPCION";
             combo.DataSource = con.executeQuery(queryTiposDocumentos);
         }
 
         public static void cargarSexos(ComboBox combo)
         {
-            String queryTiposDocumentos = "SELECT ID_SEXO, DESCRIPCION FROM HARDWELL.SEXO UNION SELECT '0', 'Seleccione' FROM HARDWELL.SEXO;";
+            String queryTiposDocumentos = "SELECT SEXO_ID, SEXO_DESCRIPCION FROM BUGDEVELOPING.SEXO UNION SELECT '0', 'Seleccione' FROM BUGDEVELOPING.SEXO;";
             ConnectorClass con = ConnectorClass.Instance;
             combo.ValueMember = "ID_SEXO";
             combo.DisplayMember = "DESCRIPCION";
@@ -28,7 +28,7 @@ namespace Clinica_Frba
         }
         public static void cargarEstadosCiviles(ComboBox combo)
         {
-            String queryTiposDocumentos = "select ID_ESTADO_CIVIL, DESCRIPCION from HARDWELL.ESTADO_CIVIL UNION SELECT '0', 'Seleccione' FROM HARDWELL.ESTADO_CIVIL;";
+            String queryTiposDocumentos = "select ESTADO_CIVIL_ID, ESTADO_CIVIL_DESCRIPCION from BUGDEVELOPING.ESTADO_CIVIL UNION SELECT '0', 'Seleccione' FROM BUGDEVELOPING.ESTADO_CIVIL;";
             ConnectorClass con = ConnectorClass.Instance;
             combo.ValueMember = "ID_ESTADO_CIVIL";
             combo.DisplayMember = "DESCRIPCION";
@@ -37,7 +37,7 @@ namespace Clinica_Frba
 
         public static void cargarPlanesMedicos(ComboBox combo)
         {
-            String queryTiposDocumentos = "SELECT ID_PLAN_MEDICO, DESCRIPCION FROM HARDWELL.PLAN_MEDICO UNION SELECT '0', 'Seleccione' FROM HARDWELL.PLAN_MEDICO;";
+            String queryTiposDocumentos = "SELECT PL_CODIGO, PL_DESCRIPCION FROM BUGDEVELOPING.PLAN_MEDICO UNION SELECT '0', 'Seleccione' FROM BUGDEVELOPING.PLAN_MEDICO;";
             ConnectorClass con = ConnectorClass.Instance;
             combo.ValueMember = "ID_PLAN_MEDICO";
             combo.DisplayMember = "DESCRIPCION";

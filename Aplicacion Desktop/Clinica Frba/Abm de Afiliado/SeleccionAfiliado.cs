@@ -15,13 +15,8 @@ namespace Clinica_Frba.Abm_de_Afiliado
          public SeleccionAfiliado()
         {
             InitializeComponent();
-
             //Cargo el combo de tipo de documentos
-            /*String queryTiposDocumentos = "SELECT ID_TIPO_DOCUMENTO, DESCRIPCION FROM HARDWELL.TIPO_DOCUMENTO UNION SELECT '0', 'Seleccione' FROM HARDWELL.TIPO_DOCUMENTO;";
-            SqlConnector con = SqlConnector.getInstance();
-            tipoDocumento.ValueMember = "ID_TIPO_DOCUMENTO";
-            tipoDocumento.DisplayMember = "DESCRIPCION";
-            tipoDocumento.DataSource = con.executeQuery(queryTiposDocumentos);*/
+            FuncionesCargarComboBox.cargarTipoDocumentos(tipoDocumento);
         }
 
         public DataGridViewRow selected;
@@ -38,12 +33,12 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
         private void buscar_Click(object sender, EventArgs e)
         {
-            String query = "SELECT PA_NAFILIADO, PE_NOMBRE, PE_APELLIDO, PE_SEXO as SEXO, PE_TIPO_DOC as TIPO_DOCUMENTO, PE_NUM_DOC, PL_DESCRIPCION as PLAN_MEDICO, PA_ESTADO_CIVIL, PE_FECHA_NAC, PE_DIRECCION, PE_MAIL, PE_TELEFONO FROM BUGDEVELOPING.PERSONA LEFT JOIN BUGDEVELOPING.PACIENTE ON (PE_ID = PA_PERSONA) LEFT JOIN BUGDEVELOPING.PLAN_MEDICO ON (PA_PLAN = PL_CODIGO) WHERE PA_ACTIVO = 1";
-
-            /*if (!tipoDocumento.SelectedValue.Equals(0))
+            String query = "SELECT PA_NAFILIADO, PE_NOMBRE, PE_APELLIDO, PE_SEXO as SEXO, PE_TIPO_DOC, TIPODOC_DESCRIPCION as TIPO_DOCUMENTO, PE_NUM_DOC, PL_CODIGO, PL_DESCRIPCION as PLAN_MEDICO, PA_ESTADO_CIVIL, PE_FECHA_NAC, PE_DIRECCION, PE_MAIL, PE_TELEFONO FROM BUGDEVELOPING.PERSONA LEFT JOIN BUGDEVELOPING.PACIENTE ON (PE_ID = PA_PERSONA) LEFT JOIN BUGDEVELOPING.PLAN_MEDICO ON (PA_PLAN = PL_CODIGO) JOIN BUGDEVELOPING.ESTADO_CIVIL ON (PA_ESTADO_CIVIL = ESTADO_CIVIL_ID) JOIN BUGDEVELOPING.TIPO_DOCUMENTO ON (PE_TIPO_DOC = TIPODOC_ID OR PE_TIPO_DOC IS NULL) WHERE PA_ACTIVO = 1";
+            
+            if (!tipoDocumento.Text.Equals("Seleccione"))
             {
                 query = query + " AND PE_TIPO_DOC = " + tipoDocumento.SelectedValue;
-            }*/
+            }
             if (documento.Text.Length > 0)
             {
                 if (similares.Checked)

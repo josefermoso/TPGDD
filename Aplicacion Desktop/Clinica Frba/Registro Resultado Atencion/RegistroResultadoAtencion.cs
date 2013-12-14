@@ -44,7 +44,7 @@ namespace Clinica_Frba.Registro_Resultado_Atencion
                 }
                 else
                 {
-                    String resultadOp = FuncionesRegistroResultado.actualizarConsulta("'" + dateTimePickerFECHA.Text + "'", "'" + dateTimePickerHORA.Text + "'", textBoxDIAGNOSTICO.Text, textBoxSINTOMAS.Text, consultaId);
+                    String resultadOp = FuncionesRegistroResultado.actualizarConsulta("'" + dateTimePickerFECHA.Text + "'", "'" + dateTimePickerHORA.Text + "'", textBoxDIAGNOSTICO.Text.Trim(), textBoxSINTOMAS.Text.Trim(), consultaId);
                     if (resultadOp == "0")
                     {
                         MessageBox.Show("Ha registrado el resultado de la consulta exitosamente");
@@ -86,5 +86,27 @@ namespace Clinica_Frba.Registro_Resultado_Atencion
             }
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void textBoxDIAGNOSTICO_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RegistroResultadoAtencion_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void maskedSINTOMAS_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+
     }
 }

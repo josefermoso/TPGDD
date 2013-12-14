@@ -113,11 +113,6 @@ namespace Clinica_Frba.ConnectorSQL
             return (time.Year * 10000 + time.Month * 100 + time.Day).ToString();
         }
 
-        public static DateTime getFechaSistema()
-        {
-            return Convert.ToDateTime(ConfigurationSettings.AppSettings["fechaSistema"]);
-        }
-
         public string getConnectionString()
         {
             return ConfigurationManager.ConnectionStrings["db"].ConnectionString;

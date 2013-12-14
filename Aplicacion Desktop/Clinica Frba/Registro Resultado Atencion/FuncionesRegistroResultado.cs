@@ -9,6 +9,22 @@ namespace Clinica_Frba.Registro_Resultado_Atencion
 {
     class FuncionesRegistroResultado
     {
+        public static String resultadoYaCargado(String nroCon)
+        {
+            String query = "select count(*) from BUGDEVELOPING.CONSULTA where CON_NUMERO = '" + nroCon + "' AND CON_ENF IS NOT NULL ";
+            ConnectorClass con = ConnectorClass.Instance;
+            DataTable dt = con.executeQuery(query);
+            if (dt.Rows.Count != 0)
+            {
+                return dt.Rows[0].ItemArray[0].ToString();
+
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
         public static String turnoValido(String idTurno)
         {
             String query = "select count(*) from BUGDEVELOPING.CONSULTA where (CON_TURNO = '" + idTurno + "')";

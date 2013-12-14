@@ -84,12 +84,13 @@ namespace Clinica_Frba.Registro_de_LLegada
             this.Close();
         }
 
-        public Boolean llegoEnHorario(DateTime horaTurno)
+        public Boolean llegoEnHorario(TimeSpan horaTurno)
         {
             Boolean rta = false;
-            if (horaTurno.Hour >= horaLlegada.Hours)
-            {
-                if (horaLlegada.CompareTo(horaTurno.TimeOfDay) < 0) { rta = true; }
+
+            if(horaTurno.Hours>=horaLlegada.Hours){
+            
+                if (horaLlegada.CompareTo(horaTurno) < 0) { rta = true; }
 
                 System.Console.WriteLine("entro aca");
 
@@ -145,7 +146,7 @@ namespace Clinica_Frba.Registro_de_LLegada
 
         private void grillaProfesional_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DateTime horaDelTurno = DateTime.Parse(grillaProfesional.CurrentRow.Cells[3].Value.ToString());
+            TimeSpan horaDelTurno = (TimeSpan) grillaProfesional.CurrentRow.Cells[3].Value;
             if ((grillaProfesional.Rows.Count > 0) && (grillaProfesional.Columns[e.ColumnIndex].HeaderText == "Seleccionar") && llegoEnHorario(horaDelTurno))
             {
 
@@ -160,10 +161,16 @@ namespace Clinica_Frba.Registro_de_LLegada
                     if (idBonoAUsar.Text != "" && existeBonoAUsar()) //si tiene bonos 
                     {
                         String idTurno = grillaProfesional.CurrentRow.Cells[1].Value.ToString();
-                        String fechaConsulta = grillaProfesional.CurrentRow.Cells[2].Value.ToString();
-
-                        String query = "insert into  BUGDEVELOPING.CONSULTA (CON_TURNO,CON_FECHA,CON_HORA_LLEGADA,CON_HORA_INICIO) values ('" + idTurno + "','" + fechaConsulta + "', '" + horaLlegada + "' ,'" + horaDelTurno + "')";
-
+                        DateTime fechaConsulta = (DateTime)grillaProfesional.CurrentRow.Cells[2].Value;
+ 
+                        //String patternInsertarTurno = "INSERT INTO HARDWELL.TURNO (NRO_AFILIADO, ID_PROFESIONAL, ID_AGENDA, FECHA, HORA) VALUES ({0},{1},{2},CONVERT(DATE,'{3}',112),CONVERT(TIME,'{4}',112))";
+                        //String queryInsertarTurno = String.Format(patternInsertarTurno, idAfiliado, idProfesional, idAgenda, fecha.ToString("yyyyMMdd"), hora);
+                        //con.executeQuery(queryInsertarTurno);
+                              
+                        //TOQUE ACA Y ARREGLE !! 
+                        String patternInsertarConsulta = "insert into  BUGDEVELOPING.CONSULTA (ID_TURNO,FECHA_CONSULTA,HORA_LLEGADA,HORA_INICIO) values ({0},CONVERT(DATE,'{1}',112),CONVERT(TIME,'{2}',112),CONVERT(TIME,'{3}',112))";
+                        String query = String.Format(patternInsertarConsulta, idTurno, fechaConsulta.ToString("yyyyMMdd"), horaLlegada, horaDelTurno);
+                        //" values ('" + idTurno + "','" + fechaConsulta + "', '" + horaLlegada + "' ,'" + horaDelTurno + "')";
                         con.executeQuery(query);
 
                         String query2 = "select CON_NUMERO from BUGDEVELOPING.CONSULTA where CON_TURNO=" + idTurno;

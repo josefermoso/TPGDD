@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Clinica_Frba.ConnectorSQL;
+using System.Configuration;
 
 namespace Clinica_Frba.CompraBono
 {
@@ -77,7 +78,7 @@ namespace Clinica_Frba.CompraBono
         private void button2_Click(object sender, EventArgs e)
         {
             ConnectorClass conexion = ConnectorClass.Instance;
-            String query = "EXECUTE BUGDEVELOPING.REGISTRAR_COMPRA " + label_TotalAbonar.Text + ", " + textBox_CantidadFarmacia.Text + ", " + textBox_CantidadConsulta.Text + ", " + label_numeroAfiliado.Text + ", " + planID + ", '" + ConnectorClass.getFechaSistema().ToString() + "'";
+            String query = "EXECUTE BUGDEVELOPING.REGISTRAR_COMPRA " + label_TotalAbonar.Text + ", " + textBox_CantidadFarmacia.Text + ", " + textBox_CantidadConsulta.Text + ", " + label_numeroAfiliado.Text + ", " + planID + ", " + ConfigurationSettings.AppSettings["fechaSistema"];
             conexion.executeQuery(query);
             MessageBox.Show("Se ha realizado la compra");
         }

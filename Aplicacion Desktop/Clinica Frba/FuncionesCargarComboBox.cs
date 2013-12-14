@@ -11,7 +11,7 @@ namespace Clinica_Frba
     {
         public static void cargarTipoDocumentos(ComboBox combo)
         {
-            String queryTiposDocumentos = "SELECT TIPODOC_ID, TIPODOC_DESCRIPCION FROM BUGDEVELOPING.TIPO_DOCUMENTO UNION SELECT '0', 'Seleccione' FROM BUGDEVELPING.TIPO_DOCUMENTO;";
+            String queryTiposDocumentos = "SELECT TIPODOC_ID, TIPODOC_DESCRIPCION FROM BUGDEVELOPING.TIPO_DOCUMENTO UNION SELECT '0', 'Seleccione' FROM BUGDEVELOPING.TIPO_DOCUMENTO;";
             ConnectorClass con = ConnectorClass.Instance;
             combo.ValueMember = "TIPODOC_ID";
             combo.DisplayMember = "TIPODOC_DESCRIPCION";
@@ -22,8 +22,8 @@ namespace Clinica_Frba
         {
             String queryTiposDocumentos = "SELECT SEXO_ID, SEXO_DESCRIPCION FROM BUGDEVELOPING.SEXO UNION SELECT '0', 'Seleccione' FROM BUGDEVELOPING.SEXO;";
             ConnectorClass con = ConnectorClass.Instance;
-            combo.ValueMember = "ID_SEXO";
-            combo.DisplayMember = "DESCRIPCION";
+            combo.ValueMember = "SEXO_ID";
+            combo.DisplayMember = "SEXO_DESCRIPCION";
             combo.DataSource = con.executeQuery(queryTiposDocumentos);
         }
         public static void cargarEstadosCiviles(ComboBox combo)

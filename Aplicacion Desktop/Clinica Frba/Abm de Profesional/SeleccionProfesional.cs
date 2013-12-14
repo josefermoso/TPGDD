@@ -15,13 +15,8 @@ namespace Clinica_Frba.Abm_de_Profesional
         public SeleccionProfesional()
         {
             InitializeComponent();
-
-          /*  //Cargo el combo de tipo de documentos
-            String queryTiposDocumentos = "SELECT ID_TIPO_DOCUMENTO, DESCRIPCION FROM HARDWELL.TIPO_DOCUMENTO UNION SELECT '0', 'Seleccione' FROM HARDWELL.TIPO_DOCUMENTO;";
-            ConnectorClass con = ConnectorClass.Instance;
-            tipoDocumento.ValueMember = "ID_TIPO_DOCUMENTO";
-            tipoDocumento.DisplayMember = "DESCRIPCION";
-            tipoDocumento.DataSource = con.executeQuery(queryTiposDocumentos);*/
+            //Cargo el combo de tipo de documentos
+            FuncionesCargarComboBox.cargarTipoDocumentos(tipoDocumento);
         }
 
         public DataGridViewRow selected;
@@ -38,12 +33,13 @@ namespace Clinica_Frba.Abm_de_Profesional
 
         private void buscar_Click(object sender, EventArgs e)
         {
-            String query = "SELECT ME_PERSONA AS 'ID_PROFESIONAL', ME_MATRICULA AS 'MATRICULA', PE_NOMBRE NOMBRE, PE_APELLIDO APELLIDO, PE_TIPO_DOC AS TIPO_DOCUMENTO, PE_NUM_DOC DOCUMENTO, PE_DIRECCION DIRECCION, PE_TELEFONO TELEFONO, PE_MAIL MAIL, PE_FECHA_NAC FECHA_NACIMIENTO, PE_SEXO AS SEXO FROM BUGDEVELOPING.PERSONA JOIN BUGDEVELOPING.MEDICO ON (PE_ID = ME_PERSONA) WHERE ME_ACTIVO = 1";
+            String query = "SELECT ME_PERSONA AS 'ID_PROFESIONAL', ME_MATRICULA AS 'MATRICULA', PE_NOMBRE NOMBRE, PE_APELLIDO APELLIDO, TIPODOC_ID, TIPODOC_DESCRIPCION AS TIPO_DOCUMENTO, PE_NUM_DOC DOCUMENTO, PE_DIRECCION DIRECCION, PE_TELEFONO TELEFONO, PE_MAIL MAIL, PE_FECHA_NAC FECHA_NACIMIENTO, PE_SEXO AS SEXO FROM BUGDEVELOPING.PERSONA JOIN BUGDEVELOPING.MEDICO ON (PE_ID = ME_PERSONA) JOIN BUGDEVELOPING.TIPO_DOCUMENTO ON (TIPODOC_ID = PE_TIPO_DOC OR PE_TIPO_DOC IS NULL) WHERE ME_ACTIVO = 1";
 
-            /*if (!tipoDocumento.SelectedValue.Equals(0))
+            if (!tipoDocumento.Text.Equals("Seleccione"))
             {
-                query = query + " AND p.ID_TIPO_DOCUMENTO = " + tipoDocumento.SelectedValue;
-            }*/
+                query = query + " AND TIPODOC_ID = " + tipoDocumento.SelectedValue;
+            }
+
             if (documento.Text.Length > 0)
             {
                 if (similares.Checked)

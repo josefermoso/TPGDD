@@ -18,10 +18,13 @@ namespace Clinica_Frba.Registro_Resultado_Atencion
 
         private void buttonINGRESAR_Click(object sender, EventArgs e)
         {
-            if (textBoxNUMEROTURNO.Text == "") {
+            if (textBoxNUMEROTURNO.Text == "")
+            {
                 MessageBox.Show("Debe ingresar el número de turno para continuar");
 
-            }else{
+            }
+            else
+            {
 
                 try
                 {
@@ -48,23 +51,36 @@ namespace Clinica_Frba.Registro_Resultado_Atencion
                             {
                                 String nroCon = FuncionesRegistroResultado.getConsulta(textBoxNUMEROTURNO.Text);
                                 RegistroResultadoAtencion form = new RegistroResultadoAtencion(nroCon);
-                                this.Hide();
-                                form.Show();
+                                if (FuncionesRegistroResultado.resultadoYaCargado(nroCon).Equals("1"))
+                                {
+                                    MessageBox.Show("Ya se genero el resultado de dicha consulta");
+                                }
+                                else
+                                {
+                                    this.Hide();
+                                    form.Show();
+                                }
+
                             }
                         }
                     }
                 }
-                catch {
+                catch
+                {
                     MessageBox.Show("El número de turno ingresado no es válido");
                 }
 
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void cancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-            Clinica_Frba.MenuPrincipal.menuActivo.Show();
+        }
+
+        private void IngresoTurno_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

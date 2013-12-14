@@ -45,7 +45,7 @@ namespace Clinica_Frba.Abm_de_Profesional
 
         public static void updatePersonaYProfesional(string nombre, string apellido, string direccion, string telefono, string mail, string sexo, string fechaNacimiento, string tipoDoc, string nroDoc, string matricula, string pk_medico)
         {
-            string query = "UPDATE BUGDEVELOPING.PERSONA SET PE_NOMBRE = '" + nombre + "', PE_APELLIDO = '" + apellido + "', PE_DIRECCION = '" + direccion + "', PE_TELEFONO = '" + telefono + "', PE_MAIL = '" + mail + "', PE_SEXO = '" + sexo + "', PE_FECHA_NAC = CAST('" + fechaNacimiento + "' AS DATE), PE_TIPO_DOC = '" + tipoDoc + "', PE_NUM_DOC = '" + nroDoc + "' WHERE PE_ID = '" + pk_medico + "'";
+            string query = "UPDATE BUGDEVELOPING.PERSONA SET PE_NOMBRE = '" + nombre + "', PE_APELLIDO = '" + apellido + "', PE_DIRECCION = '" + direccion + "', PE_TELEFONO = '" + telefono + "', PE_MAIL = '" + mail + "', PE_SEXO = '" + sexo + "', PE_FECHA_NAC = Convert(datetime,'" + fechaNacimiento + "', 122), PE_TIPO_DOC = '" + tipoDoc + "', PE_NUM_DOC = '" + nroDoc + "' WHERE PE_ID = '" + pk_medico + "'";
             ConnectorClass cc = ConnectorClass.Instance;
             cc.executeQuery(query);
 

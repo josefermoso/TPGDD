@@ -12,6 +12,7 @@ namespace Clinica_Frba.Listados_Estadisticos
     public partial class ConfigurarListado : Form
     {
         private String numList;
+        private String semestre;
 
         public ConfigurarListado(String numeroListado)
         {
@@ -19,13 +20,7 @@ namespace Clinica_Frba.Listados_Estadisticos
 
             numList = numeroListado;
 
-            comboBoxOCULTAR.Enabled = false;
-            comboBoxOCULTAR2.Enabled = false;
 
-            comboBoxMESsegundo1.Visible = false;
-            comboBoxMESsegundo2.Visible = false;
-            comboBoxMESprimero1.Visible = false;
-            comboBoxMESprimero2.Visible = false;
         }
 
         private void maskedTextBoxAÑO_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
@@ -51,26 +46,12 @@ namespace Clinica_Frba.Listados_Estadisticos
             if (semestre.Equals("PRIMER SEMESTRE"))
             {
 
-                comboBoxMESprimero2.Visible = false;
-                comboBoxMESsegundo2.Visible = false;
-
-                comboBoxOCULTAR.Visible = false;
-                comboBoxOCULTAR2.Visible = false;
-
-                comboBoxMESprimero1.Visible = true;
-                comboBoxMESsegundo1.Visible = true;
+                semestre = "1";
             }
             else if (semestre.Equals("SEGUNDO SEMESTRE"))
             {
 
-                comboBoxMESprimero1.Visible = false;
-                comboBoxMESsegundo1.Visible = false;
-
-                comboBoxOCULTAR.Visible = false;
-                comboBoxOCULTAR2.Visible = false;
-
-                comboBoxMESprimero2.Visible = true;
-                comboBoxMESsegundo2.Visible = true;
+                semestre = "2";
             }
         }
 
@@ -94,54 +75,25 @@ namespace Clinica_Frba.Listados_Estadisticos
 
             else if (comboBoxSEMESTRE.Text.Equals("PRIMER SEMESTRE"))
             {
-                Int16 ok1 = 1;
-                if (comboBoxMESprimero1.Text.Equals(""))
+                semestre = "1";
+                Listados_Estadisticos.ResultadoListado conf = new Listados_Estadisticos.ResultadoListado(numList, maskedTextBoxAÑO.Text, semestre);
+                try
                 {
-                    MessageBox.Show("Seleccione el mes");
-                    ok1 = 0;
-                }
-                else if (comboBoxMESsegundo1.Text.Equals(""))
-                {
-                    MessageBox.Show("Seleccione el mes");
-                    ok1 = 0;
-                }
-                else if (Convert.ToInt16(comboBoxMESprimero1.Text) > Convert.ToInt16(comboBoxMESsegundo1.Text))
-                {
-                    MessageBox.Show("La selección de meses es incorrecta");
-                    ok1 = 0;
-                }
-
-                if (ok1 == 1)
-                {
-                    Listados_Estadisticos.ResultadoListado conf = new Listados_Estadisticos.ResultadoListado(numList, maskedTextBoxAÑO.Text, comboBoxMESprimero1.Text, comboBoxMESsegundo1.Text);
                     conf.Show();
                 }
+                catch { }
 
             }
             else if (comboBoxSEMESTRE.Text.Equals("SEGUNDO SEMESTRE"))
             {
-                Int16 ok2 = 1;
-                if (comboBoxMESprimero2.Text.Equals(""))
+                semestre = "2";
+                Listados_Estadisticos.ResultadoListado conf = new Listados_Estadisticos.ResultadoListado(numList, maskedTextBoxAÑO.Text, semestre);
+                try
                 {
-                    MessageBox.Show("Seleccione el mes");
-                    ok2 = 0;
-                }
-                else if (comboBoxMESsegundo2.Text.Equals(""))
-                {
-                    MessageBox.Show("Seleccione el mes");
-                    ok2 = 0;
-                }
-                else if (Convert.ToInt16(comboBoxMESprimero2.Text) > Convert.ToInt16(comboBoxMESsegundo2.Text))
-                {
-                    MessageBox.Show("La selección de meses es incorrecta");
-                    ok2 = 0;
-                }
-
-                if (ok2 == 1)
-                {
-                    Listados_Estadisticos.ResultadoListado conf = new Listados_Estadisticos.ResultadoListado(numList, maskedTextBoxAÑO.Text, comboBoxMESprimero2.Text, comboBoxMESsegundo2.Text);
                     conf.Show();
                 }
+                catch { }
+
             }
         }
     }

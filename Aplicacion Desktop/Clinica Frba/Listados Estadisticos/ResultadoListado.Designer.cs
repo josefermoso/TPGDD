@@ -38,12 +38,12 @@
             this.dataGridViewLISTADO.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewLISTADO.Location = new System.Drawing.Point(36, 12);
             this.dataGridViewLISTADO.Name = "dataGridViewLISTADO";
-            this.dataGridViewLISTADO.Size = new System.Drawing.Size(563, 206);
+            this.dataGridViewLISTADO.Size = new System.Drawing.Size(708, 206);
             this.dataGridViewLISTADO.TabIndex = 0;
             // 
             // buttonCANCELAR
             // 
-            this.buttonCANCELAR.Location = new System.Drawing.Point(270, 242);
+            this.buttonCANCELAR.Location = new System.Drawing.Point(340, 234);
             this.buttonCANCELAR.Name = "buttonCANCELAR";
             this.buttonCANCELAR.Size = new System.Drawing.Size(75, 23);
             this.buttonCANCELAR.TabIndex = 1;
@@ -55,7 +55,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(633, 282);
+            this.ClientSize = new System.Drawing.Size(781, 272);
             this.Controls.Add(this.buttonCANCELAR);
             this.Controls.Add(this.dataGridViewLISTADO);
             this.Name = "ResultadoListado";

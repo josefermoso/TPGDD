@@ -60,4 +60,7 @@ C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Cli
 C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Afiliado.MenuAfiliado.resources
 C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Listados_Estadisticos.ResultadoListado.resources
 C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Registro_Resultado_Atencion.RegistroResultadoAtencion.resources
-C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Afiliado.ConfirmarCambioPlan.resources
+C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Afiliado.Afiliado.resources
+C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Afiliado.AfiliadoCambioPlan.resources
+C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Afiliado.ListadoAfiliado.resources
+C:\Documents and Settings\Luciano\Escritorio\TP_SQL\TPGDD\Aplicacion Desktop\Clinica Frba\obj\Debug\Clinica_Frba.Abm_de_Afiliado.MenuRelativo.resources

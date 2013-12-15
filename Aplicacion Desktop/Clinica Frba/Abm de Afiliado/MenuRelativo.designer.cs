@@ -73,6 +73,7 @@
             this.Controls.Add(this.button_Conyugue);
             this.Name = "MenuRelativo";
             this.Text = "Menu Relativo";
+            this.Load += new System.EventHandler(this.MenuRelativo_Load);
             this.ResumeLayout(false);
 
         }

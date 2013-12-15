@@ -52,9 +52,15 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
         private void ListadoAfiliado_Load(object sender, EventArgs e)
         {
-            string query = "select pe_nombre 'Nombre',pe_apellido 'Apellido',pe_tipo_doc 'Tipo Documento',pe_num_doc 'Numero',pa_nAfiliado 'Numero Afiliado' from BUGDEVELOPING.PACIENTE pa join BUGDEVELOPING.PERSONA pe on (pa_persona = pe_id)";
-            if(estado == Operacion.ALTA_EXISTENTE) query = query + " WHERE pa_activo = 0";
-            else query = query +" WHERE pa_activo = 1";
+            string query = "select pe_nombre 'Nombre',pe_apellido 'Apellido',tipodoc_descripcion 'Tipo Documento',pe_num_doc 'Numero',pa_nAfiliado 'Numero Afiliado' from BUGDEVELOPING.PACIENTE pa join BUGDEVELOPING.PERSONA pe on (pa_persona = pe_id) left join BUGDEVELOPING.TIPO_DOCUMENTO on (tipoDoc_id = pe_tipo_doc)";
+            if (estado == Operacion.ALTA_EXISTENTE)
+            {
+                query = query + " WHERE pa_activo = 0";
+            }
+            else
+            {
+                query = query + " WHERE pa_activo = 1";
+            }
             dataGridView1.DataSource = con.executeQuery(query);
             dataGridView1.Enabled = true;
             dataGridView1.AutoResizeColumns();
@@ -76,8 +82,8 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
         private void search()
         {
-            string query = "select pe_nombre 'Nombre',pe_apellido 'Apellido',pe_tipo_doc 'Tipo Documento',pe_num_doc 'Numero',pa_nAfiliado 'Numero Afiliado' from BUGDEVELOPING.PACIENTE pa join BUGDEVELOPING.PERSONA pe on (pa_persona = pe_id)";
-            if (estado == Operacion.ALTA_EXISTENTE) query = query + "WHERE pa_activo = 0";
+            string query = "select pe_nombre 'Nombre',pe_apellido 'Apellido',pe_tipo_doc 'Tipo Documento',pe_num_doc 'Numero',pa_nAfiliado 'Numero Afiliado' from BUGDEVELOPING.PACIENTE pa join BUGDEVELOPING.PERSONA pe on (pa_persona = pe_id) JOIN BUGDEVELOPING.PLAN_MEDICO ON (PL_CODIGO = PA_PLAN)";
+            if (estado == Operacion.ALTA_EXISTENTE) query = query + " WHERE pa_activo = 0";
             else query = query + " WHERE pa_activo = 1";
             if (textBox_NumeroSocio.Text != "") query = query + "AND pa_nAfiliado = " + textBox_NumeroSocio.Text;
             if (textBox_NumeroDoc.Text != "") query = query + " AND pe_num_doc = '" + textBox_NumeroDoc.Text + "'";

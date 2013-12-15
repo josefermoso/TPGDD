@@ -7,17 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Clinica_Frba.ConnectorSQL;
+using System.Configuration;
 
 namespace Clinica_Frba.Listados_Estadisticos
 {
     public partial class ResultadoListado : Form
     {
-        public ResultadoListado(String numeroListado, String year, String month1, String month2)
+        public ResultadoListado(String numeroListado, String year, String semestre)
         {
             InitializeComponent();
-            if (numeroListado.Equals("1"))
+            if (numeroListado.Equals("1") && semestre.Equals("1"))
             {
-                String query = "execute BUGDEVELOPING.LIST1 " + "'" + year + "' , '" + month1 + "' , '" + month2 + " ' ";
+                String query = "execute BUGDEVELOPING.LIST1_PRI " + "'" + year + "'";
                 ConnectorClass con = ConnectorClass.Instance;
                 DataTable dt = con.executeQuery(query);
                 if (dt.Rows.Count != 0)
@@ -30,13 +31,34 @@ namespace Clinica_Frba.Listados_Estadisticos
                 }
                 else
                 {
-                    MessageBox.Show("No se registraron datos para la consulta realizada con la configuración de año/meses elegida");
+                    MessageBox.Show("No se registraron datos para la consulta realizada con la configuración de año/semestre elegida");
+                    this.Close();
+                }
+
+            } if (numeroListado.Equals("1") && semestre.Equals("2"))
+            {
+                String query = "execute BUGDEVELOPING.LIST1_SEG " + "'" + year + "'";
+                ConnectorClass con = ConnectorClass.Instance;
+                DataTable dt = con.executeQuery(query);
+                if (dt.Rows.Count != 0)
+                {
+                    dataGridViewLISTADO.DataSource = con.executeQuery(query);
+                    dataGridViewLISTADO.Enabled = true;
+                    con.CerrarConexion();
+
+
+                }
+                else
+                {
+                    MessageBox.Show("No se registraron datos para la consulta realizada con la configuración de año/semestre elegida");
+                    this.Close();
                 }
 
             }
-            else if (numeroListado.Equals("2"))
+
+            else if (numeroListado.Equals("2") && semestre.Equals("1"))
             {
-                String query = "execute BUGDEVELOPING.LIST2 " + "'" + year + "' , '" + month1 + "' , '" + month2 + "'";
+                String query = "execute BUGDEVELOPING.LIST2_PRI " + "'" + year + "' , " + ConfigurationManager.AppSettings["fechaSistema"] + " ";
                 ConnectorClass con = ConnectorClass.Instance;
 
 
@@ -51,16 +73,20 @@ namespace Clinica_Frba.Listados_Estadisticos
                 }
                 else
                 {
-                    MessageBox.Show("No se registraron datos para la consulta realizada con la configuración de año/meses elegida");
+                    MessageBox.Show("No se registraron datos para la consulta realizada con la configuración de año/semestre elegida");
+                    this.Close();
                 }
 
 
             }
-            else if (numeroListado.Equals("3"))
+            else if (numeroListado.Equals("2") && semestre.Equals("2"))
             {
-                String query = "execute BUGDEVELOPING.LIST3 " + "'" + year + "' , '" + month1 + "' , '" + month2 + " ' ";
-                ConnectorClass con = ConnectorClass.Instance; 
+                String query = "execute BUGDEVELOPING.LIST2_SEG " + "'" + year + "' , " + ConfigurationManager.AppSettings["fechaSistema"] + "  ";
+                ConnectorClass con = ConnectorClass.Instance;
+
+
                 DataTable dt = con.executeQuery(query);
+
                 if (dt.Rows.Count != 0)
                 {
                     dataGridViewLISTADO.DataSource = con.executeQuery(query);
@@ -70,14 +96,15 @@ namespace Clinica_Frba.Listados_Estadisticos
                 }
                 else
                 {
-                    MessageBox.Show("No se registraron datos para la consulta realizada con la configuración de año/meses elegida");
+                    MessageBox.Show("No se registraron datos para la consulta realizada con la configuración de año/semestre elegida");
+                    this.Close();
                 }
 
 
             }
-            else if (numeroListado.Equals("4"))
+            else if (numeroListado.Equals("3") && semestre.Equals("1"))
             {
-                String query = "execute BUGDEVELOPING.LIST4 " + "'" + year + "' , '" + month1 + "' , '" + month2 + " ' ";
+                String query = "execute BUGDEVELOPING.LIST3_PRI " + "'" + year + "'";
                 ConnectorClass con = ConnectorClass.Instance;
                 DataTable dt = con.executeQuery(query);
                 if (dt.Rows.Count != 0)
@@ -89,7 +116,70 @@ namespace Clinica_Frba.Listados_Estadisticos
                 }
                 else
                 {
-                    MessageBox.Show("No se registraron datos para la consulta realizada con la configuración de año/meses elegida");
+                    MessageBox.Show("No se registraron datos para la consulta realizada con la configuración de año/semestre elegida");
+                    this.Close();
+                }
+
+
+            }
+            else if (numeroListado.Equals("3") && semestre.Equals("2"))
+            {
+                String query = "execute BUGDEVELOPING.LIST3_SEG " + "'" + year + "'";
+                ConnectorClass con = ConnectorClass.Instance;
+                DataTable dt = con.executeQuery(query);
+                if (dt.Rows.Count != 0)
+                {
+                    dataGridViewLISTADO.DataSource = con.executeQuery(query);
+                    dataGridViewLISTADO.Enabled = true;
+                    con.CerrarConexion();
+
+                }
+                else
+                {
+                    MessageBox.Show("No se registraron datos para la consulta realizada con la configuración de año/semestre elegida");
+                    this.Close();
+                }
+
+
+            }
+
+
+            else if (numeroListado.Equals("4") && semestre.Equals("1"))
+            {
+                String query = "execute BUGDEVELOPING.LIST4_PRI " + "'" + year + "'";
+                ConnectorClass con = ConnectorClass.Instance;
+                DataTable dt = con.executeQuery(query);
+                if (dt.Rows.Count != 0)
+                {
+                    dataGridViewLISTADO.DataSource = con.executeQuery(query);
+                    dataGridViewLISTADO.Enabled = true;
+                    con.CerrarConexion();
+
+                }
+                else
+                {
+                    MessageBox.Show("No se registraron datos para la consulta realizada con la configuración de año/semestre elegida");
+                    this.Close();
+                }
+
+
+            }
+            else if (numeroListado.Equals("4") && semestre.Equals("2"))
+            {
+                String query = "execute BUGDEVELOPING.LIST4_SEG " + "'" + year + "'";
+                ConnectorClass con = ConnectorClass.Instance;
+                DataTable dt = con.executeQuery(query);
+                if (dt.Rows.Count != 0)
+                {
+                    dataGridViewLISTADO.DataSource = con.executeQuery(query);
+                    dataGridViewLISTADO.Enabled = true;
+                    con.CerrarConexion();
+
+                }
+                else
+                {
+                    MessageBox.Show("No se registraron datos para la consulta realizada con la configuración de año/semestre elegida");
+                    this.Close();
                 }
 
 

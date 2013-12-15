@@ -18,7 +18,7 @@ namespace Clinica_Frba.Registro_Resultado_Atencion
             InitializeComponent();
             consultaId = nroConsulta;
             dateTimePickerFECHA.Enabled = false;
-            dateTimePickerHORA.Enabled = false;
+            dateTimePickerHoraFin.Enabled = false;
             checkBoxRECETA.Enabled = false;
             textBoxDIAGNOSTICO.Enabled = false;
             textBoxSINTOMAS.Enabled = false;
@@ -44,7 +44,7 @@ namespace Clinica_Frba.Registro_Resultado_Atencion
                 }
                 else
                 {
-                    String resultadOp = FuncionesRegistroResultado.actualizarConsulta("'" + dateTimePickerFECHA.Text + "'", "'" + dateTimePickerHORA.Text + "'", textBoxDIAGNOSTICO.Text.Trim(), textBoxSINTOMAS.Text.Trim(), consultaId);
+                    String resultadOp = FuncionesRegistroResultado.actualizarConsulta("'" + dateTimePickerFECHA.Value.Date.ToString("yyyyMMdd") + "'", "'" + dateTimePickerHoraFin.Text + "'", textBoxDIAGNOSTICO.Text.Trim(), textBoxSINTOMAS.Text.Trim(), consultaId);
                     if (resultadOp == "0")
                     {
                         MessageBox.Show("Ha registrado el resultado de la consulta exitosamente");
@@ -55,9 +55,23 @@ namespace Clinica_Frba.Registro_Resultado_Atencion
                             this.Close();
                         }
                     }
-                    else
+                    else if (resultadOp == "1")
                     {
                         MessageBox.Show("La fecha que ha ingresado difiere de la fecha de arribo a la Clínica");
+                    }
+                    else if (resultadOp == "2")
+                    {
+                        MessageBox.Show("El horario de finalizacion ingresado es menor al horario de comienzo del turno");
+                    }
+ 
+                    else if (resultadOp == "3")
+                    {
+                        MessageBox.Show("Los horarios de inicio del turno y fin de la consulta no pueden ser iguales");
+                    }
+ 
+                    else if (resultadOp == "5")
+                    {
+                        MessageBox.Show("El horario de finalizacion del turno excede los 30 minutos del turno");
                     }
                 }
             }
@@ -69,7 +83,7 @@ namespace Clinica_Frba.Registro_Resultado_Atencion
             {
 
                 dateTimePickerFECHA.Enabled = true;
-                dateTimePickerHORA.Enabled = true;
+                dateTimePickerHoraFin.Enabled = true;
                 checkBoxRECETA.Enabled = true;
                 textBoxDIAGNOSTICO.Enabled = true;
                 textBoxSINTOMAS.Enabled = true;
@@ -78,7 +92,7 @@ namespace Clinica_Frba.Registro_Resultado_Atencion
             {
 
                 dateTimePickerFECHA.Enabled = false;
-                dateTimePickerHORA.Enabled = false;
+                dateTimePickerHoraFin.Enabled = false;
                 checkBoxRECETA.Enabled = false;
                 textBoxDIAGNOSTICO.Enabled = false;
                 textBoxSINTOMAS.Enabled = false;

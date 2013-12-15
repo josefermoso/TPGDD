@@ -40,7 +40,7 @@ namespace Clinica_Frba.Abm_de_Profesional
             mail.Text = selected.Cells["MAIL"].Value.ToString();
             matricula.Text = selected.Cells["MATRICULA"].Value.ToString();
             sexo.SelectedValue = (selected.Cells["SEXO"].Value) is DBNull ? 0 : selected.Cells["SEXO"].Value;
-            tipoDocumento.SelectedValue = (selected.Cells["TIPO_DOCUMENTO"].Value is DBNull) ? 0 : selected.Cells["TIPO_DOCUMENTO"].Value;
+            tipoDocumento.SelectedValue = (selected.Cells["TIPODOC_ID"].Value is DBNull) ? 0 : selected.Cells["TIPODOC_ID"].Value;
             fechaNacimiento.Value = (DateTime)selected.Cells["FECHA_NACIMIENTO"].Value;
         }
 

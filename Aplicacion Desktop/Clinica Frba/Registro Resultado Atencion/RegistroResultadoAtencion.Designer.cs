@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.checkBoxATENDIDO = new System.Windows.Forms.CheckBox();
-            this.dateTimePickerHORA = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerHoraFin = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
             this.dateTimePickerFECHA = new System.Windows.Forms.DateTimePicker();
             this.labelFECHA = new System.Windows.Forms.Label();
@@ -53,15 +53,15 @@
             // 
             // dateTimePickerHORA
             // 
-            this.dateTimePickerHORA.CausesValidation = false;
-            this.dateTimePickerHORA.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePickerHORA.Location = new System.Drawing.Point(248, 90);
-            this.dateTimePickerHORA.Name = "dateTimePickerHORA";
-            this.dateTimePickerHORA.ShowUpDown = true;
-            this.dateTimePickerHORA.Size = new System.Drawing.Size(78, 20);
-            this.dateTimePickerHORA.TabIndex = 1;
-            this.dateTimePickerHORA.Value = new System.DateTime(2013, 11, 4, 0, 0, 0, 0);
-            this.dateTimePickerHORA.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            this.dateTimePickerHoraFin.CausesValidation = false;
+            this.dateTimePickerHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePickerHoraFin.Location = new System.Drawing.Point(248, 90);
+            this.dateTimePickerHoraFin.Name = "dateTimePickerHORA";
+            this.dateTimePickerHoraFin.ShowUpDown = true;
+            this.dateTimePickerHoraFin.Size = new System.Drawing.Size(78, 20);
+            this.dateTimePickerHoraFin.TabIndex = 1;
+            this.dateTimePickerHoraFin.Value = new System.DateTime(2013, 11, 4, 0, 0, 0, 0);
+            this.dateTimePickerHoraFin.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // button1
             // 
@@ -148,7 +148,7 @@
             this.Controls.Add(this.labelFECHA);
             this.Controls.Add(this.dateTimePickerFECHA);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.dateTimePickerHORA);
+            this.Controls.Add(this.dateTimePickerHoraFin);
             this.Controls.Add(this.checkBoxATENDIDO);
             this.Name = "RegistroResultadoAtencion";
             this.Text = "Registro de Resultado de Atencion";
@@ -160,7 +160,7 @@
         #endregion
 
         private System.Windows.Forms.CheckBox checkBoxATENDIDO;
-        private System.Windows.Forms.DateTimePicker dateTimePickerHORA;
+        private System.Windows.Forms.DateTimePicker dateTimePickerHoraFin;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DateTimePicker dateTimePickerFECHA;
         private System.Windows.Forms.Label labelFECHA;

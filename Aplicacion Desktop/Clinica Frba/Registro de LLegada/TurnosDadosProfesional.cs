@@ -39,7 +39,7 @@ namespace Clinica_Frba.Registro_de_LLegada
             String val = convertDate();
             //+ "' AND t.FECHA = '" + val +"'
 
-            String query = "select distinct T_ID,T_FECHA,T_HORA,T_AFILIADO from BUGDEVELOPING.CONSULTA, BUGDEVELOPING.TURNO where not exists (select * from BUGDEVELOPING.CONSULTA where CON_TURNO=T_ID ) and T_MEDICO = '" + idProfesional + "' AND T_FECHA >= '" + val + "'";
+            String query = "select distinct T_ID,T_FECHA,T_HORA,T_AFILIADO from BUGDEVELOPING.CONSULTA, BUGDEVELOPING.TURNO where not exists (select * from BUGDEVELOPING.CONSULTA where CON_TURNO=T_ID ) and not exists (select * from BUGDEVELOPING.CANCELACION_TURNO where CON_TURNO=T_ID) and T_MEDICO = '" + idProfesional + "' AND T_FECHA >= '" + val + "'";
 
             grillaProfesional.Columns["SELECCIONAR"].Visible = false;
 

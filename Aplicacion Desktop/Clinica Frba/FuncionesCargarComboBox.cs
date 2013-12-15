@@ -30,8 +30,8 @@ namespace Clinica_Frba
         {
             String queryTiposDocumentos = "select ESTADO_CIVIL_ID, ESTADO_CIVIL_DESCRIPCION from BUGDEVELOPING.ESTADO_CIVIL UNION SELECT '0', 'Seleccione' FROM BUGDEVELOPING.ESTADO_CIVIL;";
             ConnectorClass con = ConnectorClass.Instance;
-            combo.ValueMember = "ID_ESTADO_CIVIL";
-            combo.DisplayMember = "DESCRIPCION";
+            combo.ValueMember = "ESTADO_CIVIL_ID";
+            combo.DisplayMember = "ESTADO_CIVIL_DESCRIPCION";
             combo.DataSource = con.executeQuery(queryTiposDocumentos);
         }
 
@@ -39,8 +39,8 @@ namespace Clinica_Frba
         {
             String queryTiposDocumentos = "SELECT PL_CODIGO, PL_DESCRIPCION FROM BUGDEVELOPING.PLAN_MEDICO UNION SELECT '0', 'Seleccione' FROM BUGDEVELOPING.PLAN_MEDICO;";
             ConnectorClass con = ConnectorClass.Instance;
-            combo.ValueMember = "ID_PLAN_MEDICO";
-            combo.DisplayMember = "DESCRIPCION";
+            combo.ValueMember = "PL_CODIGO";
+            combo.DisplayMember = "PL_DESCRIPCION";
             combo.DataSource = con.executeQuery(queryTiposDocumentos);
         }
 

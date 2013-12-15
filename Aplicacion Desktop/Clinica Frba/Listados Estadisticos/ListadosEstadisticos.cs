@@ -17,7 +17,7 @@ namespace Clinica_Frba.Listados_Estadisticos
         {
             listadosActivos = this;
             InitializeComponent();
-            
+
         }
 
         private void groupBoxLISTADO_Enter(object sender, EventArgs e)

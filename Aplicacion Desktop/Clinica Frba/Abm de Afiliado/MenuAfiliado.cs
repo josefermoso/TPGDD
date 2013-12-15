@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Clinica_Frba.ConnectorSQL;
-using System.Configuration;
 
 namespace Clinica_Frba.Abm_de_Afiliado
 {
@@ -28,51 +27,35 @@ namespace Clinica_Frba.Abm_de_Afiliado
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FormAfiliado form = new FormAfiliado(1, null);
-            DialogResult resultModificacion = form.ShowDialog();
-            if (resultModificacion == DialogResult.OK)
-            {
-                MessageBox.Show("Afiliado dado de alta correctamente.", "Terminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            Afiliado afiliadoForm = new Afiliado();
+            afiliadoForm.Show();
+            this.Hide();
         }
 
         private void MenuAfiliado_Load_1(object sender, EventArgs e)
         {
-        
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ListadoAfiliado listadoFrom = new ListadoAfiliado(Operacion.ALTA_EXISTENTE);
+            listadoFrom.Show();
+            this.Hide();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            SeleccionAfiliado window = new SeleccionAfiliado();
-            DialogResult resultSeleccion = window.ShowDialog();
-            if (resultSeleccion == DialogResult.OK)
-            {
-                FormAfiliado form = new FormAfiliado(window.selected);
-                DialogResult resultModificacion = form.ShowDialog();
-                if (resultModificacion == DialogResult.OK)
-                {
-                    MessageBox.Show("Afiliado modificado correctamente.", "Terminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
+            ListadoAfiliado listadoFrom = new ListadoAfiliado(Operacion.MODIFICACION);
+            listadoFrom.Show();
+            this.Hide();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SeleccionAfiliado window = new SeleccionAfiliado();
-            DialogResult resultSeleccion = window.ShowDialog();
-            if (resultSeleccion == DialogResult.OK)
-            {
-                DialogResult resultConfirm = MessageBox.Show("Esta a punto de eliminar al Afiliado: " + window.selected.Cells["NOMBRE"].Value.ToString() + " " + window.selected.Cells["APELLIDO"].Value.ToString() + ". Se cancelarán automaticamente todos sus turnos. ¿Desea continuar?", "Eliminar Afiliado", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (resultConfirm == DialogResult.Yes)
-                {
-                    String pattern = "EXECUTE BUGDEVELOPING.BAJA_AFILIADO {0},{1}";
-                    String query = String.Format(pattern, window.selected.Cells["NRO_AFILIADO"].Value.ToString(), ConfigurationManager.AppSettings["fechaSistema"]);
-                    ConnectorClass con = ConnectorClass.Instance;
-                    System.Diagnostics.Debug.WriteLine(query);
-                    con.executeQuery(query);
-                    MessageBox.Show("Afiliado eliminado correctamente.", "Terminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
+            ListadoAfiliado listadoFrom = new ListadoAfiliado(Operacion.BAJA);
+            listadoFrom.Show();
+            this.Hide();
         }
 
         private void button_Volver_Click(object sender, EventArgs e)

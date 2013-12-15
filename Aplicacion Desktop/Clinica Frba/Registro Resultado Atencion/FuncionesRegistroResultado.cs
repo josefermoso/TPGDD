@@ -58,9 +58,9 @@ namespace Clinica_Frba.Registro_Resultado_Atencion
         }
 
 
-        public static String actualizarConsulta(String fechaAt, String horaAt, String diagnostico, String sintomas, String nroCon)
+        public static String actualizarConsulta(String fechaAt, String horaAtFin, String diagnostico, String sintomas, String nroCon)
         {
-            String query = "execute BUGDEVELOPING.ACTUALIZAR_CONSULTA " + fechaAt + ", " + horaAt + ", " + diagnostico + ", " + sintomas + ", " + nroCon + " ";
+            String query = "execute BUGDEVELOPING.ACTUALIZAR_CONSULTA " + fechaAt + ", " + horaAtFin + ", " + diagnostico + ", " + sintomas + ", " + nroCon + " ";
             ConnectorClass con = ConnectorClass.Instance;
             DataTable dt = con.executeQuery(query);
             if (dt.Rows.Count != 0)
